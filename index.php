@@ -1,2 +1,3 @@
-<?php 
-header('Location: /client/test/login.php')
+<script>
+    window.location.href = "/client/test/login.php";
+</script>
