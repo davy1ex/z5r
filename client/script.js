@@ -46,20 +46,25 @@ window.onclick = function(event) {
 }
 
 
-// Фокус на настройки
+// если авторизирован
 if (document.cookie != '') {
 	let mainEl = document.querySelector('.main'); // главный селектор
 	let signInEl = document.querySelector('#signIn'); // кнопка авторизации
+	
+	let remTextEl = document.querySelector('.overlay-left p')
+	let remButtonEl = document.querySelector('.overlay-left button')
+	remTextEl.remove();
+	remButtonEl.remove();
 	
 	mainEl.classList.add('right-panel-active');	// смещает фокус на настройки
 	signInEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
 }
 
-// фокус на логин
+// если не авторизирован
 else if (document.cookie == '') {
 	let mainEl = document.querySelector('.main');
 	let settingsEl = document.querySelector('#signUp'); // кнопка настроек
-	
+
 	mainEl.classList.add('lef-panel-active');
 	settingsEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
 }
