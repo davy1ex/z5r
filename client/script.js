@@ -49,10 +49,21 @@ window.onclick = function(event) {
 // если авторизирован
 if (document.cookie != '') {
 	let mainEl = document.querySelector('.main'); // главный селектор
-	let signInEl = document.querySelector('#signIn'); // кнопка авторизации
+	let outField = document.querySelector('.overlay-left'); // главный селектор
+
+	// var outButton = document.createElement('input');
+	// // <button class="log_out" name='log_out' type="submit" >Выход</button>
+	// outButton.type = 'submit';
+	// outButton.name="log_out";
+	// outButton.classList.add("log_out");
+	// outButton.onclick()
+	// outField.appendChild(outButton);
+
+
+	let signInEl = document.querySelector('#signIn'); // кнопка настроек
 	
 	let remTextEl = document.querySelector('.overlay-left p')
-	let remButtonEl = document.querySelector('.overlay-left button')
+	let remButtonEl = document.querySelector('#signIn')
 	remTextEl.remove();
 	remButtonEl.remove();
 	
