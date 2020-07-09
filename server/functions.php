@@ -41,3 +41,10 @@ function login() {
         return false;
     }
 }
+
+
+// function index() {
+//     echo '<script>
+//         window.location.href = "/client/index.html?#";
+//         </script>';
+// }

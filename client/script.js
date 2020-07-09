@@ -52,7 +52,7 @@ if (document.cookie != '') {
 	let outField = document.querySelector('.overlay-left'); // главный селектор
 
 	var outButton = document.createElement('button');
-	// // <button class="log_out" name='log_out' type="submit" >Выход</button>
+	// <button class="log_out" name='log_out' type="submit" >Выход</button>
 	// outButton.type = 'submit';
 	// outButton.name="log_out";
 	// outButton.classList.add("log_out");
