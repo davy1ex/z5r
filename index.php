@@ -14,18 +14,9 @@ if ( !login() ) { // если не авторизирован
             print($error);
         }
     }
-    echo '<script>
-        window.location.href = "/client/index.html?#";
-        </script>';
+    
 }
 
-// else { // авторизирован
-//     if (isset($_POST['log_out'])) { // если нажата кнопка выхода
-//         setcookie ("login", 'root', 0); 
-//     }
-// }
-
-include_once ('client/index.html?#');
-// echo '<script>
-// window.location.href = "/client/index.html";
-// </script>';
+echo '<script>
+        window.location.href = "/client/index.html?#";
+        </script>';

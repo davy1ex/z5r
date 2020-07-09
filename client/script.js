@@ -51,7 +51,7 @@ if (document.cookie != '') {
 	let mainEl = document.querySelector('.main'); // главный селектор
 	let outField = document.querySelector('.overlay-left'); // главный селектор
 
-	// var outButton = document.createElement('input');
+	var outButton = document.createElement('button');
 	// // <button class="log_out" name='log_out' type="submit" >Выход</button>
 	// outButton.type = 'submit';
 	// outButton.name="log_out";
@@ -75,9 +75,10 @@ if (document.cookie != '') {
 else if (document.cookie == '') {
 	let mainEl = document.querySelector('.main');
 	let settingsEl = document.querySelector('#signUp'); // кнопка настроек
+	// let remButtonEl = document.querySelector('#signIn')
 
 	mainEl.classList.add('lef-panel-active');
-	settingsEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
+	settingsEl.remove();	// смещает фокус на настройки
 }
 
 // let toggle = document.getElementById('container_choice');
