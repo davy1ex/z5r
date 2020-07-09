@@ -1,0 +1,210 @@
+<?php include_once ('server/functions.php'); if (login()) echo 'hello, ' . $_COOKIE['login']; ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>ELSYS Super Light</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/client/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+  <link rel="icon" href="/client/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<section id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Настройки ELSYS Super Light</h2>
+    </div>
+    <div class="modal-body">
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            Статус
+          </div>
+          <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+           Настройки подключения
+          </div>
+          <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            Режим работы
+          </div>
+          <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+              <form action="">
+                <fieldset>
+                  <legend>Устанавка режима работы контроллера </legend>
+                  <div class="container_check" >
+                      <div class="radio-group">
+                        <input type="radio" id="option-one" name="selector">
+                        <label for="option-one">Норма</label>
+                        <input type="radio" id="option-two" name="selector">
+                        <label for="option-two">Блок</label>
+                        <input type="radio" id="option-three" name="selector">
+                        <label for="option-three">Свободный проход</label>
+                        <input type="radio" id="option-four" name="selector">
+                        <label for="option-four">Ожидание свободного прохода</label>
+                      </div>
+                  </div>
+                  <button class="container_check_btn" type="button">Сохранить</button>
+                </fieldset>
+              </form>
+              <form action="" >
+                <fieldset>
+                  <legend>Активация / деактивация работы контроллера с сервером </legend>
+                  <div class="switch_block">
+                    <label class="switch">
+                      <input type="checkbox" >
+                      <span class="slider round"></span>
+                    </label>
+                    <button class="container_check_btn" type="button">Сохранить</button>
+                  </div>
+                </fieldset>
+              </form>
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            Настройки контроллера
+          </div>
+          <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+              <form action="" class="time_zone">
+                <fieldset>
+                  <legend>Устанавка параметров временной зоны контроллера</legend>
+                  <input type="text" placeholder="Зона" required/>
+                  <input type="time" placeholder="Начало" required/>
+                  <input type="time" placeholder="Конец" required/>
+                  <input type="text" placeholder="Дни" required/>
+                  <button class="container_check_btn" type="button">Сохранить</button>
+                </fieldset>
+              </form>
+
+
+              <form action="">
+                <fieldset>
+                  <legend>Устанавка параметров открывания и контроля состояния двери </legend>
+                  <input type="number" placeholder="Время подачи сигнала открывания замка (в 1/10 секунды) " />
+                  <input type="number" placeholder="Время контроля открытия двери (в 1/10 секунды) " />
+                  <input type="number" placeholder="Время контроля закрытия двери (в 1/10 секунды) " />
+                  <button type="button">Сохранить</button>
+                </fieldset>
+              </form>
+
+              <form action="">
+              <fieldset>
+                <legend  class="tooltip">Добавляение карты в память контроллера <span class="tooltiptext"> Если в памяти контроллера уже имеется карта с таким-же номером, для этой карты обновляются флаги  и временные зоны. </span>
+                </legend>
+                <div class="add_card">
+                  <label>
+                    <input type="text"  placeholder="Номер карты" required>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="color" value="Блокирующая карта " >
+                    <span>Блокирующая карта </span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="color" value="Коротокий код карты">
+                    <span>Коротокий код карты</span>
+                  </label>
+                  <label>
+                    <input type="text"  placeholder="tz" required>
+                  </label>
+                  <button class="container_check_btn" type="button">Добавить</button>
+                </div>
+              </fieldset>
+            </form>
+
+              <form action="">
+                <fieldset>
+                  <legend > Удаление карты из памяти контроллера </legend>
+                  <label>
+                    <input type="text"  placeholder="Номер карты" required>
+                  </label>
+                    <button  type="button">Удалить</button>
+                </fieldset>
+              </form>
+
+              <form action="">
+                <fieldset>
+                  <legend > Удаление всех карт из памяти контроллера  </legend>
+                  <button  type="button">Удалить</button>
+                </fieldset>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-item-header">
+            Расширенные настройки
+          </div>
+          <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="elsys">
+  <h1>ELSYS Super Light</h1>
+</div>
+
+<section class="container main <?php if(login()) {echo 'right-panel-active';} else {echo 'left-panel-active';} ?>" id="container">
+  <div class="form-container sign-up-container">
+    <img class="logo" src="/client/logo.png" alt="">
+    <form action="#">
+      <button id="myBtn">Настройки</button>
+    </form>
+  </div>
+
+  <div class="form-container sign-in-container form-container_2">
+      <img class="logo" src="/client/logo.png" alt="">
+    <form action="/" method="POST">
+      <h2>Авторизация</h2>
+      <input name='login' type="text" placeholder="Login" required/>
+      <input name='password' type="password" placeholder="Password" required />
+      <button name='log_in' type="submit" >Вход</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h2>Добро пожаловать!</h2>
+        <p>Для того, чтобы приступить к настройкам нужна авторизация.</p>
+        <button class="ghost" id="signIn">Вход</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h2>Добро пожаловать!</h2>
+        <p>Для того, чтобы приступить к настройкам нужна авторизация.</p>
+        <button class="ghost" id="signUp" type="button">Настройки</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script type="text/javascript" src="/client/script.js"></script>
+</body>
+</html>

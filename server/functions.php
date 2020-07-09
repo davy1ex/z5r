@@ -12,8 +12,7 @@ function enter() {
 
         if ($usr_login == $LOGIN )  { // верный логин
             if ($usr_password == $PASSWORD) { //верный пароль
-                // set user session
-                // $_SESSION['id'] = '0';
+                // set user cookie
                 setcookie ("login", 'root', time() + 50000);    
             }
 
@@ -34,7 +33,6 @@ function enter() {
 
 
 function login() {
-    // if ($_SESSION['id'] == '0') {
     if (count($_COOKIE) > 0) {
         return true;
     }
@@ -43,8 +41,3 @@ function login() {
         return false;
     }
 }
-
-
-// function out() {
-//     setcookie ("login", 'root', time() + 0);    
-// }
