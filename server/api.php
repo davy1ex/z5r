@@ -61,11 +61,15 @@ if ($_POST['operation'] == 'new_event') {
 }
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки) 
+if ($_POST['operation'] == 'add_token') {
+    add_token($_POST['token']);
+}
 
+if ($_POST['operation'] == 'remove_token') {
+    remove_token($_POST['token']);
+}
 
-// print_r($data);
-// echo $data["operation"];
 $data = json_decode(file_get_contents('php://input'), true);
 if ($data['operation'] == 'add_device') {
-    header("HTTP/1.1 200 you token is true");
+    add_device_by_token($data['token']);
 }

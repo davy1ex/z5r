@@ -1,12 +1,12 @@
-function get_cards_table(cards_list) { // рисует таблицу из массива с картами
+function get_cards_table(cards_list) { // рисует таблицу с картами
     var perrow = 1, // 2 cells per row
-            html = 
+            html =
     '<table>\
         <thead>\
             <tr>\
                 <th scope="col">Номер карты</th>\
                 <th scope="col">Блокирующая карта</th>\
-                <th scope="col">Коротокий код карты</th>\
+                <th scope="col">Короткий код карты</th>\
                 <th scope="col">tz</th>\
                 <th scope="col">Удаление</th>\
             </tr>\
@@ -15,8 +15,8 @@ function get_cards_table(cards_list) { // рисует таблицу из ма�
 
         // Loop through array and add table cells
         $.each(cards_list, function(i, item) {
-            if(item.block_type) {
-                block_type = 
+            if(parseInt(item.block_type) == true) {
+                block_type =
                     '<span class="checkmark">\
                         <div class="checkmark_stem"></div>\
                         <div class="checkmark_kick"></div>\
@@ -27,8 +27,8 @@ function get_cards_table(cards_list) { // рисует таблицу из ма�
                 block_type = '<span class="close">×</span>'
             }
 
-            if(item.shord_code) {
-                shord_code = 
+            if(parseInt(item.shord_code)) {
+                shord_code =
                 '<span class="checkmark">\
                     <div class="checkmark_stem"></div>\
                     <div class="checkmark_kick"></div>\
@@ -44,20 +44,35 @@ function get_cards_table(cards_list) { // рисует таблицу из ма�
             html += "<td data-label='Short code card'>" + shord_code + "</td>";
             html += "<td data-label='tz'>" + item.tz + "</td>";
             html += "<td data-label='Del'>" + '<button id=' + item.id + ' class="del_btn">Удалить</button>' + "</td>";
-                    
+
             var next = i+1;
             if (next%perrow==0 && next!=cards_list.length) {
                 html += "</tr><tr>";
             }
             
         })
-    
+
     html += "</tr></table>";
+    
     $('.cards-table').html(html)
+    $('.del_btn').on('click', function() { //удаляет карту
+        console.log(this.id)
+        
+        $.ajax({
+            type: "POST",
+            url: '/server/api.php',
+            data: {'operation': 'del_card', 'card_id': this.id},
+                    
+            success: function(response) {
+                // window.location = '/'
+                take_cards()
+            }
+        })
+    })
 }
 
 
-function take_cards() { // получает массив карт с сервера
+function take_cards() { // получает массив карт с сервера    
     $.ajax({
         type: "POST",
         url: '/server/api.php',
@@ -68,17 +83,14 @@ function take_cards() { // получает массив карт с серве�
         
         success: function (response) {
             var jsonData = JSON.parse(response)
-            console.log(jsonData)
             get_cards_table(jsonData.cards)
         }
     })
 }
 
-take_cards()
-
-
 // 15.07.20 (отображение лога на стороне клиента)
 function create_events_table() {
+    console.log('event table created/updated')
     $.ajax({
         type: "POST",
         url: '/server/api.php',
@@ -86,7 +98,7 @@ function create_events_table() {
         data: {
             'operation': 'get_events'
         },
-
+        // cache: false,
         success: function (response) {
             var events_list = JSON.parse(response).events
             var perrow = 1,
@@ -117,4 +129,10 @@ function create_events_table() {
     })
 }
 
-create_events_table()
+$(document).ready(function(){
+    setInterval(create_events_table, 20000);
+   });
+
+create_events_table() // рисует таблицу с эвентами
+take_cards() // рисует таблицу с картами
+ 

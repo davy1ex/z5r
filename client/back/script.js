@@ -97,6 +97,72 @@ else if (document.cookie == '') {
 
 }
 
+let tab1 = document.getElementById("tab1");
+let tab2 = document.getElementById("tab2");
+let tab3 = document.getElementById("tab3");
+let tab4 = document.getElementById("tab4");
+
+$('#option-one-door').click(function() {
+	if ($(this).is(":checked")) {
+	tab1.setAttribute('checked','test');
+	tab1.removeAttribute("disabled");
+
+	tab2.removeAttribute("checked");
+	tab3.removeAttribute("checked");
+	tab4.removeAttribute("checked");
+	tab2.setAttribute('disabled','test1');
+	tab3.setAttribute('disabled','test1');
+	tab4.setAttribute('disabled','test1');
+	}
+
+
+})
+$('#option-two-door').click(function() {
+	if ($(this).is(":checked")) {
+	tab2.setAttribute('checked','test');
+	tab2.removeAttribute("disabled");
+
+	tab3.removeAttribute("checked");
+	tab1.removeAttribute("checked");
+	tab4.removeAttribute("checked");
+	tab1.setAttribute('disabled','test1');
+	tab3.setAttribute('disabled','test1');
+	tab4.setAttribute('disabled','test1');
+	}
+
+
+})
+$('#option-three-tab').click(function() {
+	if ($(this).is(":checked")) {
+	tab3.setAttribute('checked','test');
+	tab3.removeAttribute("disabled");
+
+	tab2.removeAttribute("checked");
+	tab1.removeAttribute("checked");
+	tab4.removeAttribute("checked");
+	tab2.setAttribute('disabled','test1');
+	tab1.setAttribute('disabled','test1');
+	tab4.setAttribute('disabled','test1');
+	}
+
+
+})
+$('#option-four-tab').click(function() {
+	if ($(this).is(":checked")) {
+	tab4.setAttribute('checked','test');
+		tab4.removeAttribute("disabled");
+
+		tab2.removeAttribute("checked");
+		tab1.removeAttribute("checked");
+		tab3.removeAttribute("checked");
+		tab2.setAttribute('disabled','test1');
+		tab3.setAttribute('disabled','test1');
+		tab1.setAttribute('disabled','test1');
+	}
+
+
+})
+
 // let toggle = document.getElementById('container_choice');
 // let toggleContainer = document.getElementById('toggle-container');
 // let toggleNumber;

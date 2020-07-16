@@ -83,7 +83,6 @@ function take_cards() { // получает массив карт с серве�
         
         success: function (response) {
             var jsonData = JSON.parse(response)
-            console.log(jsonData)
             get_cards_table(jsonData.cards)
         }
     })
@@ -91,7 +90,7 @@ function take_cards() { // получает массив карт с серве�
 
 // 15.07.20 (отображение лога на стороне клиента)
 function create_events_table() {
-    console.log('gg')
+    console.log('event table created/updated')
     $.ajax({
         type: "POST",
         url: '/server/api.php',

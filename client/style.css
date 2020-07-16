@@ -1086,6 +1086,18 @@ color: #333;
   opacity: 1;
   transform: translate3d(0px, 0px, 0px);
 }
+.qr-code-read a{
+  color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 15px 0;
+    letter-spacing: 1px;
+}
+.QR_work{
+  display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+}
 /* //////////////////////////////////////////////////////////////// */
 @media screen and (max-width:992px) {
   .add_card label {

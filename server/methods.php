@@ -147,8 +147,49 @@ function add_event($event, $date) {
 
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки)
-function add_device_by_token($token) {
+function add_token($token) {
+    global $pdo;
+    $query = $pdo -> prepare('INSERT INTO devices (token) VALUES (?)');
+    $query -> execute([
+        $token
+    ]);  
+    $pdo = null;
+
     echo json_encode([
         'success'   => 1
     ]);
+}
+
+function remove_token($token) {
+    global $pdo;
+    $query = $pdo -> prepare('DELETE FROM devices WHERE token=:token');
+    $query -> execute(array(':token' => $token));
+    $pdo = null;
+
+    echo json_encode([
+        'success'   => 1
+    ]);
+}
+
+function add_device_by_token($token) {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM devices WHERE token = ?');
+    $query -> execute([
+        $token
+    ]);  
+    $devices = $query -> fetchAll();
+    $pdo = null;
+    
+    // header("HTTP/1.1 200 no found: " . json_encode($devices));
+    if ($devices[0]['id']) {
+        header("HTTP/1.1 200 token: " . $devices[0]['token'] . ' phone_id: ' . $devices[0]['phone_id']);
+        // echo json_encode([
+        //     'success'   => 1,
+        //     'phone_id'        => $query['phone_id']
+        // ]);
+    }
+
+    else {
+        header("HTTP/1.1 200 no found");
+    }
 }
