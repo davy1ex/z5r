@@ -122,7 +122,8 @@ $('.add_btn').on('click', function () { // добавляет карту
             'tz':           $('#card_tz').val()
         },
         success: function(response) {
-            window.location = '/'
+            // window.location = '/'
+            take_cards()
         }
               
     })
@@ -138,7 +139,8 @@ $('.del_btn').on('click', function() { //удаляет карту
         data: {'operation': 'del_card', 'card_id': this.id},
         
         success: function(response) {
-            window.location = '/'
+            // window.location = '/'
+            take_cards()
         }
     })
 })
@@ -148,7 +150,9 @@ $('#del_all_cards').on('click', function(event) {
     $.ajax({
         type: "POST",
         url: '/server/api.php',
-        data: {'operation': 'del_all_cards'},
+        data: {
+            'operation': 'del_all_cards'            
+        },
 
         success: function(response) {
             take_cards()
@@ -159,8 +163,83 @@ $('#del_all_cards').on('click', function(event) {
 
 
 
+// 16.07.20 (добавление событий)
+$('#open-oneside-door-btn').on('click', function(event) {
+    var current_date = new Date()
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        data: {
+            'operation': 'new_event',
+            'action': 'открытие',
+            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+        },
+
+        success: function(response) {
+            window.location = '/'
+        }
+    })
+}) 
+
+
+$('#close-oneside-door-btn').on('click', function(event) {
+    co
+    var current_date = new Date()
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        data: {
+            'operation': 'new_event',
+            'action': 'закрытие',
+            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+        },
+
+        success: function(response) {
+            window.location = '/'
+        }
+    })
+}) 
+
+
+$('#unlock-oneside-door-btn').on('click', function(event) {
+    console.log('unlock')
+    var current_date = new Date()
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        data: {
+            'operation': 'new_event',
+            'action': 'разблокирование',
+            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+        },
+
+        success: function(response) {
+            window.location = '/'
+        }
+    })
+})
 
 
 
 
 
+
+// 16.07.20 (QR CODES)
+// Генерация кр кода с токеном по нажанию кнопки:
+function generate_token() {
+    return Math.random().toString(36).substr(2);
+}
+
+$('#generate_qr_token').on('click', function() {
+    $('.qr-code-field').append('<div id="qrcode" style="margin: 40px"></div>')
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		text: "gg",
+		width: 128,
+		height: 128,
+		colorDark : "#35B0FF",
+		colorLight : "#ffffff",
+		correctLevel : QRCode.CorrectLevel.H
+	})
+		
+	qrcode.makeCode(generate_token()); // make another code.
+})

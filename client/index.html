@@ -18,6 +18,9 @@
 
 <section id="myModal" class="modal">
   <div class="modal-content">
+	<div class="qr-code-field">
+		<button id="generate_qr_token">generate token qr code</button>
+	</div>
     <div class="modal-header">
 			      <h2>Настройки ELSYS Super Light</h2>
       <span class="close">&times;</span>
@@ -72,7 +75,7 @@
 							    <tr>
 							      <th scope="col">Номер карты</th>
 							      <th scope="col">Блокирующая карта</th>
-							      <th scope="col">Коротокий код карты</th>
+							      <th scope="col">Короткий код карты</th>
 							      <th scope="col">tz</th>
 										<th scope="col">Удаление</th>
 							    </tr>
@@ -151,7 +154,7 @@
 								<fieldset>
 									<legend>Режим работы</legend>
 									<div class="radio-toolbar">
-														<input type="radio" id="option-one-door" name="selector" value="Односторнняя дверь" checked>
+														<input type="radio" id="option-one-door" name="selector" value="Односторнняя дверь">
 														<label for="option-one-door">Односторнняя дверь</label>
 
 														<input type="radio"  id="option-two-door" name="selector" value="Двусторонняя дверь">
@@ -287,11 +290,11 @@
 <img src="/client/door.png" alt="">
 				<img src="/client/press_120412.png" class="img_sec" alt="">
 <div class="content1_btn">
-	<button class="ghost" type="button" name="">Открыть</button>
-		<button  class="ghost" type="button" name="">Разблокировать</button>
-	<button class="ghost" type="button" name="">Закрыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть</button>
+	<button id='unlock-oneside-door-btn' class="ghost" type="button" name="">Разблокировать</button>
+	<button id='close-oneside-door-btn' class="ghost" type="button" name="">Закрыть</button>
 
-	<button class="ghost" type="button" name="">Заблокировать</button>
+	<button id='lock-oneside-door-btn' class="ghost" type="button" name="">Заблокировать</button>
 </div>
 
 			</section>

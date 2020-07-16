@@ -130,3 +130,25 @@ function get_events() {
         'events'     => $events
     ]);
 }
+// 16.07.20 (добавление событий)
+function add_event($event, $date) {
+    global $pdo;
+    $query = $pdo -> prepare('INSERT INTO events (action, date) VALUES (?, ?)');
+    $query -> execute([
+        $event,
+        $date
+    ]);  
+    $pdo = null;
+
+    echo json_encode([
+        'success'   => 1
+    ]);
+}
+
+
+// 16.07.20 (Генерация кр кода с токеном по нажанию кнопки)
+function add_device_by_token($token) {
+    echo json_encode([
+        'success'   => 1
+    ]);
+}

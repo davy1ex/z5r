@@ -54,3 +54,18 @@ if ($_POST['operation'] == 'add_card') {
 if ($_POST['operation'] == 'get_events') {
     get_events();
 }
+
+// 16.07.20 (добавление событий)
+if ($_POST['operation'] == 'new_event') {
+    add_event($_POST['action'], $_POST['date']);
+}
+
+// 16.07.20 (Генерация кр кода с токеном по нажанию кнопки) 
+
+
+// print_r($data);
+// echo $data["operation"];
+$data = json_decode(file_get_contents('php://input'), true);
+if ($data['operation'] == 'add_device') {
+    header("HTTP/1.1 200 you token is true");
+}

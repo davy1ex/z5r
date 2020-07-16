@@ -89,19 +89,6 @@ if (document.cookie != '') {
 else if (document.cookie == '') {
 	let mainEl = document.querySelector('.main'); // селектор с частью где вход
 
-	
-	$('#auth').append('<div id="qrcode" style="margin-top: 40px"></div>')
-	var qrcode = new QRCode("qrcode", {
-		text: "gg",
-		width: 128,
-		height: 128,
-		colorDark : "#35B0FF",
-		colorLight : "#ffffff",
-		correctLevel : QRCode.CorrectLevel.H
-	})
-		
-	qrcode.makeCode('gg'); // make another code.
-
 	let settingsEl = document.querySelector('#signUp'); // кнопка настроек
 	settingsEl.remove(); // удаляет кнопку настроек
 
