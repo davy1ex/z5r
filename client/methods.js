@@ -39,13 +39,13 @@ function set_active(active) { // хз что это
 }
 
 
-
 // навешиваются методы на элементы управления
 $('.mode0').click(function() { // хз что это
     if ($(this).is(":checked")) {
         set_mode(0)
     }
 })
+
 
 $('#set_active').click(function(){ // хз что это
     if($(this).is(":checked")){  // checked
@@ -67,8 +67,7 @@ $('#set_active').click(function(){ // хз что это
 
 // 12.07.20 (авторизация)
 // ########## АВТОРИЗАЦИЯ ##########
-$('#auth').submit(function (event) { // авторизация: Создаёт куки login=root
-    
+$('#auth').submit(function (event) { // авторизация: Создаёт куки login=root    
     var $form = $( this ),
     login = $form.find( "input[name='login']" ).val(),
     password = $form.find( "input[name='password']" ).val();
@@ -88,6 +87,7 @@ $('#auth').submit(function (event) { // авторизация: Создаёт �
     })
 })
 
+
 $('.log_out').on('click', function () { // выход: удаляет куки login=root
     deleteCookie('login')
 })
@@ -104,13 +104,7 @@ $('.log_out').on('click', function () { // выход: удаляет куки l
 
 // 14.07.20 (добавление карт)
 // ########## КАРТЫ ##########
-
 $('.add_btn').on('click', function () { // добавляет карту
-    console.log($('#numb_card').val())
-    console.log($('#cbk1').is(':checked') == true ? 1 : 0)
-    console.log($('#cbk2').is(':checked') == true ? 1 : 0)
-    console.log($('#card_tz').val())
-
     $.ajax({
         type: "POST",
         url: '/server/api.php',
@@ -125,24 +119,8 @@ $('.add_btn').on('click', function () { // добавляет карту
             // window.location = '/'
             take_cards()
         }
-              
     })
-})
-
-
-$('.del_btn').on('click', function() { //удаляет карту
-    console.log(this.id)
-
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        data: {'operation': 'del_card', 'card_id': this.id},
-        
-        success: function(response) {
-            // window.location = '/'
-            take_cards()
-        }
-    })
+    
 })
 
 

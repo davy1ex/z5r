@@ -53,7 +53,22 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
         })
 
     html += "</tr></table>";
+    
     $('.cards-table').html(html)
+    $('.del_btn').on('click', function() { //удаляет карту
+        console.log(this.id)
+        
+        $.ajax({
+            type: "POST",
+            url: '/server/api.php',
+            data: {'operation': 'del_card', 'card_id': this.id},
+                    
+            success: function(response) {
+                // window.location = '/'
+                take_cards()
+            }
+        })
+    })
 }
 
 
