@@ -123,7 +123,6 @@ $('.add_btn').on('click', function () { // добавляет карту
         },
         success: function(response) {
             window.location = '/'
-            window.location.reload()
         }
               
     })
@@ -139,9 +138,7 @@ $('.del_btn').on('click', function() { //удаляет карту
         data: {'operation': 'del_card', 'card_id': this.id},
         
         success: function(response) {
-            // take_cards()
             window.location = '/'
-            window.location.reload()
         }
     })
 })
