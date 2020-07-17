@@ -1,14 +1,3 @@
-SET_ACTIVE
-OPEN_DOOR
-SET_MODE
-SET_TIMEZONE
-SET_DOOR_PARAMS
-ADD_CARDS
-DEL_CARDS
-CLEAR_CARDS
-
-
-
 1) разграничение прав пользователей
 -- админ - всё
 -- начальник службы безопасности - он не может закреплять устройства за пользователеми, карты может выдавать

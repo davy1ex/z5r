@@ -129,18 +129,50 @@ function del_card($card_id) {
 // 14.07.20 (добавление карт) 
 function add_card($numb_card, $block_type, $shord_code, $tz) {
     global $pdo;
-    $query = $pdo -> prepare('INSERT INTO cards (card, block_type, shord_code, tz) VALUES (?, ?, ?, ?)');
-    $query -> execute([
-        $numb_card,
-        (int)$block_type,
-        (int)$shord_code,
-        (int)$tz
-    ]);  
-    $pdo = null;
+    $query = $pdo -> prepare('SELECT * FROM `cards` WHERE card = ?');
+    $query -> execute([$numb_card]);
+    $cards = $query -> fetchAll();
+    if (count($cards) > 0) { // если карта уже есть в бд
+        $query = $pdo -> prepare('UPDATE `cards` SET `block_type` = ?, `shord_code` = ?, `tz` = ? WHERE card = ?');
+        $query -> execute([
+            (int)$block_type,
+            (int)$shord_code,
+            (int)$tz,
+            $numb_card
+        ]);
+        $pdo = null;
+        echo json_encode([
+            'success'   => '1',
+        ]);
+    } 
 
-    echo json_encode([
-        'success'   => 1
-    ]);
+    else {
+        $query = $pdo -> prepare('INSERT INTO cards (card, block_type, shord_code, tz) VALUES (?, ?, ?, ?)');
+        $query -> execute([
+            $numb_card,
+            (int)$block_type,
+            (int)$shord_code,
+            (int)$tz
+        ]);  
+        $pdo = null;
+        echo json_encode([
+            'success'   => '1',
+        ]);
+    }
+
+
+    // $query = $pdo -> prepare('INSERT INTO cards (card, block_type, shord_code, tz) VALUES (?, ?, ?, ?)');
+    // $query -> execute([
+    //     $numb_card,
+    //     (int)$block_type,
+    //     (int)$shord_code,
+    //     (int)$tz
+    // ]);  
+    // $pdo = null;
+
+    // echo json_encode([
+    //     'success'   => 1
+    // ]);
 }
 
 // 15.07.20 (отображение лога на стороне клиента)
