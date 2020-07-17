@@ -226,6 +226,7 @@ function generate_token() {
 
 $('#generate_qr_token').on('click', function() {
     var token = generate_token()
+    console.log(token)
     $('.qr-code-field').append('<div id="qrcode" style="margin: 40px"></div>')
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
 		text: "gg",
@@ -251,7 +252,7 @@ $('#generate_qr_token').on('click', function() {
 
     console.log('token added to db')
 
-    setTimeout(function () {remove_token()}, 1000)
+    setTimeout(function () {remove_token()}, 30000)
 
     function remove_token() {
         $.ajax({

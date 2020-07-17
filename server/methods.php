@@ -180,16 +180,16 @@ function add_device_by_token($token) {
     $devices = $query -> fetchAll();
     $pdo = null;
     
-    // header("HTTP/1.1 200 no found: " . json_encode($devices));
-    if ($devices[0]['id']) {
-        header("HTTP/1.1 200 token: " . $devices[0]['token'] . ' phone_id: ' . $devices[0]['phone_id']);
-        // echo json_encode([
-        //     'success'   => 1,
-        //     'phone_id'        => $query['phone_id']
-        // ]);
-    }
+    header("HTTP/1.1 200 test: " . json_encode($devices));
+    // if ($devices[0]['id']) {
+    //     header("HTTP/1.1 200 token: " . $devices[0]['token'] . ' phone_id: ' . $devices[0]['phone_id']);
+    //     // echo json_encode([
+    //     //     'success'   => 1,
+    //     //     'phone_id'        => $query['phone_id']
+    //     // ]);
+    // }
 
-    else {
-        header("HTTP/1.1 200 no found");
-    }
+    // else {
+    //     header("HTTP/1.1 200 no found");
+    // }
 }
