@@ -68,6 +68,8 @@
 				<table>
 					<thead>
 						<tr>
+							<th scope="col">Имя пользователя</th>
+								<th scope="col">Тип учетной записи</th>
 							<th scope="col">ID</th>
 							<th scope="col">Устройство</th>
 							<th scope="col">MAC-адрес</th>
@@ -75,30 +77,63 @@
 					</thead>
 					<tbody>
 						<tr>
+							<th data-label="Пользователь">Андрей</th>
+							<th data-label="Тип учетной записи">Охранник</th>
 							<td data-label="ID">56544549 </td>
 							<td data-label="Устройство">Телефон</td>
 							<td data-label="MAC-адрес">00-50-B6-5B-CA-6A</td>
 						</tr>
 							<tr>
+								<th data-label="Пользователь">root</th>
+								<th data-label="Тип учетной записи">Начальник службы безопасности</th>
 								<td data-label="ID">56544549 </td>
 								<td data-label="Устройство">Телефон</td>
 								<td data-label="MAC-адрес">00-50-B6-5B-CA-6A</td>
 							</tr>
 							<tr>
+								<th data-label="Пользователь">root</th>
+								<th data-label="Тип учетной записи">Админ</th>
 								<td data-label="ID">56544549 </td>
 								<td data-label="Устройство">Телефон</td>
 								<td data-label="MAC-адрес">00-50-B6-5B-CA-6A</td>
 							</tr>
+							<tr>
+								<th data-label="Пользователь">root</th>
+								<th data-label="Тип учетной записи">Админ</th>
+								<td data-label="ID">56544549 </td>
+								<td data-label="Устройство">Телефон</td>
+								<td data-label="MAC-адрес">00-50-B6-5B-CA-6A</td>
+							</tr>
+
+
 					</tbody>
 				</table>
-       <div class="QR_work">
-				 <div class="qr-code-field">
-					 <button id="generate_qr_token">Генерация QR кода</button>
-				 </div>
-				 <div class="qr-code-read">
-					 <button ><a href="../QR/index.html ">Считать QR код</a></button>
-				 </div>
-						 </div>
+
+				<table>
+				 <thead>
+					 <tr>
+						 <th scope="col">Имя пользователя</th>
+						 			 <th scope="col">Пароль</th>
+							 <th scope="col">Тип учетной записи</th>
+						 <th scope="col">ID</th>
+						 <th scope="col">Устройство</th>
+						 <th scope="col">MAC-адрес</th>
+						 <th scope="col"></th>
+					 </tr>
+				 </thead>
+				 <tbody>
+					 <tr>
+						<th data-label="Пользователь"><input type="text" placeholder="Пользователь" required/></th>
+						<th data-label="Пароль"><input type="text" placeholder="Пароль" required/></th>
+						<th data-label="Тип учетной записи"><input type="text" placeholder="Тип учетной записи" required/></th>
+						<td data-label="ID"><input type="text" placeholder="ID" required/> </td>
+						<td data-label="Устройство"><input type="text" placeholder="Устройство" required/></td>
+						<td data-label="MAC-адрес">      <input type="text" placeholder="MAC-адрес" required/></td>
+								<td data-label="Add"><button  class="add_btn add_2">	Добавить </button></td>
+					</tr>
+				 </tbody>
+			 </table>
+
 					 </div>
 				 </div>
 
@@ -122,7 +157,7 @@
 							      <th scope="col">Блокирующая карта</th>
 							      <th scope="col">Короткий код карты</th>
 							      <th scope="col">tz</th>
-										<th scope="col">Удаление</th>
+										<th scope="col"></th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -162,12 +197,16 @@
 							</table>
 
 
-							              <form action="">
-							                <fieldset>
-							                  <legend > Удаление всех карт из памяти контроллера  </legend>
-							                  <button  id='del_all_cards' type="button">Удалить</button>
-							                </fieldset>
-							              </form>
+							                  <button  id='del_all_cards' type="button">Удаление всех карт</button>
+
+														<div class="QR_work">
+															<div class="qr-code-field">
+																<button id="generate_qr_token">Генерация QR кода</button>
+															</div>
+															<div class="qr-code-read">
+																<button ><a href="../QR/index.html ">Считать QR код</a></button>
+															</div>
+																	</div>
             </div>
           </div>
         </div>
@@ -318,19 +357,20 @@
 <section id="control" class="control">
 <div class="control_left">
 	<div class="products_ind ">
-				<input class="text-center input_left" id="tab1" type="radio" name="tabs" disabled>
+				<input class="text-center input_left" id="tab1" type="radio" name="tabs" checked>
 				<label for="tab1" id="products_ind_1" >Односторнняя дверь</label>
 
-				<input class="text-center input_left" id="tab2" type="radio" name="tabs " disabled >
+				<input class="text-center input_left" id="tab2" type="radio" name="tabs2 " disabled >
 				<label for="tab2" id="products_ind_2" > Двусторонняя дверь</label>
 
-				<input class="text-center input_left" id="tab3" type="radio" name="tabs" disabled >
+				<input class="text-center input_left" id="tab3" type="radio" name="tabs3" disabled >
 				<label for="tab3" id="products_ind_3" > Турникет</label>
 
-				<input class="text-center input_left" id="tab4" type="radio" name="tabs" disabled>
+				<input class="text-center input_left" id="tab4" type="radio" name="tabs4" disabled>
 			<label for="tab4" class="label_left" id="products_ind_4" > Распашной турникет</label>
 
 			<section id="content1">
+							<h2 class="content_h2_1">Односторнняя дверь</h2>
 								<img src="/client/card-reader.png" class="img_sec" alt="">
 <img src="/client/door.png" alt="">
 				<img src="/client/press_120412.png" class="img_sec" alt="">
@@ -344,6 +384,7 @@
 
 			</section>
 			<section id="content2">
+							<h2 class="content_h2_2">Двусторонняя дверь</h2>
 				<img src="/client/card-reader.png" class="img_sec" alt="">
 <img src="/client/double-door.png" alt="">
 <img src="/client/card-reader.png" class="img_sec" alt="">
@@ -356,6 +397,7 @@
 </div>
 			</section>
 			<section id="content3">
+							<h2 class="content_h2_3">Турникет</h2>
 				<img src="/client/card-reader.png" class="img_sec" alt="">
 <img src="/client/turnstile.png" alt="">
 <img src="/client/card-reader.png" class="img_sec" alt="">
@@ -378,6 +420,7 @@
 </div>
 			</section>
 			<section id="content4">
+							<h2 class="content_h2_4">Распашной турникет</h2>
 				<img src="/client/card-reader.png" class="img_sec" alt="">
 <img src="/client/turnstiles-and-door.png"  alt="">
 <img src="/client/card-reader.png" class="img_sec" alt="">
@@ -407,7 +450,7 @@
 		<div class="control_right_btn">
 			<a href="http://fors.gtechs.ru./" target="_blank"><span class="tooltip_2"><img class="question" src="/client/questionmark_83826.png" alt=""><span class="tooltip-text">Помощь</span></span>
 </a>
-<button id='log_out' class="customization"><span class="tooltip_2"><img src="/client/cog_120288.png" alt=""><span class="tooltip-text">Настройки</span></span>
+<button id='settings' class="customization"><span class="tooltip_2"><img src="/client/cog_120288.png" alt=""><span class="tooltip-text">Настройки</span></span>
 </a>
 </button>
 	<a href=""><button class='log_out exit' name="log_out"><span class="tooltip_2"><img src="/client/exit_icon-icons.com_48304.png" alt=""><span class="tooltip-text">Выход</span></span></button></a>
@@ -463,11 +506,11 @@
 </div>
 </section>
 
+<script src="/client/access.js"></script>
 <script src="/client/qrcode.min.js"></script>
 <script type="text/javascript" src="/client/script.js"></script>
 <script src="/client/functions.js"></script>
 <script src="/client/methods.js"></script>
-
 
 
 </body>

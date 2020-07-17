@@ -928,6 +928,8 @@ table .close:focus {
     display: block;
 }
 
+
+
 .products_ind a:after{
 display: none;
 }
@@ -1097,6 +1099,26 @@ color: #333;
   display: flex;
       justify-content: space-evenly;
       flex-wrap: wrap;
+}
+.products_ind label{
+  display: none;
+}
+.content_h2_1,.content_h2_2,.content_h2_3,.content_h2_4{
+  /* display: none; */
+  color: #333;
+  margin: 15px auto;
+}
+#tab1:checked ~ .content_h2_1,
+#tab2:checked ~ .content_h2_2,
+#tab3:checked ~ .content_h2_3,
+#tab4:checked ~ .content_h2_4
+{
+    display: block;
+}
+#del_all_cards{
+  float: right;
+  background-color: red;
+  border-color: red;
 }
 /* //////////////////////////////////////////////////////////////// */
 @media screen and (max-width:992px) {

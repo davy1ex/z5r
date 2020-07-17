@@ -21,11 +21,36 @@ function power_on($active, $mode) {
     
 }
 
+// function check_usr($login, $password) {
+//     // проверяет данные пользователя
+//     if ($login == 'root' and $password == 'toor') {
+//         echo json_encode([
+//             'success' => 1
+//         ]);
+//     }
+
+//     else {
+//         echo json_encode([
+//             'success' => 0
+//         ]);
+//     }
+// }
+
+// 17.07.20 (авторизация с параметрами доступа)
 function check_usr($login, $password) {
-    // проверяет данные пользователя
-    if ($login == 'root' and $password == 'toor') {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `users` WHERE login = ? AND password = ?');
+    $query -> execute([$login, $password]);
+    $users = $query -> fetchAll();
+    $pdo = null;
+    // echo json_encode([
+    //     'success' => 1,
+    //     'data' => json_encode($users)
+    // ]);
+    if ($users[0]['login'] == $login) {
         echo json_encode([
-            'success' => 1
+            'success' => 1,
+            'access'  => $users[0]['access']
         ]);
     }
 
