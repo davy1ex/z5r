@@ -94,6 +94,8 @@ $('#auth').submit(function (event) { // авторизация: Создаёт �
 
 $('.log_out').on('click', function () { // выход: удаляет куки login=root
     deleteCookie('login')
+    deleteCookie('access')
+    window.location.href = '/client/index.html?#'
 })
 // ########## АВТОРИЗАЦИЯ ##########
 
