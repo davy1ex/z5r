@@ -16,7 +16,7 @@ function power_on($active, $mode) {
         'controller_ip' =>  '192.168.0.222'
     ));
     
-    return true;
+    return $response;
 
     
 }
@@ -249,4 +249,20 @@ function add_device_by_token($token) {
     // else {
     //     header("HTTP/1.1 200 no found");
     // }
+}
+
+
+# 18.07.20 - ПОЛЬЗОВАТЕЛИ
+function get_users() { 
+    // получает все карты из бд
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `users`');
+    $query -> execute();
+    $users = $query -> fetchAll();
+    $pdo = null;
+
+    echo json_encode([
+        'success'   => 1,
+        'users'     => $users
+    ]);
 }

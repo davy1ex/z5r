@@ -26,15 +26,10 @@ function set_active(active) { // хз что это
         'online': 1 // переделать в праметр функции
     })
 
-    // console.log(JSON.parse(JSON.stringify(response)))
     window.location.href = "/server/api.php?operation=set_active&mode=1"
     $.get(
         "/server/api.php",
-        {operation: 'set_active', mode: '1'},
-        
-        
-        // console.log('success')
-        
+        {operation: 'set_active', mode: '1'},        
     );
 }
 
@@ -122,7 +117,6 @@ $('.add_btn').on('click', function () { // добавляет карту
             'tz':           $('#card_tz').val()
         },
         success: function(response) {
-            // window.location = '/'
             take_cards()
         }
     })
@@ -208,51 +202,3 @@ $('#lock-oneside-door-btn').on('click', function(event) {
 
 
 
-// 16.07.20 (QR CODES)
-// Генерация кр кода с токеном по нажанию кнопки:
-function generate_token() {
-    return Math.random().toString(36).substr(2);
-}
-
-$('#generate_qr_token').on('click', function() {
-    var token = generate_token()
-    console.log(token)
-    $('.qr-code-field').append('<div id="qrcode" style="margin: 40px"></div>')
-	var qrcode = new QRCode(document.getElementById("qrcode"), {
-		text: "gg",
-		width: 128,
-		height: 128,
-		colorDark : "#35B0FF",
-		colorLight : "#ffffff",
-		correctLevel : QRCode.CorrectLevel.H
-	})
-		
-    qrcode.makeCode(token); // make another code.
-    console.log('token-qr-code crated')
-    
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-
-        data: {
-            'operation': 'add_token',
-            'token': token
-        }
-    })
-
-    console.log('token added to db')
-
-    setTimeout(function () {remove_token()}, 30000)
-
-    function remove_token() {
-        $.ajax({
-            type: 'POST',
-            url: '/server/api.php',
-            data: {'operation': 'remove_token', 'token': token}
-        })
-        console.log('token removed from db')
-        qrcode.clear()
-        $('#qrcode').remove()
-        console.log('token-qr-code removed')
-    }
-})

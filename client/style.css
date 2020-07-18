@@ -118,8 +118,9 @@ form {
 }
 
 input {
-  background-color: #eee;
-  border: none;
+  background-color: #fff;
+  /* border: none; */
+    border: 1px solid #333;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
@@ -619,7 +620,7 @@ table th {
   font-size: 1em;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1010px) {
   table {
     border: 0;
   }
@@ -1119,6 +1120,31 @@ color: #333;
   float: right;
   background-color: red;
   border-color: red;
+}
+.add_users{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0px 10px;
+}
+.add_users input{
+  border: 1px solid #333;
+  display: block;
+  width: 45%;
+  margin: 10px;
+}
+.add_users_btn{
+  width: 50%
+}
+#generate_qr_token{
+  padding: 10px 15px ;
+}
+.qr-code-field{
+  display: flex;
+  justify-content: center;
+}
+.qr-code-icon{
+  width: 32px;
 }
 /* //////////////////////////////////////////////////////////////// */
 @media screen and (max-width:992px) {

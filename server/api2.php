@@ -4,11 +4,16 @@ include_once ('methods.php');
 
 
 
-$data = json_decode(file_get_contents('php://input'), true);
 
-if ($data['operation'] == 'power_on') {
-    header("HTTP/1.1 200 Content-type: application/json ");
-    exit(json_encode(power_on($data['active'], $data['mode'])));
+
+
+if ($_GET['operation'] == 'power_on') {
+    if (power_on($_GET['active'], $_GET['mode'])) {
+        print_r([
+            'id'        => 123456789,
+            'success'   => 1
+        ]);
+    }
 }
 
 
@@ -67,9 +72,4 @@ if ($_POST['operation'] == 'remove_token') {
 $data = json_decode(file_get_contents('php://input'), true);
 if ($data['operation'] == 'add_device') {
     add_device_by_token($data['token']);
-}
-
-// 18.07.20 - ПОЛЬЗОТВАТЕЛИ
-if ($_POST['operation'] == 'get_users') {
-    get_users();
 }
