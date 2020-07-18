@@ -151,14 +151,13 @@ function get_users_table(users_list) { // рисует таблицу с пол�
 
         // Loop through array and add table cells
         $.each(users_list, function(i, item) {
+            // русификация уровня доступа
             if (item.access == 'admin') {
                 var access = 'Админ'
-            }
-    
+            }    
             else if (item.access == 'guard') {
                 var access = 'Охранник'
-            }
-    
+            }    
             else if (item.access == 'main_guard') {
                 var access = 'Начальник службы безопасности'
             }
@@ -167,8 +166,8 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             html += '<td data-label="Тип учетной записи">' + access + "</td>";
             html += '<td data-label="ID">' + item.device_id + "</td>";
             html += '<td data-label="Устройство">' + item.device_type + "</td>";
-            html += '<td data-label="MAC-адрес">' + '<button id=' + item.device_mac + ' class="del_btn">Удалить</button>' + "</td>";
-            html += '<td>' + '<button class="del_btn">Удалить</button>' + '<button id="generate_qr_token">\
+            html += '<td data-label="MAC-адрес">' + item.device_mac + "</td>";
+            html += '<td>' + '<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id="generate_qr_token">\
                 <span class="tooltip_2">\
                     <img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">\
                     <span class="tooltip-text">Привязать устройство</span>\
@@ -237,6 +236,21 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             console.log('token-qr-code removed')
         }
     })
+    $('.del-usr-btn').on('click', function() { //удаляет карту
+        console.log(this.id)
+        
+        $.ajax({
+            type: "POST",
+            url: '/server/api.php',
+            data: {'operation': 'del_user', 'user_id': this.id},
+                    
+            success: function(response) {
+                // window.location = '/'
+                take_users()
+            }
+        })
+    })
+
 }
 
 

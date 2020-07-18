@@ -69,7 +69,20 @@ if ($data['operation'] == 'add_device') {
     add_device_by_token($data['token']);
 }
 
+
+
+
+
+
 // 18.07.20 - ПОЛЬЗОТВАТЕЛИ
 if ($_POST['operation'] == 'get_users') {
     get_users();
+}
+
+if ($_POST['operation'] == 'add_user') {
+    add_user($_POST['username'], $_POST['login'], $_POST['password'], $_POST['access']);
+}
+
+if ($_POST['operation'] == 'del_user') {
+    del_user($_POST['user_id']);
 }

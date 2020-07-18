@@ -266,3 +266,50 @@ function get_users() {
         'users'     => $users
     ]);
 }
+
+function add_user($username, $login, $password, $access) {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `users` WHERE login = ?');
+    $query -> execute([$login]);
+    $users = $query -> fetchAll();
+    if ($users[0]['login'] == $login) { // если пользователь уже есть в бд
+        $query = $pdo -> prepare('UPDATE `users` SET `username` = ?, `login` = ?, `password` = ?, `access` = ? WHERE id = ?');
+        $query -> execute([
+            $username,
+            $login,
+            $password,
+            $access,
+            $users[0]['id']
+        ]);
+        $pdo = null;
+        echo json_encode([
+            'success'   => '1',
+        ]);
+    } 
+
+    else {
+        $query = $pdo -> prepare('INSERT INTO users (username, login, password, access) VALUES (?, ?, ?, ?)');
+        $query -> execute([
+            $username,
+            $login,
+            $password,
+            $access,
+        ]);  
+        $pdo = null;
+        echo json_encode([
+            'success'   => '1',
+        ]);
+    }
+}
+
+function del_user($user_id) {
+    // удаляет карту по её айди 
+    global $pdo;
+    $query = $pdo -> prepare('DELETE FROM `users` WHERE id=?');
+    $query -> execute(array((int)$user_id));
+    $pdo = null;
+
+    echo json_encode([
+        'success'   => 1
+    ]);
+}

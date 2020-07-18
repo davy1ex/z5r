@@ -200,5 +200,20 @@ $('#lock-oneside-door-btn').on('click', function(event) {
 
 
 
-
-
+// # 18.07.20 - ПОЛЬЗОВАТЕЛИ
+$('#add-user-btn').on('click', function () { // добавляет карту
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        data: {
+            'operation':    'add_user',
+            'username':     $('#username').val(),
+            'login':        $('#login').val(),
+            'password':     $('#password').val(),
+            'access':       $('#access').val()
+        },
+        success: function(response) {
+            take_users()
+        }
+    })    
+})
