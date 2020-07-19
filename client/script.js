@@ -83,7 +83,6 @@ if (document.cookie != '') {
 
 	mainEl.classList.add('right-panel-active');	// смещает фокус на настройки
 	signInEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
-	$('#option-one-door').attr("checked", "checked"); // смещает фокус на режим работы
 }
 
 // если не авторизирован

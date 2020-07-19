@@ -98,7 +98,7 @@ function create_events_table() {
         data: {
             'operation': 'get_events'
         },
-        // cache: false,
+
         success: function (response) {
             var events_list = JSON.parse(response).events
             var perrow = 1,
@@ -113,7 +113,7 @@ function create_events_table() {
                 </thead>\
                 <tr>';
 
-            $.each(events_list.slice(-17), function(i, item) {
+            $.each(events_list, function(i, item) {
                 html += '<td data-label="Дата и время">' + item.date + '</td>'
                 html += '<td data-label="Истоник">' + item.action + '</td>'
 
@@ -169,7 +169,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             html += '<td data-label="MAC-адрес">' + item.device_mac + "</td>";
             html += '<td>' + '<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
                 <span class="tooltip_2">\
-                    <img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">\
+                    <img class=" qr-code-icon" src="/client/img/qr-code-icon.png" alt="">\
                     <span class="tooltip-text">Привязать устройство</span>\
                 </span>\
             </button>' + '</td>'
@@ -272,11 +272,10 @@ function take_users() { // получает массив карт с серве�
 // ##### ПОЛЬЗОВАТЕЛИ #####
 
 
-$(document).ready(function(){  // периодическое обновление талицы с эвентами
+$(document).ready(function(){
     setInterval(create_events_table, 20000);
 });
 
 create_events_table() // рисует таблицу с эвентами
 take_cards() // рисует таблицу с картами
 take_users() // рисует таблицу с пользователями
- 

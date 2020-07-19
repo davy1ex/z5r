@@ -29,7 +29,7 @@ function set_active(active) { // хз что это
     window.location.href = "/server/api.php?operation=set_active&mode=1"
     $.get(
         "/server/api.php",
-        {operation: 'set_active', mode: '1'},        
+        {operation: 'set_active', mode: '1'}
     );
 }
 
@@ -120,7 +120,6 @@ $('.add_btn').on('click', function () { // добавляет карту
             take_cards()
         }
     })
-    
 })
 
 

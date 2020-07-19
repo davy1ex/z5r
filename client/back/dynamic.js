@@ -98,7 +98,7 @@ function create_events_table() {
         data: {
             'operation': 'get_events'
         },
-        // cache: false,
+        
         success: function (response) {
             var events_list = JSON.parse(response).events
             var perrow = 1,
@@ -167,7 +167,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             html += '<td data-label="ID">' + item.device_id + "</td>";
             html += '<td data-label="Устройство">' + item.device_type + "</td>";
             html += '<td data-label="MAC-адрес">' + item.device_mac + "</td>";
-            html += '<td>' + '<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id="generate_qr_token">\
+            html += '<td>' + '<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
                 <span class="tooltip_2">\
                     <img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">\
                     <span class="tooltip-text">Привязать устройство</span>\
@@ -194,7 +194,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
         return Math.random().toString(36).substr(2);
     }
 
-    $('#generate_qr_token').on('click', function() {
+    $('.generate_qr_token').on('click', function() {
         var token = generate_token()
         console.log(token)
         $('.qr-code-field').append('<div id="qrcode" style="margin: 40px"></div>')
