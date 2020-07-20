@@ -704,6 +704,15 @@ table th {
       padding: 6px 15px ;
       margin-top: 0px;
 }
+
+.edit-usr-btn {
+  padding: 3px !important;
+  border-radius: 60% !important;
+}
+.edit-usr-btn img {
+  width: 10px !important;
+}
+
 table .close {
   color: #808080;
   float: unset;
@@ -1123,7 +1132,7 @@ color: #333;
 }
 .add_users{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 0px 10px;
 }
@@ -1136,7 +1145,7 @@ color: #333;
 .add_users_btn{
   width: 50%
 }
-#generate_qr_token{
+.generate_qr_token{
   padding: 10px 15px ;
 }
 .qr-code-field{

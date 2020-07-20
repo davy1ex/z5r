@@ -9,8 +9,7 @@
   <link rel="icon" href="/client/img/favicon.ico" type="image/x-icon">
 
 
-  <script src="/client/cookie.js"></script>
-
+  <script src="/client/js/cookie.js"></script>
 
 
 </head>
@@ -152,11 +151,40 @@
 				</table> -->
 				<div class="qr-code-field">
 				</div>
-				<div class="add_users">
-					<input id="username" name='username' type="text" placeholder="Пользователь" />
+				<!-- <div class="add_users">
+					<input id="username" name='username' type="text" placeholder="Пользователь" />					
 					<input id="login" name='login' type="text" placeholder="Пользователь" />
 					<input id="password" name='password' type="password" placeholder="Пароль"  />
 					<input id="access" name='access'  type="text" placeholder="Тип учетной записи"  />
+					 <div class="add_users_btn">
+						 <button  name='add' type="submit" id="add-user-btn" class="add_btn add_2" >Добавить</button>
+
+					 </div>
+				</div> -->
+
+				<div class="add_users">
+					<legend>Пользователь
+						<input id="username" name='username' type="text"/>
+					</legend>
+					
+					<legend>Логин
+						<input id="login" name='login' type="text" />
+					</legend>
+					
+					<legend> Пароль
+						<input id="password" name='password' type="password"/>
+					</legend>
+
+					<legend> Тип учётной записи
+						<!-- <input id="access" name='access'  type="text"/> -->
+						<select id="access">
+							<option value="admin">админ</option>
+							<option value="main_guard">Начальник службы безопасности </option>
+							<option value="guard">Охранник</option>							
+						</select>
+					</legend>
+					
+					
 					 <div class="add_users_btn">
 						 <button  name='add' type="submit" id="add-user-btn" class="add_btn add_2" >Добавить</button>
 
@@ -476,7 +504,7 @@
 		<div class="control_right_btn">
 			<a href="http://fors.gtechs.ru./" target="_blank"><span class="tooltip_2"><img class="question" src="/client/img/questionmark_83826.png" alt=""><span class="tooltip-text">Помощь</span></span>
 </a>
-<button id='log_out' class="customization"><span class="tooltip_2"><img src="/client/img/cog_120288.png" alt=""><span class="tooltip-text">Настройки</span></span>
+<button id='settings' class="customization"><span class="tooltip_2"><img src="/client/img/cog_120288.png" alt=""><span class="tooltip-text">Настройки</span></span>
 </a>
 </button>
 	<a href=""><button class='log_out exit' name="log_out"><span class="tooltip_2"><img src="/client/img/exit_icon-icons.com_48304.png" alt=""><span class="tooltip-text">Выход</span></span></button></a>
@@ -493,11 +521,11 @@
 
 
 <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
-<script src="/client/jquery.js"></script>
-<script src="/client/qrcode.min.js"></script>
-<script src="/client/script.js"></script>
+<script src="/client/js/jquery.js"></script>
+<script src="/client/js/qrcode.min.js"></script>
+<script src="/client/js/script.js"></script>
 <script src="/client/js/auth.js"></script>
-
+<script src="/client/js/access.js"></script>
 
 <!-- подключение таблиц -->
 <script src="/client/js/tables/events-table.js"></script>
@@ -522,12 +550,5 @@
     	setInterval(create_events_table, 20000);
 	});
 </script>
-
-
-<!-- <script src="/client/functions.js"></script> -->
-<!-- <script src="/client/methods.js"></script> -->
-
-
-
 </body>
 </html>

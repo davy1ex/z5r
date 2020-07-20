@@ -1,3 +1,4 @@
+// ##### ПОЛЬВЗОВАТЕЛИ ###### (18.07.20)
 function get_users_table(users_list) { // рисует таблицу с пользователями
     var perrow = 1, // 2 cells per row
             html =
@@ -34,12 +35,14 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             html += '<td data-label="ID">' + item.device_id + "</td>";
             html += '<td data-label="Устройство">' + item.device_type + "</td>";
             html += '<td data-label="MAC-адрес">' + item.device_mac + "</td>";
-            html += '<td>' + '<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
+            // html += '<td>' + </td>'
+            html += '<td>' + '<button id=' + String(item.id) + ' class="edit-usr-btn">' + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>' +'<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
                 <span class="tooltip_2">\
                     <img class=" qr-code-icon" src="/client/img/qr-code-icon.png" alt="">\
                     <span class="tooltip-text">Привязать устройство</span>\
                 </span>\
             </button>' + '</td>'
+            
 
 
 
@@ -55,14 +58,31 @@ function get_users_table(users_list) { // рисует таблицу с пол�
     
     $('#users-table').html(html)
 
+    $('.edit-usr-btn').on('click', function() {
+        $.ajax({
+            type: "POST",
+            url: '/server/api.php',
+            data: {'operation': 'get_user', 'user_id': this.id},
+
+            success: function(response) {
+                $('#username').val(JSON.parse(response).user.username)
+                $('#login').val(JSON.parse(response).user.login)
+                $('#password').val(JSON.parse(response).user.password)
+                $('#access').val(JSON.parse(response).user.access)
+            }
+        })
+    })
+
     // 16.07.20 (QR CODES)
     // Генерация кр кода с токеном по нажанию кнопки:
-    function generate_token() {
+    function generate_token() { // возвращает рандомный набор символов (8 штук)
         return Math.random().toString(36).substr(2);
     }
 
-    $('.generate_qr_token').on('click', function() {
+    $('.generate_qr_token').on('click', function() { // Отображает кр-код с токеном и добавляет его в бд
         var token = generate_token()
+        var user_id = this.id
+        console.log(user_id)
         console.log(token)
         $('.qr-code-field').append('<div id="qrcode" style="margin: 40px"></div>')
         var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -83,13 +103,14 @@ function get_users_table(users_list) { // рисует таблицу с пол�
 
             data: {
                 'operation': 'add_token',
-                'token': token
+                'token': token,
+                'user_id': user_id
             }
         })
 
         console.log('token added to db')
 
-        setTimeout(function () {remove_token()}, 30000)
+        setTimeout(function () {remove_token()}, 30000) // через 30 секунд убирает отображающийся кр-код и удаляет токен из бд
 
         function remove_token() {
             $.ajax({
@@ -103,6 +124,8 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             console.log('token-qr-code removed')
         }
     })
+
+
     $('.del-usr-btn').on('click', function() { //удаляет карту
         console.log(this.id)
         

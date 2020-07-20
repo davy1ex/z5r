@@ -1,3 +1,4 @@
+// 16.07.20 (добавление событий)
 $('#open-oneside-door-btn').on('click', function(event) {
     var current_date = new Date()
     $.ajax({

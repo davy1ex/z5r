@@ -1,3 +1,5 @@
+// 12.07.20 (авторизация)
+// ########## АВТОРИЗАЦИЯ ##########
 $('#auth').submit(function (event) { // авторизация: Создаёт куки login=root    
     var $form = $( this ),
     login = $form.find( "input[name='login']" ).val(),

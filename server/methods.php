@@ -204,12 +204,14 @@ function add_event($event, $date) {
 
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки)
-function add_token($token) {
+function add_token($token, $user_id) {
     global $pdo;
-    $query = $pdo -> prepare('INSERT INTO devices (token) VALUES (?)');
+    $query = $pdo -> prepare('UPDATE `users` SET token=? WHERE id=?');
     $query -> execute([
-        $token
+        $token,
+        (int)$user_id
     ]);  
+
     $pdo = null;
 
     echo json_encode([
@@ -219,8 +221,8 @@ function add_token($token) {
 
 function remove_token($token) {
     global $pdo;
-    $query = $pdo -> prepare('DELETE FROM devices WHERE token=:token');
-    $query -> execute(array(':token' => $token));
+    $query = $pdo -> prepare('UPDATE `users` SET token="" WHERE token=?');
+    $query -> execute([$token]);
     $pdo = null;
 
     echo json_encode([
@@ -228,33 +230,43 @@ function remove_token($token) {
     ]);
 }
 
-function add_device_by_token($token) {
+function add_device_by_token($token, $device_id, $device_type, $device_mac) {
     global $pdo;
-    $query = $pdo -> prepare('SELECT * FROM devices WHERE token = ?');
+    $query = $pdo -> prepare('SELECT * FROM `users` WHERE token = ?');
     $query -> execute([
         $token
-    ]);  
-    $devices = $query -> fetchAll();
-    $pdo = null;
+    ]);
+    $users = $query -> fetchAll();
     
-    header("HTTP/1.1 200 test: " . json_encode($devices));
-    // if ($devices[0]['id']) {
-    //     header("HTTP/1.1 200 token: " . $devices[0]['token'] . ' phone_id: ' . $devices[0]['phone_id']);
-    //     // echo json_encode([
-    //     //     'success'   => 1,
-    //     //     'phone_id'        => $query['phone_id']
-    //     // ]);
-    // }
+    
+    // header("HTTP/1.1 200 test: " . json_encode($devices));
+    if ($users[0]['id']) {
+        // global $pdo;
+        $query = $pdo -> prepare('UPDATE `users` SET device_id=?, device_type=?, device_mac=? WHERE token = ?');
+        $query -> execute([
+            $device_id,
+            $device_type,
+            $device_mac,
+            $token
+        ]);
+        $pdo = null;
 
-    // else {
-    //     header("HTTP/1.1 200 no found");
-    // }
+        header("HTTP/1.1 200 success");  //$users[0]['token'] . $device_id . ' , ' . $device_type . ' , ' .  $device_mac);
+        // echo json_encode([
+        //     'success'   => 1,
+        //     'phone_id'        => $query['phone_id']
+        // ]);
+    }
+
+    else {
+        header("HTTP/1.1 200 no found");
+    }
 }
 
 
 # 18.07.20 - ПОЛЬЗОВАТЕЛИ
 function get_users() { 
-    // получает все карты из бд
+    // получает всех юзеров из бд
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `users`');
     $query -> execute();
@@ -264,6 +276,20 @@ function get_users() {
     echo json_encode([
         'success'   => 1,
         'users'     => $users
+    ]);
+}
+
+function get_user($user_id) {
+    // Получает юзера
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `users` WHERE id=?');
+    $query -> execute([$user_id]);
+    $users = $query -> fetchAll();
+    $pdo = null;
+
+    echo json_encode([
+        'success'   => 1,
+        'user'     => $users[0]
     ]);
 }
 

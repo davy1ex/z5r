@@ -1,3 +1,5 @@
+// 14.07.20 (добавление карт)
+// ########## КАРТЫ ##########
 function get_cards_table(cards_list) { // рисует таблицу с картами
     var perrow = 1, // 2 cells per row
             html =

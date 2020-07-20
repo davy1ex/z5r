@@ -1,3 +1,4 @@
+// 15.07.20 (отображение лога на стороне клиента)
 function create_events_table() {
     console.log('event table created/updated')
     $.ajax({

@@ -57,7 +57,7 @@ if ($_POST['operation'] == 'new_event') {
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки) 
 if ($_POST['operation'] == 'add_token') {
-    add_token($_POST['token']);
+    add_token($_POST['token'], $_POST['user_id']);
 }
 
 if ($_POST['operation'] == 'remove_token') {
@@ -66,7 +66,7 @@ if ($_POST['operation'] == 'remove_token') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 if ($data['operation'] == 'add_device') {
-    add_device_by_token($data['token']);
+    add_device_by_token($data['token'], $data['device_id'], $data['device_type'], $data['device_mac']);
 }
 
 
@@ -77,6 +77,10 @@ if ($data['operation'] == 'add_device') {
 // 18.07.20 - ПОЛЬЗОТВАТЕЛИ
 if ($_POST['operation'] == 'get_users') {
     get_users();
+}
+
+if ($_POST['operation'] == 'get_user') {
+    get_user($_POST['user_id']);
 }
 
 if ($_POST['operation'] == 'add_user') {
