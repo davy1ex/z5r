@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/client/style.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
-  <link rel="icon" href="/client/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/client/img/favicon.ico" type="image/x-icon">
 
 
   <script src="/client/cookie.js"></script>
@@ -87,7 +87,8 @@
 							<td><button class="del_btn">Удалить</button>
 								<button id="generate_qr_token">
 							<span class="tooltip_2">
-								<img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">
+								<img class="qr-code-icon" src="/client/img/qr-code-icon.png" alt="">
+								<img src="/client/img/qr-code-icon.png" alt="" srcset="">
 								<span class="tooltip-text">Привязать устройство</span>
 							</span>
 
@@ -105,7 +106,7 @@
 								<td><button class="del_btn">Удалить</button>
 									<button id="generate_qr_token">
 								<span class="tooltip_2">
-									<img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">
+									<img class=" qr-code-icon" src="/client/img/qr-code-icon.png" alt="">
 									<span class="tooltip-text">Привязать устройство</span>
 								</span>
 
@@ -119,7 +120,7 @@
 									<td><button class="del_btn">Удалить</button>
 										<button id="generate_qr_token">
 									<span class="tooltip_2">
-										<img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">
+										<img class=" qr-code-icon" src="/client/img/qr-code-icon.png" alt="">
 										<span class="tooltip-text">Привязать устройство</span>
 									</span>
 
@@ -135,7 +136,7 @@
 										<td><button class="del_btn">Удалить</button>
 											<button id="generate_qr_token">
 										<span class="tooltip_2">
-											<img class=" qr-code-icon" src="/client/qr-code-icon.png" alt="">
+											<img class=" qr-code-icon" src="/client/img/qr-code-icon.png" alt="">
 											<span class="tooltip-text">Привязать устройство</span>
 										</span>
 
@@ -151,18 +152,16 @@
 				</table> -->
 				<div class="qr-code-field">
 				</div>
-				<div class="add_users">
-				
-					<input id='username' name='username' type="text" placeholder="Имя пользователя" />
-					<input id='login' name='login' type="text" placeholder="Логин" />
-					<input id='password' name='password' type="password" placeholder="Пароль"  />
-					<input id='access' name='type'  type="text" placeholder="Тип учетной записи"  />
-					<!-- <input id='device_type' type="text" placeholder="Устройство" /> -->
+				<form class="add_users">
+					<input name='login' type="text" placeholder="Пользователь" />
+					<input name='password' type="password" placeholder="Пароль"  />
+					<input name='type'  type="text" placeholder="Тип учетной записи"  />
+					<input type="text" placeholder="Устройство" />
 					 <div class="add_users_btn">
-						 <button id='add-user-btn'  name='add' type="submit" class="add_btn add_2" >Добавить</button>
+						 <button  name='add' type="submit" class="add_btn add_2" >Добавить</button>
 
 					 </div>
-				</div>
+				</form>
 
 					 </div>
 				 </div>
@@ -335,7 +334,7 @@
 </section>
 
 <div class="elsys">
-				      <img class="logo" src="/client/logo.png" alt="">
+				      <img class="logo" src="/client/img/logo.png" alt="">
   <h1>ELSYS Super Light</h1>
 </div>
 
@@ -371,7 +370,7 @@
         <a href=""><button class="ghost log_out" name='log_out' >Выход</button></a>
       </div>
       <div class="overlay-panel overlay-right">
-							<a href="http://fors.gtechs.ru./" target="_blank"><img src="/client/questionmark_83826.png" alt=""></a>
+							<a href="http://fors.gtechs.ru./" target="_blank"><img src="/client/img/questionmark_83826.png" alt=""></a>
 
         <h2>Добро пожаловать!</h2>
         <p>Для того, чтобы приступить к работе нужна авторизация.</p>
@@ -401,9 +400,9 @@
 
 			<section id="content1">
 							<h2 class="content_h2_1">Односторнняя дверь</h2>
-								<img src="/client/card-reader.png" class="img_sec" alt="">
-<img src="/client/door.png" alt="">
-				<img src="/client/press_120412.png" class="img_sec" alt="">
+								<img src="/client/img/card-reader.png" class="img_sec" alt="">
+<img src="/client/img/door.png" alt="">
+				<img src="/client/img/press_120412.png" class="img_sec" alt="">
 <div class="content1_btn">
 	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть</button>
 	<button id='unlock-oneside-door-btn' class="ghost" type="button" name="">Разблокировать</button>
@@ -415,9 +414,9 @@
 			</section>
 			<section id="content2">
 							<h2 class="content_h2_2">Двусторонняя дверь</h2>
-				<img src="/client/card-reader.png" class="img_sec" alt="">
-<img src="/client/double-door.png" alt="">
-<img src="/client/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+<img src="/client/img/double-door.png" alt="">
+<img src="/client/img/card-reader.png" class="img_sec" alt="">
 <div class="content1_btn">
 	<button class="ghost" type="button" name="">Открыть</button>
 		<button  class="ghost" type="button" name="">Разблокировать</button>
@@ -428,9 +427,9 @@
 			</section>
 			<section id="content3">
 							<h2 class="content_h2_3">Турникет</h2>
-				<img src="/client/card-reader.png" class="img_sec" alt="">
-<img src="/client/turnstile.png" alt="">
-<img src="/client/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+<img src="/client/img/turnstile.png" alt="">
+<img src="/client/img/card-reader.png" class="img_sec" alt="">
 <div class="content1_btn">
 	<div class="conten_h2"><h2>Вход</h2></div>
 	<button class="ghost" type="button" name="">Открыть</button>
@@ -451,9 +450,9 @@
 			</section>
 			<section id="content4">
 							<h2 class="content_h2_4">Распашной турникет</h2>
-				<img src="/client/card-reader.png" class="img_sec" alt="">
-<img src="/client/turnstiles-and-door.png"  alt="">
-<img src="/client/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+<img src="/client/img/turnstiles-and-door.png"  alt="">
+<img src="/client/img/card-reader.png" class="img_sec" alt="">
 
 <div class="content1_btn">
 	<div class="conten_h2"><h2>Вход</h2></div>
@@ -478,12 +477,12 @@
 </div>
 <div class="control_right">
 		<div class="control_right_btn">
-			<a href="http://fors.gtechs.ru./" target="_blank"><span class="tooltip_2"><img class="question" src="/client/questionmark_83826.png" alt=""><span class="tooltip-text">Помощь</span></span>
+			<a href="http://fors.gtechs.ru./" target="_blank"><span class="tooltip_2"><img class="question" src="/client/img/questionmark_83826.png" alt=""><span class="tooltip-text">Помощь</span></span>
 </a>
-<button id='settings' class="customization"><span class="tooltip_2"><img src="/client/cog_120288.png" alt=""><span class="tooltip-text">Настройки</span></span>
+<button id='log_out' class="customization"><span class="tooltip_2"><img src="/client/img/cog_120288.png" alt=""><span class="tooltip-text">Настройки</span></span>
 </a>
 </button>
-	<a href=""><button class='log_out exit' name="log_out"><span class="tooltip_2"><img src="/client/exit_icon-icons.com_48304.png" alt=""><span class="tooltip-text">Выход</span></span></button></a>
+	<a href=""><button class='log_out exit' name="log_out"><span class="tooltip_2"><img src="/client/img/exit_icon-icons.com_48304.png" alt=""><span class="tooltip-text">Выход</span></span></button></a>
 
 		</div>
 <div class="control_right_table">
@@ -498,7 +497,7 @@
 <script type="text/javascript" src="/client/script.js"></script>
 <script src="/client/functions.js"></script>
 <script src="/client/methods.js"></script>
-<script src="/client/access.js"></script>
+
 
 
 </body>
