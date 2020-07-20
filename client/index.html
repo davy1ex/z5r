@@ -10,8 +10,8 @@
 
 
   <script src="/client/cookie.js"></script>
-  <script src="/client/jquery.js"></script>
-  <script src="/client/dynamic.js"></script>
+
+
 
 </head>
 <body>
@@ -152,16 +152,16 @@
 				</table> -->
 				<div class="qr-code-field">
 				</div>
-				<form class="add_users">
-					<input name='login' type="text" placeholder="Пользователь" />
-					<input name='password' type="password" placeholder="Пароль"  />
-					<input name='type'  type="text" placeholder="Тип учетной записи"  />
-					<input type="text" placeholder="Устройство" />
+				<div class="add_users">
+					<input id="username" name='username' type="text" placeholder="Пользователь" />
+					<input id="login" name='login' type="text" placeholder="Пользователь" />
+					<input id="password" name='password' type="password" placeholder="Пароль"  />
+					<input id="access" name='access'  type="text" placeholder="Тип учетной записи"  />
 					 <div class="add_users_btn">
-						 <button  name='add' type="submit" class="add_btn add_2" >Добавить</button>
+						 <button  name='add' type="submit" id="add-user-btn" class="add_btn add_2" >Добавить</button>
 
 					 </div>
-				</form>
+				</div>
 
 					 </div>
 				 </div>
@@ -176,9 +176,6 @@
           <div class="accordion-item-body">
             <div class="accordion-item-body-content">
 				<div id="cards-table" class='cards-table'></div>
-				<script>
-					take_cards()
-				</script>
 							 <table>
 							  <thead>
 							    <tr>
@@ -337,8 +334,8 @@
 				      <img class="logo" src="/client/img/logo.png" alt="">
   <h1>ELSYS Super Light</h1>
 </div>
-
-<section class="container main <?php if(login()) {echo 'right-panel-active';} else {echo 'left-panel-active';} ?>" id="container">
+<!-- <?php if(login()) {echo 'right-panel-active';} else {echo 'left-panel-active';} ?> -->
+<section class="container main " id="container">
   <div class="form-container sign-up-container">
 
     <form action="#">
@@ -493,10 +490,42 @@
 </div>
 </section>
 
+
+
+<!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
+<script src="/client/jquery.js"></script>
 <script src="/client/qrcode.min.js"></script>
-<script type="text/javascript" src="/client/script.js"></script>
-<script src="/client/functions.js"></script>
-<script src="/client/methods.js"></script>
+<script src="/client/script.js"></script>
+<script src="/client/js/auth.js"></script>
+
+
+<!-- подключение таблиц -->
+<script src="/client/js/tables/events-table.js"></script>
+<script src="/client/js/tables/cards-table.js"></script>
+<script src="/client/js/tables/users-table.js"></script>
+
+<!-- подключение ajax-событий на элементы -->
+<script src="/client/js/ajax-events/cards-events.js"></script>
+<script src="/client/js/ajax-events/doors-events.js"></script>
+<script src="/client/js/ajax-events/users-events.js"></script>
+
+
+
+
+
+<script>
+	take_cards()
+	take_users()	
+	create_events_table()
+
+	$(document).ready(function(){
+    	setInterval(create_events_table, 20000);
+	});
+</script>
+
+
+<!-- <script src="/client/functions.js"></script> -->
+<!-- <script src="/client/methods.js"></script> -->
 
 
 
