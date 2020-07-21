@@ -4,13 +4,15 @@ function create_events_table() {
     $.ajax({
         type: "POST",
         url: '/server/api.php',
-
-        data: {
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
             'operation': 'get_events'
-        },
+        }),
 
         success: function (response) {
-            var events_list = JSON.parse(response).events
+            events_list = response.events
+            
             var perrow = 1,
             html = 
             '<table>\

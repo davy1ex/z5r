@@ -8,23 +8,26 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if ($data['operation'] == 'power_on') {
     header("HTTP/1.1 200 Content-type: application/json ");
-    exit(json_encode(power_on($data['active'], $data['mode'])));
+    echo json_encode(power_on($data['active'], $data['mode']));
 }
 
 
-if ($_GET['operation'] == 'set_active') {
-    if (power_on($_GET['active'], $_GET['mode'])) {
-        print_r([
+if ($data['operation'] == 'set_active') {
+    if (power_on($data['active'], $data['mode'])) {
+        echo json_encode([
             'id'        => 123456789,
             'success'   => 1
         ]);
     }
 }
 
-
-if ($_POST['operation'] == 'login') {;
-    check_usr($_POST['login'], $_POST['password']);
+if ($data['operation'] == 'login') {;
+    check_usr($data['login'], $data['password']);
 }
+
+// if ($_POST['operation'] == 'login') {;
+//     check_usr($_POST['login'], $_POST['password']);
+// }
 
 
 // кинуть все карты
@@ -46,7 +49,7 @@ if ($_POST['operation'] == 'add_card') {
 }
 
 // 15.07.20 (отображение лога на стороне клиента)
-if ($_POST['operation'] == 'get_events') {
+if ($data['operation'] == 'get_events') {
     get_events();
 }
 
@@ -56,15 +59,14 @@ if ($_POST['operation'] == 'new_event') {
 }
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки) 
-if ($_POST['operation'] == 'add_token') {
-    add_token($_POST['token'], $_POST['user_id']);
+if ($data['operation'] == 'add_token') {
+    add_token($data['token'], $data['user_id']);
 }
 
-if ($_POST['operation'] == 'remove_token') {
-    remove_token($_POST['token']);
+if ($data['operation'] == 'remove_token') {
+    remove_token($data['token']);
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
 if ($data['operation'] == 'add_device') {
     add_device_by_token($data['token'], $data['device_id'], $data['device_type'], $data['device_mac']);
 }
@@ -75,18 +77,18 @@ if ($data['operation'] == 'add_device') {
 
 
 // 18.07.20 - ПОЛЬЗОТВАТЕЛИ
-if ($_POST['operation'] == 'get_users') {
+if ($data['operation'] == 'get_users') {
     get_users();
 }
 
-if ($_POST['operation'] == 'get_user') {
-    get_user($_POST['user_id']);
+if ($data['operation'] == 'get_user') {
+    get_user($data['user_id']);
 }
 
-if ($_POST['operation'] == 'add_user') {
-    add_user($_POST['username'], $_POST['login'], $_POST['password'], $_POST['access']);
+if ($data['operation'] == 'add_user') {
+    add_user($data['username'], $data['login'], $data['password'], $data['access']);
 }
 
-if ($_POST['operation'] == 'del_user') {
-    del_user($_POST['user_id']);
+if ($data['operation'] == 'del_user') {
+    del_user($data['user_id']);
 }

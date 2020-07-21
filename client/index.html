@@ -542,13 +542,16 @@
 
 
 <script>
-	take_cards()
-	take_users()	
-	create_events_table()
+	if (getCookie('login')) {
+		take_cards()
+		take_users()	
+		create_events_table()
 
-	$(document).ready(function(){
-    	setInterval(create_events_table, 20000);
-	});
+		$(document).ready(function(){
+			setInterval(create_events_table, 20000);
+		});
+	}
+	
 </script>
 </body>
 </html>

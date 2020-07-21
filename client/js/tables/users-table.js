@@ -62,13 +62,15 @@ function get_users_table(users_list) { // рисует таблицу с пол�
         $.ajax({
             type: "POST",
             url: '/server/api.php',
-            data: {'operation': 'get_user', 'user_id': this.id},
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({'operation': 'get_user', 'user_id': this.id}),
 
             success: function(response) {
-                $('#username').val(JSON.parse(response).user.username)
-                $('#login').val(JSON.parse(response).user.login)
-                $('#password').val(JSON.parse(response).user.password)
-                $('#access').val(JSON.parse(response).user.access)
+                $('#username').val(response.user.username)
+                $('#login').val(response.user.login)
+                $('#password').val(response.user.password)
+                $('#access').val(response.user.access)
             }
         })
     })
@@ -100,12 +102,13 @@ function get_users_table(users_list) { // рисует таблицу с пол�
         $.ajax({
             type: "POST",
             url: '/server/api.php',
-
-            data: {
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
                 'operation': 'add_token',
                 'token': token,
                 'user_id': user_id
-            }
+            })
         })
 
         console.log('token added to db')
@@ -116,7 +119,9 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             $.ajax({
                 type: 'POST',
                 url: '/server/api.php',
-                data: {'operation': 'remove_token', 'token': token}
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({'operation': 'remove_token', 'token': token})
             })
             console.log('token removed from db')
             qrcode.clear()
@@ -132,10 +137,11 @@ function get_users_table(users_list) { // рисует таблицу с пол�
         $.ajax({
             type: "POST",
             url: '/server/api.php',
-            data: {'operation': 'del_user', 'user_id': this.id},
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({'operation': 'del_user', 'user_id': this.id}),
                     
             success: function(response) {
-                // window.location = '/'
                 take_users()
             }
         })
@@ -148,13 +154,15 @@ function take_users() { // получает массив карт с серве�
     $.ajax({
         type: "POST",
         url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',            
         
-        data: {
+        data: JSON.stringify({
             'operation': 'get_users'
-        },
+        }),
         
         success: function (response) {
-            var jsonData = JSON.parse(response)
+            var jsonData = response
             get_users_table(jsonData.users)
         }
     })

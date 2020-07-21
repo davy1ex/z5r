@@ -47,17 +47,14 @@ function check_usr($login, $password) {
     //     'success' => 1,
     //     'data' => json_encode($users)
     // ]);
+    header("Content-Type: application/json");
+    
     if ($users[0]['login'] == $login) {
-        echo json_encode([
-            'success' => 1,
-            'access'  => $users[0]['access']
-        ]);
+        echo json_encode(['success' => true, 'access' => $users[0]['access']]);
     }
 
     else {
-        echo json_encode([
-            'success' => 0
-        ]);
+        echo json_encode(['success' => false, 'access' => $users[0]['access']]);
     }
 }
 
@@ -182,6 +179,7 @@ function get_events() {
     $query -> execute();
     $events = $query -> fetchAll();
 
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
         'events'     => $events
@@ -196,7 +194,7 @@ function add_event($event, $date) {
         $date
     ]);  
     $pdo = null;
-
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1
     ]);
@@ -213,7 +211,7 @@ function add_token($token, $user_id) {
     ]);  
 
     $pdo = null;
-
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1
     ]);
@@ -224,7 +222,7 @@ function remove_token($token) {
     $query = $pdo -> prepare('UPDATE `users` SET token="" WHERE token=?');
     $query -> execute([$token]);
     $pdo = null;
-
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1
     ]);
@@ -239,7 +237,7 @@ function add_device_by_token($token, $device_id, $device_type, $device_mac) {
     $users = $query -> fetchAll();
     
     
-    // header("HTTP/1.1 200 test: " . json_encode($devices));
+    header("Content-Type: application/json");
     if ($users[0]['id']) {
         // global $pdo;
         $query = $pdo -> prepare('UPDATE `users` SET device_id=?, device_type=?, device_mac=? WHERE token = ?');
@@ -251,7 +249,7 @@ function add_device_by_token($token, $device_id, $device_type, $device_mac) {
         ]);
         $pdo = null;
 
-        header("HTTP/1.1 200 success");  //$users[0]['token'] . $device_id . ' , ' . $device_type . ' , ' .  $device_mac);
+        echo json_encode(['success' => true]);  //$users[0]['token'] . $device_id . ' , ' . $device_type . ' , ' .  $device_mac);
         // echo json_encode([
         //     'success'   => 1,
         //     'phone_id'        => $query['phone_id']
@@ -272,7 +270,7 @@ function get_users() {
     $query -> execute();
     $users = $query -> fetchAll();
     $pdo = null;
-
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
         'users'     => $users
@@ -287,6 +285,7 @@ function get_user($user_id) {
     $users = $query -> fetchAll();
     $pdo = null;
 
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
         'user'     => $users[0]
@@ -308,6 +307,8 @@ function add_user($username, $login, $password, $access) {
             $users[0]['id']
         ]);
         $pdo = null;
+
+        header("Content-Type: application/json");
         echo json_encode([
             'success'   => '1',
         ]);
@@ -335,6 +336,7 @@ function del_user($user_id) {
     $query -> execute(array((int)$user_id));
     $pdo = null;
 
+    header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1
     ]);

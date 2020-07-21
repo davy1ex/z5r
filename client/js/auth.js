@@ -8,13 +8,14 @@ $('#auth').submit(function (event) { // авторизация: Создаёт �
     $.ajax({
         type: "POST",
         url: '/server/api.php',
-        data: {'operation': 'login', 'login': login, 'password': password},
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({'operation': 'login', 'login': login, 'password': password}),
         
-        success: function(response) {
-            var jsonData = JSON.parse(response);
-            if (jsonData.success == "1") {
+        success: function(response) {            
+            if (response.success) {
                 setCookie('login', 'root', {'max-age': 3600})
-                setCookie('access', jsonData.access, {'max-age': 3600})
+                setCookie('access', response.access, {'max-age': 3600})
             }
             
             else {
