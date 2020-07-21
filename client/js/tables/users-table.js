@@ -36,7 +36,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             html += '<td data-label="Устройство">' + item.device_type + "</td>";
             html += '<td data-label="MAC-адрес">' + item.device_mac + "</td>";
             // html += '<td>' + </td>'
-            html += '<td>' + '<button id=' + String(item.id) + ' class="edit-usr-btn">' + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>' +'<button id=' + String(item.id) + ' class="del_btn del-usr-btn">Удалить</button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
+            html += '<td>' + '<button id=' + String(item.id) + ' class="edit-usr-btn">' + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>' +'<button id=' + String(item.id) + ' class="del-usr-btn"><img src="/client/img/remove.png"></button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
                 <span class="tooltip_2">\
                     <img class=" qr-code-icon" src="/client/img/qr-code-icon.png" alt="">\
                     <span class="tooltip-text">Привязать устройство</span>\
