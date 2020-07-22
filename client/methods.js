@@ -151,10 +151,6 @@ $('#open-oneside-door-btn').on('click', function(event) {
             'operation': 'new_event',
             'action': 'открытие',
             'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        },
-
-        success: function(response) {
-            window.location = '/'
         }
     })
 }) 
@@ -169,10 +165,6 @@ $('#close-oneside-door-btn').on('click', function(event) {
             'operation': 'new_event',
             'action': 'закрытие',
             'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        },
-
-        success: function(response) {
-            window.location = '/'
         }
     })
 }) 
@@ -187,10 +179,6 @@ $('#unlock-oneside-door-btn').on('click', function(event) {
             'operation': 'new_event',
             'action': 'разблокирование',
             'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        },
-
-        success: function(response) {
-            window.location = '/'
         }
     })
 })
@@ -205,10 +193,6 @@ $('#lock-oneside-door-btn').on('click', function(event) {
             'operation': 'new_event',
             'action': 'заблокирование',
             'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        },
-
-        success: function(response) {
-            window.location = '/'
         }
     })
 })
@@ -223,6 +207,7 @@ $('#lock-oneside-door-btn').on('click', function(event) {
 function generate_token() {
     return Math.random().toString(36).substr(2);
 }
+
 
 $('#generate_qr_token').on('click', function() {
     var token = generate_token()
@@ -251,7 +236,7 @@ $('#generate_qr_token').on('click', function() {
 
     console.log('token added to db')
 
-    setTimeout(function () {remove_token()}, 1000)
+    setTimeout(function () {remove_token()}, 30000)
 
     function remove_token() {
         $.ajax({
