@@ -1,8 +1,15 @@
-SET_ACTIVE
-OPEN_DOOR
-SET_MODE
-SET_TIMEZONE
-SET_DOOR_PARAMS
-ADD_CARDS
-DEL_CARDS
-CLEAR_CARDS
+В ТЕЗИСНОЙ ФОРМЕ
+  1)
+  2) как работать - инструкция пользования. Серверная часть - z5r.webhost.com. Исходники на github.com/davy1ex/z5r. При авторизациии отображается логин и пароль, формируется пост запрос на "пост"
+  3) 
+  презентация - 14, 15+ слайдыы, 14, 23-24 32
+
+
+localhost:8000/server/api.php
+{
+"operation": "add_device",
+ "token": "1",
+  "device_id": "42",
+  "device_type": "ufo",
+  "device_mac": "42"
+}

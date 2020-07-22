@@ -1,3 +1,5 @@
+// 14.07.20 (добавление карт)
+// ########## КАРТЫ ##########
 function get_cards_table(cards_list) { // рисует таблицу с картами
     var perrow = 1, // 2 cells per row
             html =
@@ -61,10 +63,11 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
         $.ajax({
             type: "POST",
             url: '/server/api.php',
-            data: {'operation': 'del_card', 'card_id': this.id},
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({'operation': 'del_card', 'card_id': this.id}),
                     
             success: function(response) {
-                // window.location = '/'
                 take_cards()
             }
         })
@@ -82,57 +85,8 @@ function take_cards() { // получает массив карт с серве�
         },
         
         success: function (response) {
-            var jsonData = JSON.parse(response)
+            var jsonData = response
             get_cards_table(jsonData.cards)
         }
     })
 }
-
-// 15.07.20 (отображение лога на стороне клиента)
-function create_events_table() {
-    console.log('event table created/updated')
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-
-        data: {
-            'operation': 'get_events'
-        },
-        // cache: false,
-        success: function (response) {
-            var events_list = JSON.parse(response).events
-            var perrow = 1,
-            html = 
-            '<table>\
-                <caption>События</caption>\
-                <thead>\
-                    <tr>\
-                        <th scope="col">Дата и время</th>\
-                        <th scope="col">Источник</th>\
-                    </tr>\
-                </thead>\
-                <tr>';
-
-            $.each(events_list, function(i, item) {
-                html += '<td data-label="Дата и время">' + item.date + '</td>'
-                html += '<td data-label="Истоник">' + item.action + '</td>'
-
-                var next = i+1;
-                if (next%perrow==0 && next!=events_list.length) {
-                    html += "</tr><tr>";
-                }
-            })
-            
-            html += "</tr></table>";
-            $('#events-table').html(html)
-        }
-    })
-}
-
-$(document).ready(function(){
-    setInterval(create_events_table, 20000);
-   });
-
-create_events_table() // рисует таблицу с эвентами
-take_cards() // рисует таблицу с картами
- 

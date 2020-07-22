@@ -102,62 +102,91 @@ let tab2 = document.getElementById("tab2");
 let tab3 = document.getElementById("tab3");
 let tab4 = document.getElementById("tab4");
 
+let content_h2_1 = document.getElementsByClassName("content_h2_1")[0];
+let content_h2_2= document.getElementsByClassName("content_h2_2")[0];
+let content_h2_3 = document.getElementsByClassName("content_h2_3")[0];
+let content_h2_4 = document.getElementsByClassName("content_h2_4")[0];
+
+
 $('#option-one-door').click(function() {
 	if ($(this).is(":checked")) {
-	tab1.setAttribute('checked','test');
+	tab1.setAttribute('checked','test13');
 	tab1.removeAttribute("disabled");
 
 	tab2.removeAttribute("checked");
 	tab3.removeAttribute("checked");
 	tab4.removeAttribute("checked");
 	tab2.setAttribute('disabled','test1');
-	tab3.setAttribute('disabled','test1');
-	tab4.setAttribute('disabled','test1');
+	tab3.setAttribute('disabled','test2');
+	tab4.setAttribute('disabled','test3');
+
+	content_h2_2.style.display = "none";
+	content_h2_3.style.display = "none";
+	content_h2_4.style.display = "none";
+	content_h2_1.style.display = "block";
+
 	}
+
 
 
 })
 $('#option-two-door').click(function() {
 	if ($(this).is(":checked")) {
-	tab2.setAttribute('checked','test');
+	tab2.setAttribute('checked','test14');
 	tab2.removeAttribute("disabled");
 
 	tab3.removeAttribute("checked");
 	tab1.removeAttribute("checked");
 	tab4.removeAttribute("checked");
-	tab1.setAttribute('disabled','test1');
-	tab3.setAttribute('disabled','test1');
-	tab4.setAttribute('disabled','test1');
+	tab1.setAttribute('disabled','test4');
+	tab3.setAttribute('disabled','test5');
+	tab4.setAttribute('disabled','test6');
+
+	content_h2_1.style.display = "none";
+	content_h2_3.style.display = "none";
+	content_h2_4.style.display = "none";
+	content_h2_2.style.display = "block";
 	}
 
 
 })
 $('#option-three-tab').click(function() {
 	if ($(this).is(":checked")) {
-	tab3.setAttribute('checked','test');
+	tab3.setAttribute('checked','test15');
 	tab3.removeAttribute("disabled");
 
 	tab2.removeAttribute("checked");
 	tab1.removeAttribute("checked");
 	tab4.removeAttribute("checked");
-	tab2.setAttribute('disabled','test1');
-	tab1.setAttribute('disabled','test1');
-	tab4.setAttribute('disabled','test1');
+	tab2.setAttribute('disabled','test7');
+	tab1.setAttribute('disabled','test8');
+	tab4.setAttribute('disabled','test9');
+
+	content_h2_2.style.display = "none";
+	content_h2_1.style.display = "none";
+	content_h2_4.style.display = "none";
+	content_h2_3.style.display = "block";
 	}
 
 
 })
 $('#option-four-tab').click(function() {
 	if ($(this).is(":checked")) {
-	tab4.setAttribute('checked','test');
+	tab4.setAttribute('checked','test16');
 		tab4.removeAttribute("disabled");
 
 		tab2.removeAttribute("checked");
 		tab1.removeAttribute("checked");
 		tab3.removeAttribute("checked");
-		tab2.setAttribute('disabled','test1');
-		tab3.setAttribute('disabled','test1');
-		tab1.setAttribute('disabled','test1');
+		tab2.setAttribute('disabled','test10');
+		tab3.setAttribute('disabled','test11');
+		tab1.setAttribute('disabled','test12');
+
+
+		content_h2_2.style.display = "none";
+		content_h2_1.style.display = "none";
+		content_h2_3.style.display = "none";
+		content_h2_4.style.display = "block";
 	}
 
 
