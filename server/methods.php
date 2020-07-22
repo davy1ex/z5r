@@ -43,10 +43,7 @@ function check_usr($login, $password) {
     $query -> execute([$login, $password]);
     $users = $query -> fetchAll();
     $pdo = null;
-    // echo json_encode([
-    //     'success' => 1,
-    //     'data' => json_encode($users)
-    // ]);
+
     header("Content-Type: application/json");
     
     if ($users[0]['login'] == $login) {
@@ -59,7 +56,6 @@ function check_usr($login, $password) {
 }
 
 // все карты
-
 // $cards = [
 //     [
 //         "card"  => "00B5009EC1A8",
@@ -88,8 +84,9 @@ function get_cards() {
     $query -> execute();
     $cards = $query -> fetchAll();
     $pdo = null;
-    // раскомментить, чтобы статично рисовать "тестовые" карты:
-    // global $cards
+    
+    header("Content-Type: application/json");
+
     echo json_encode([
         'success'   => 1,
         'cards'     => $cards
@@ -97,14 +94,13 @@ function get_cards() {
 }
 
 
-
-
-
 function del_all_cards() {
     global $pdo;
     $query = $pdo -> prepare('DELETE FROM cards');
     $query -> execute();
     $pdo = null;
+
+    header("Content-Type: application/json");
 
     echo json_encode([
         'success'   => 1
@@ -118,6 +114,8 @@ function del_card($card_id) {
     $query -> execute(array(':id' => (int)$card_id));
     $pdo = null;
 
+    header("Content-Type: application/json");
+
     echo json_encode([
         'success'   => 1
     ]);
@@ -129,6 +127,9 @@ function add_card($numb_card, $block_type, $shord_code, $tz) {
     $query = $pdo -> prepare('SELECT * FROM `cards` WHERE card = ?');
     $query -> execute([$numb_card]);
     $cards = $query -> fetchAll();
+
+    header("Content-Type: application/json");
+
     if (count($cards) > 0) { // если карта уже есть в бд
         $query = $pdo -> prepare('UPDATE `cards` SET `block_type` = ?, `shord_code` = ?, `tz` = ? WHERE card = ?');
         $query -> execute([
@@ -138,6 +139,7 @@ function add_card($numb_card, $block_type, $shord_code, $tz) {
             $numb_card
         ]);
         $pdo = null;
+        
         echo json_encode([
             'success'   => '1',
         ]);
@@ -152,24 +154,11 @@ function add_card($numb_card, $block_type, $shord_code, $tz) {
             (int)$tz
         ]);  
         $pdo = null;
+        
         echo json_encode([
             'success'   => '1',
         ]);
     }
-
-
-    // $query = $pdo -> prepare('INSERT INTO cards (card, block_type, shord_code, tz) VALUES (?, ?, ?, ?)');
-    // $query -> execute([
-    //     $numb_card,
-    //     (int)$block_type,
-    //     (int)$shord_code,
-    //     (int)$tz
-    // ]);  
-    // $pdo = null;
-
-    // echo json_encode([
-    //     'success'   => 1
-    // ]);
 }
 
 // 15.07.20 (отображение лога на стороне клиента)
@@ -185,6 +174,7 @@ function get_events() {
         'events'     => $events
     ]);
 }
+
 // 16.07.20 (добавление событий)
 function add_event($event, $date) {
     global $pdo;
@@ -240,20 +230,17 @@ function add_device_by_token($token, $device_id, $device_type, $device_mac) {
     header("Content-Type: application/json");
     if ($users[0]['id']) {
         // global $pdo;
-        $query = $pdo -> prepare('UPDATE `users` SET device_id=?, device_type=?, device_mac=? WHERE token = ?');
+        $query = $pdo -> prepare('UPDATE `users` SET device_id=?, device_type=?, device_mac=?, token=? WHERE token = ?');
         $query -> execute([
             $device_id,
             $device_type,
             $device_mac,
+            null,
             $token
         ]);
         $pdo = null;
 
-        echo json_encode(['success' => true]);  //$users[0]['token'] . $device_id . ' , ' . $device_type . ' , ' .  $device_mac);
-        // echo json_encode([
-        //     'success'   => 1,
-        //     'phone_id'        => $query['phone_id']
-        // ]);
+        echo json_encode(['success' => true]);
     }
 
     else {

@@ -31,21 +31,21 @@ if ($data['operation'] == 'login') {;
 
 
 // кинуть все карты
-if ($_POST['operation'] == 'get_cards'){
+if ($data['operation'] == 'get_cards'){
     get_cards();
 }
 
-if ($_POST['operation'] == 'del_card') {
-    del_card($_POST['card_id']);
+if ($data['operation'] == 'del_card') {
+    del_card($data['card_id']);
 }
 
-if ($_POST['operation'] == 'del_all_cards') {
+if ($data['operation'] == 'del_all_cards') {
     del_all_cards();
 }
 
 // 14.07.20 (добавление карт)
-if ($_POST['operation'] == 'add_card') {
-    add_card($_POST['numb_card'], $_POST['block_type'], $_POST['shord_code'], $_POST['tz']);
+if ($data['operation'] == 'add_card') {
+    add_card($data['numb_card'], $data['block_type'], $data['shord_code'], $data['tz']);
 }
 
 // 15.07.20 (отображение лога на стороне клиента)

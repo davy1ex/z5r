@@ -83,21 +83,23 @@ function get_users_table(users_list) { // рисует таблицу с пол�
 
     $('.generate_qr_token').on('click', function() { // Отображает кр-код с токеном и добавляет его в бд
         var token = generate_token()
+        var token_data = {"IP":"1.1.1.1","Port":5001,"Token": token}
         var user_id = this.id
         console.log(user_id)
-        console.log(token)
+        console.log(token_data)
         $('.qr-code-field').append('<div id="qrcode" style="margin: 40px"></div>')
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "gg",
             width: 128,
             height: 128,
-            colorDark : "#35B0FF",
+            // 35B0FF
+            colorDark : "#000000",
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H
         })
             
-        qrcode.makeCode(token); // make another code.
-        console.log('token-qr-code crated')
+        qrcode.makeCode(JSON.stringify(token_data)); // make another code.
+        console.log('token-qr-code created')
         
         $.ajax({
             type: "POST",

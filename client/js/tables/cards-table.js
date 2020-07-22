@@ -63,10 +63,11 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
         $.ajax({
             type: "POST",
             url: '/server/api.php',
-            data: {'operation': 'del_card', 'card_id': this.id},
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({'operation': 'del_card', 'card_id': this.id}),
                     
             success: function(response) {
-                // window.location = '/'
                 take_cards()
             }
         })
@@ -84,7 +85,7 @@ function take_cards() { // получает массив карт с серве�
         },
         
         success: function (response) {
-            var jsonData = JSON.parse(response)
+            var jsonData = response
             get_cards_table(jsonData.cards)
         }
     })
