@@ -46,12 +46,21 @@ function check_usr($login, $password) {
 
     header("Content-Type: application/json");
     
-    if ($users[0]['login'] == $login) {
-        echo json_encode(['success' => true, 'access' => $users[0]['access']]);
+    if (count($users) > 0 ) {
+        echo json_encode([
+            'success' => true,
+            'access' => $users[0]['access']]
+        );
+
+        // session_start(); 
+        // $_SESSION['login'] = $login;
     }
 
     else {
-        echo json_encode(['success' => false, 'access' => $users[0]['access']]);
+        echo json_encode([
+            'success' => false,
+            'access' => $users[0]['access']
+        ]);
     }
 }
 

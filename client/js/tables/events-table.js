@@ -12,6 +12,7 @@ function create_events_table() {
 
         success: function (response) {
             events_list = response.events
+            console.log(events_list)
             
             var perrow = 1,
             html = 
