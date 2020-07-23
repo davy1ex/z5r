@@ -17,8 +17,9 @@ $('#log_in').on('click', function (event) { // авторизация: Созд�
         success: function(response) {            
             if (response.success) {
                 alert('u loginned')
-                setCookie('login', 'root')
-                setCookie('access', response.access)
+                
+                // setCookie('login', 'root')
+                // setCookie('access', response.access)
                 location.reload()
             }
             
@@ -30,7 +31,28 @@ $('#log_in').on('click', function (event) { // авторизация: Созд�
 })
 
 $('.log_out').on('click', function () { // выход: удаляет куки login=root
-    deleteCookie('login')
-    deleteCookie('access')
-    window.location.href = '/client/index.html?#'
+    // deleteCookie('login')
+    // deleteCookie('access')
+    // window.location.href = '/client/index.html?#'
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({'operation': 'logout'}),
+        
+        success: function(response) {            
+            if (response.success) {
+                alert('u disloginned')
+                
+                // setCookie('login', 'root')
+                // setCookie('access', response.access)
+                location.reload()
+            }
+            
+            else {
+                alert('try again')        
+            }
+        }
+    })
 })

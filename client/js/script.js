@@ -61,41 +61,78 @@ control_btn.onclick = function() {
 
 // .................................................................
 // если авторизирован
-if (document.cookie != '') {
-	let mainEl = document.querySelector('.main'); // главный селектор
-	let outField = document.querySelector('.overlay-left'); // главный селектор
+$.ajax({
+	type: 'POST', 
+	url: '/server/api.php', 
+	dataType: 'json', 
+	contentType: 'application/json', 
+	data: JSON.stringify({'operation': 'get_session'}),
 
-	var outButton = document.createElement('button');
-	// <button class="log_out" name='log_out' type="submit" >Выход</button>
-	// outButton.type = 'submit';
-	// outButton.name="log_out";
-	// outButton.classList.add("log_out");
-	// outButton.onclick()
-	// outField.appendChild(outButton);
+	success: function(response) {
+		if (response.login != null) {
+			let mainEl = document.querySelector('.main'); // главный селектор
+			let outField = document.querySelector('.overlay-left'); // главный селектор
 
-
-	let signInEl = document.querySelector('#signIn'); // кнопка настроек
-
-	let remTextEl = document.querySelector('.overlay-left p')
-	let remButtonEl = document.querySelector('#signIn')
-	remTextEl.remove();
-	remButtonEl.remove();
-
-	mainEl.classList.add('right-panel-active');	// смещает фокус на настройки
-	signInEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
-}
-
-// если не авторизирован
-else if (document.cookie == '') {
-	let mainEl = document.querySelector('.main'); // селектор с частью где вход
-
-	let settingsEl = document.querySelector('#signUp'); // кнопка настроек
-	settingsEl.remove(); // удаляет кнопку настроек
+			var outButton = document.createElement('button');
 
 
-	mainEl.classList.add('lef-panel-active'); // смещает фокус на авторизацию
+			let signInEl = document.querySelector('#signIn'); // кнопка настроек
 
-}
+			let remTextEl = document.querySelector('.overlay-left p')
+			let remButtonEl = document.querySelector('#signIn')
+			remTextEl.remove();
+			remButtonEl.remove();
+
+			mainEl.classList.add('right-panel-active');	// смещает фокус на настройки
+			signInEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
+		}
+
+		else {
+			let mainEl = document.querySelector('.main'); // селектор с частью где вход
+
+			let settingsEl = document.querySelector('#signUp'); // кнопка настроек
+			settingsEl.remove(); // удаляет кнопку настроек
+
+
+			mainEl.classList.add('lef-panel-active'); // смещает фокус на авторизацию
+		}
+	}
+})
+// if (document.cookie != '') {
+// 	let mainEl = document.querySelector('.main'); // главный селектор
+// 	let outField = document.querySelector('.overlay-left'); // главный селектор
+
+// 	var outButton = document.createElement('button');
+// 	// <button class="log_out" name='log_out' type="submit" >Выход</button>
+// 	// outButton.type = 'submit';
+// 	// outButton.name="log_out";
+// 	// outButton.classList.add("log_out");
+// 	// outButton.onclick()
+// 	// outField.appendChild(outButton);
+
+
+// 	let signInEl = document.querySelector('#signIn'); // кнопка настроек
+
+// 	let remTextEl = document.querySelector('.overlay-left p')
+// 	let remButtonEl = document.querySelector('#signIn')
+// 	remTextEl.remove();
+// 	remButtonEl.remove();
+
+// 	mainEl.classList.add('right-panel-active');	// смещает фокус на настройки
+// 	signInEl.setAttribute("disabled", "disabled");	// смещает фокус на настройки
+// }
+
+// // если не авторизирован
+// else if (document.cookie == '') {
+// 	let mainEl = document.querySelector('.main'); // селектор с частью где вход
+
+// 	let settingsEl = document.querySelector('#signUp'); // кнопка настроек
+// 	settingsEl.remove(); // удаляет кнопку настроек
+
+
+// 	mainEl.classList.add('lef-panel-active'); // смещает фокус на авторизацию
+
+// }
 
 let tab1 = document.getElementById("tab1");
 let tab2 = document.getElementById("tab2");

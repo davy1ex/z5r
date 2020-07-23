@@ -1,7 +1,7 @@
 <?php
 include_once ('functions.php');
 include_once ('methods.php');
-
+session_start();
 
 
 $data = json_decode(file_get_contents('php://input'), true);
@@ -21,8 +21,21 @@ if ($data['operation'] == 'set_active') {
     }
 }
 
-if ($data['operation'] == 'login') {;
+if ($data['operation'] == 'login') {
     check_usr($data['login'], $data['password']);
+}
+
+if ($data['operation'] == 'logout') {
+    session_destroy();
+}
+
+if ($data['operation'] == 'get_session') {
+    header("HTTP/1.1 200 Content-type: application/json ");
+    echo json_encode([
+        'success'=> true, 
+        'login' => $_SESSION['login'], 
+        'access' => $_SESSION['access']
+    ]);
 }
 
 // if ($_POST['operation'] == 'login') {;
@@ -92,3 +105,4 @@ if ($data['operation'] == 'add_user') {
 if ($data['operation'] == 'del_user') {
     del_user($data['user_id']);
 }
+

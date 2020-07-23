@@ -1,6 +1,6 @@
 <?php
 include_once ('functions.php');
-
+session_start();
 
 function power_on($active, $mode) {
     // хз зачем это
@@ -47,13 +47,18 @@ function check_usr($login, $password) {
     header("Content-Type: application/json");
     
     if (count($users) > 0 ) {
+        // session_start()
+        $_SESSION['login'] = $login;
+        $_SESSION['access'] = $users[0]['access'];
+
         echo json_encode([
             'success' => true,
-            'access' => $users[0]['access']]
-        );
+            'access' => $users[0]['access'],
+            'users' => $users
+        ]);
 
-        // session_start(); 
-        // $_SESSION['login'] = $login;
+        
+        
     }
 
     else {
