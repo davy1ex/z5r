@@ -244,7 +244,7 @@ function add_device_by_token($token, $device_id, $device_type, $device_mac) {
     }
 
     else {
-        header("HTTP/1.1 200 no found");
+        echo json_encode(['success' => false]);
     }
 }
 

@@ -83,7 +83,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
 
     $('.generate_qr_token').on('click', function() { // Отображает кр-код с токеном и добавляет его в бд
         var token = generate_token()
-        var token_data = {"IP":"1.1.1.1","Port":5001,"Token": token}
+        var token_data = {"ApiAddress":"http://z5r.000webhostapp.com/server/api.php","Token": token}
         var user_id = this.id
         console.log(user_id)
         console.log(token_data)
