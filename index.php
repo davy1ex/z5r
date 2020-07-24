@@ -1,7 +1,7 @@
 <?php
 // echo 'gg';
-// ini_set('display_errors', 1); // лог
-// error_reporting(E_ALL);       // лог
+ini_set('display_errors', 1); // лог
+error_reporting(E_ALL);       // лог
 
 // include_once ('/server/functions.php');
 

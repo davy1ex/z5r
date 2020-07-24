@@ -1,11 +1,14 @@
 // 12.07.20 (авторизация)
 // ########## АВТОРИЗАЦИЯ ##########
-$('#log_in').on('click', function (event) { // авторизация: Создаёт куки login=root    
-    // var $form = $( this ),
-    // login = $form.find( "input[name='login']" ).val(),
-    // password = $form.find( "input[name='password']" ).val();
-    var login = $('#auth_login').val()
-    var password = $('#auth_password').val()
+$('#auth').submit(function (event) { // авторизация: Создаёт куки login=root    
+    var $form = $( this ),
+    login = $form.find( "input[name='login']" ).val(),
+    password = $form.find( "input[name='password']" ).val();
+
+    console.log(login)
+    console.log(password)
+    // var login = $('#auth_login').val()
+    // var password = $('#auth_password').val()
 
     $.ajax({
         type: "POST",

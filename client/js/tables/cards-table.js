@@ -80,9 +80,11 @@ function take_cards() { // получает массив карт с серве�
         type: "POST",
         url: '/server/api.php',
         
-        data: {
+        dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
             'operation': 'get_cards'
-        },
+        }),
         
         success: function (response) {
             var jsonData = response
