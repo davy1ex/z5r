@@ -59,18 +59,23 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
     $('.cards-table').html(html)
     $('.del_btn').on('click', function() { //удаляет карту
         console.log(this.id)
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+            $.ajax({
+                type: "POST",
+                url: '/server/api.php',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({'operation': 'del_card', 'card_id': this.id}),
+                        
+                success: function(response) {
+                    take_cards()
+                }
+            })
+          } else {
+            // Do nothing!
+            console.log('Thing was not saved to the database.');
+          }
         
-        $.ajax({
-            type: "POST",
-            url: '/server/api.php',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({'operation': 'del_card', 'card_id': this.id}),
-                    
-            success: function(response) {
-                take_cards()
-            }
-        })
     })
 }
 

@@ -710,6 +710,15 @@ table th {
   margin: 2px;
   border-radius: 60% !important;
 }
+
+.del-usr-btn {
+  background-color: red;
+}
+
+.edit-usr-btn {
+  background-color: green;
+}
+
 .edit-usr-btn img, .del-usr-btn img, .generate_qr_token img {
   width: 20px !important;
 }

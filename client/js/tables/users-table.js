@@ -135,18 +135,25 @@ function get_users_table(users_list) { // рисует таблицу с пол�
 
     $('.del-usr-btn').on('click', function() { //удаляет карту
         console.log(this.id)
+        if (confirm('Вы действительно хотите удалить пользователя?')) {
+            // Save it!
+            console.log('да');
+            $.ajax({
+                type: "POST",
+                url: '/server/api.php',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({'operation': 'del_user', 'user_id': this.id}),
+                        
+                success: function(response) {
+                    take_users()
+                }
+            })
+          } else {
+            // Do nothing!
+            console.log('нет');
+          }
         
-        $.ajax({
-            type: "POST",
-            url: '/server/api.php',
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify({'operation': 'del_user', 'user_id': this.id}),
-                    
-            success: function(response) {
-                take_users()
-            }
-        })
     })
 
 }
