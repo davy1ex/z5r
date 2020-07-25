@@ -1140,19 +1140,19 @@ color: #333;
   background-color: red;
   border-color: red;
 }
-.add_users{
+.add_users, .add_cards {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   padding: 0px 10px;
 }
-.add_users input{
+.add_users input, .add_cards input {
   border: 1px solid #333;
   display: block;
   width: 45%;
   margin: 10px;
 }
-.add_users_btn{
+.add_users_btn, .add_cards_btn {
   width: 50%
 }
 /* .generate_qr_token{
@@ -1201,4 +1201,10 @@ color: #333;
 .img_sec {
     margin-bottom: 80px;
 }
+}
+
+
+
+#cbk1, #cbk2 {
+  width: 30px;
 }

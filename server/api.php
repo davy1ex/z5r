@@ -68,7 +68,7 @@ if ($data['operation'] == 'get_events') {
 
 // 16.07.20 (добавление событий)
 if ($data['operation'] == 'new_event') {
-    add_event($_POST['action'], $_POST['date']);
+    add_event($data['action'], $data['date']);
 }
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки) 

@@ -53,3 +53,20 @@ $('#lock-oneside-door-btn').on('click', function(event) {
         }
     })
 })
+
+
+$('#test_event').on('click', function(event) {
+    var test_events = ['закрытие | охранник Петя', 'Взлом']
+    var current_date = new Date()
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+            'operation': 'new_event',
+            'action': test_events[Math.floor(Math.random() * test_events.length)],
+            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+        })
+    })
+})

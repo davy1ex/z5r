@@ -205,7 +205,7 @@
           <div class="accordion-item-body">
             <div class="accordion-item-body-content">
 				<div id="cards-table" class='cards-table'></div>
-							 <table>
+							 <!-- <table>
 							  <thead>
 							    <tr>
 							      <th scope="col">Номер карты</th>
@@ -249,7 +249,35 @@
 											</legend></button></td>
 									</tr>
 							  </tbody>
-							</table>
+							</table> -->
+							<div class="add_cards">
+								<legend>Номер карты
+									<input id="numb_card" type="text"/>
+								</legend>
+								
+								<legend>Блокирующая карта
+										<input type="checkbox" id="cbk1">
+										<span class="cbx"></span>
+								</legend>
+								
+								<legend> Короткий код карты
+									<input type="checkbox" id="cbk2" checked>
+									<span class="cbx">
+									</span>
+								</legend>
+			
+								<legend> tz
+									<input id="card_tz" type="text"/>
+								</legend>
+								
+								
+								 <div class="add_cards_btn">
+									 <!-- <button  name='add' type="submit" id="add-user-btn" class="add_btn add_2" >Добавить</button> -->
+									 <button id="add_card" class="add_btn">	<legend  class="tooltip">Добавить <span class="tooltiptext"> Если в памяти контроллера уже имеется карта с таким-же номером, для этой карты обновляются флаги  и временные зоны. </span>
+									 </legend></button>
+			
+								 </div>
+							</div>
 
 
 							                  <button  id='del_all_cards' type="button">Удаление всех карт</button>
@@ -514,6 +542,9 @@
 <div class="control_right_table">
 	<table id='events-table'>
 	</table>
+</div>
+<div class="generate_event">
+	<button id="test_event">+</button>
 </div>
 
 </div>
