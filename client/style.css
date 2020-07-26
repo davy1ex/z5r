@@ -708,7 +708,7 @@ table th {
 .edit-usr-btn, .del-usr-btn, .generate_qr_token {
   padding: 5px !important;
   margin: 2px;
-  border-radius: 60% !important;
+  border-radius: 50% !important;
 }
 
 .del-usr-btn {
