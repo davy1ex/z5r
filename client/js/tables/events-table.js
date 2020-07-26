@@ -22,13 +22,15 @@ function create_events_table() {
                     <tr>\
                         <th scope="col">Дата и время</th>\
                         <th scope="col">Источник</th>\
+                        <th scope="col">Событие</th>\
                     </tr>\
                 </thead>\
                 <tr>';
 
             $.each(events_list, function(i, item) {
                 html += '<td data-label="Дата и время">' + item.date + '</td>'
-                html += '<td data-label="Истоник">' + item.action + '</td>'
+                html += '<td data-label="Истоник">' + item.source + '</td>'
+                html += '<td data-label="Событие">' + item.action + '</td>'
 
                 var next = i+1;
                 if (next%perrow==0 && next!=events_list.length) {

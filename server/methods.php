@@ -190,11 +190,12 @@ function get_events() {
 }
 
 // 16.07.20 (добавление событий)
-function add_event($event, $date) {
+function add_event($event, $source, $date) {
     global $pdo;
-    $query = $pdo -> prepare('INSERT INTO events (action, date) VALUES (?, ?)');
+    $query = $pdo -> prepare('INSERT INTO events (action, source, date) VALUES (?, ?, ?)');
     $query -> execute([
         $event,
+        $source,
         $date
     ]);  
     $pdo = null;

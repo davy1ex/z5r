@@ -712,11 +712,13 @@ table th {
 }
 
 .del-usr-btn {
-  background-color: red;
+  background-color: #fc0303;
+  border: 1px  solid white;
 }
 
-.edit-usr-btn {
-  background-color: green;
+.edit-usr-btn, .generate_qr_token {
+  border: 1px solid white;
+  background:  #FC7403;
 }
 
 .edit-usr-btn img, .del-usr-btn img, .generate_qr_token img {
@@ -1207,4 +1209,14 @@ color: #333;
 
 #cbk1, #cbk2 {
   width: 30px;
+}
+
+.generate_event {
+  float: right;
+  padding: 5px;
+}
+
+.generate_event #test_event {
+  width: 20px;
+  padding: 2px;
 }
