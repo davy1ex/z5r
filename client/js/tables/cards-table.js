@@ -45,7 +45,11 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             html += "<td data-label='Blocking card'>" + block_type + "</td>";
             html += "<td data-label='Short code card'>" + shord_code + "</td>";
             html += "<td data-label='tz'>" + item.tz + "</td>";
-            html += "<td data-label='Del'>" + '<button id=' + item.id + ' class="del_btn">Удалить</button>' + "</td>";
+            // html += "<td data-label='Del'>" + '<button id=' + item.id + ' class="del_btn">Удалить</button>' + "</td>";
+            html  += '<td>'
+             + '<button id=' + String(item.id) + ' class="edit-card-btn">'
+                 + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>'
+             + '<button id=' + String(item.id) + ' class="del_btn"><img src="/client/img/remove.png"></button></td>'
 
             var next = i+1;
             if (next%perrow==0 && next!=cards_list.length) {
@@ -57,6 +61,25 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
     html += "</tr></table>";
     
     $('.cards-table').html(html)
+
+    $('.edit-card-btn').on('click', function() {
+        $.ajax({
+            type: "POST",
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({'operation': 'get_card', 'card_id': this.id}),
+
+            success: function(response) {
+                console.log(response.card)
+                $('#numb_card').val(response.card.card)
+                $('#cbk1').val(response.card.block_type)
+                $('#cbk2').val(response.card.shord_code)
+                $('#card_tz').val(response.card.tz)
+            }
+        })
+    })
+
     $('.del_btn').on('click', function() { //удаляет карту
         console.log(this.id)
         if (confirm('Are you sure you want to save this thing into the database?')) {
@@ -66,7 +89,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify({'operation': 'del_card', 'card_id': this.id}),
-                        
+
                 success: function(response) {
                     take_cards()
                 }

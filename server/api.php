@@ -48,6 +48,10 @@ if ($data['operation'] == 'get_cards'){
     get_cards();
 }
 
+if ($data['operation'] == 'get_card') {
+    get_card($data['card_id']);
+}
+
 if ($data['operation'] == 'del_card') {
     del_card($data['card_id']);
 }

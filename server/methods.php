@@ -107,6 +107,21 @@ function get_cards() {
     ]);
 }
 
+function get_card($card_id) {
+    // Получает карту
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `cards` WHERE id=?');
+    $query -> execute([(int)$card_id]);
+    $cards = $query -> fetchAll();
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1,
+        'card'     => $cards[0]
+    ]);
+}
+
 
 function del_all_cards() {
     global $pdo;
