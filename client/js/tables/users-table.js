@@ -29,7 +29,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             else if (item.access == 'main_guard') {
                 var access = 'Начальник службы безопасности'
             }
-
+            console.log(item)
             html += '<td data-label="Пользователь">' + item.username + "</td>";
             html += '<td data-label="Тип учетной записи">' + access + "</td>";
             html += '<td data-label="ID">' + item.device_id + "</td>";
@@ -64,7 +64,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             url: '/server/api.php',
             dataType: 'json',
             contentType: 'application/json',
-            data: JSON.stringify({'operation': 'get_user', 'card_id': this.id}),
+            data: JSON.stringify({'operation': 'get_user', 'user_id': this.id}),
 
             success: function(response) {
                 $('#username').val(response.user.username)

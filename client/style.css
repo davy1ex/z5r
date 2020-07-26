@@ -1220,3 +1220,22 @@ color: #333;
   width: 20px;
   padding: 2px;
 }
+
+.exports-fields {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width:700px) {
+  .exports-fields {
+      flex-direction: column;
+  }
+
+  .exports-fields form, .exports-fields fieldset {
+    width: 100%;
+  }
+}
