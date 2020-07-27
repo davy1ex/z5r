@@ -12,11 +12,12 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
                 <th scope="col">tz</th>\
                 <th scope="col">Удаление</th>\
             </tr>\
-        </thead>\
-        <tr>';
+        </thead>';
+        
 
         // Loop through array and add table cells
         $.each(cards_list, function(i, item) {
+            html += '<tr>'
             if(parseInt(item.block_type) == true) {
                 block_type =
                     '<span class="checkmark">\
@@ -53,7 +54,8 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
 
             var next = i+1;
             if (next%perrow==0 && next!=cards_list.length) {
-                html += "</tr><tr>";
+                // html += "</tr><tr>";
+                html += "</tr>";
             }
             
         })

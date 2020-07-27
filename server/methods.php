@@ -360,10 +360,20 @@ function del_user($user_id) {
 }
 
 // 27.07.20 - ПРОШИВКИ
-function put_config() {
+function put_config($namefile) {
+    $uploaddir = '/configs/';
+    $uploadfile = $uploaddir . basename($namefile);
+
     header("Content-Type: application/json");
-    echo json_encode([
-        'success' => 1,
-        'files' => $_FILES
-    ]);
+    if (move_uploaded_file($namefile, $uploadfile)) {
+        echo json_encode([
+            'success' => 1,
+            'files' => $_FILES
+        ]);
+    } else {
+        echo json_encode([
+            'success' => 0,
+            'files' => $_FILES
+        ]);
+    }
 }

@@ -113,5 +113,5 @@ if ($data['operation'] == 'del_user') {
 
 // 27.07.20 - ПРОШИВКИ
 if ($data['operation'] == 'put_config') {
-    put_config();
+    put_config($data['filename']);
 }

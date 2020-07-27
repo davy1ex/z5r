@@ -21,7 +21,7 @@ function put(key, value) {
 }
  
 
-$('#export-events').on('click', function () {
+$('#export-events-btn').on('click', function () {
     var events_log =  function () {
         var tmp = null
         $.ajax({
@@ -44,7 +44,7 @@ $('#export-events').on('click', function () {
     download(JSON.stringify(events_log), 'events', 'application/json')
 })
 
-$('#export-config').on('click', function() {
+$('#export-config-btn').on('click', function() {
     var config = {}
     var cards = function () {
         var tmp = null
@@ -89,22 +89,20 @@ $('#export-config').on('click', function() {
 })
 
 $('.write-config').submit(function() {
+    var selectedFile = $('#input-write-config').prop('files')[0]; 
+    var form_data = new FormData();                  
+    form_data.append('file', selectedFile);
+    console.log(form_data)
     $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'multipart/form-data',
-        data: JSON.stringify({'operation': 'put_config'}),
-
-        success: function(response) {
-            console.log(response.files)
-            if (response.success) {                
-                alert('Прошивка загружена')
-            }
-
-            else {
-                alert('Прошивка не загружена')
-            }
-        }        
-    })
+        url: '/server/upload.php', // point to server-side PHP script 
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                         
+        type: 'post',
+        success: function(php_script_response){
+            alert(php_script_response); // display response from the PHP script, if any
+        }
+    });
 })

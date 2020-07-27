@@ -34,7 +34,8 @@ function create_events_table() {
 
                 var next = i+1;
                 if (next%perrow==0 && next!=events_list.length) {
-                    html += "</tr><tr>";
+                    // html += "</tr><tr>";
+                    html += "</tr>";
                 }
             })
             

@@ -1231,6 +1231,63 @@ color: #333;
 }
 
 @media screen and (max-width:700px) {
+  * {
+    font-size: 1em;
+  }
+  body {
+    height: 100%;
+    width: 97%;
+    margin: auto;
+  }
+
+  .main, .control, .modal-content {
+    margin-bottom: 50px;
+  }
+  .elsys {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  #auth, .modal, .modal-body {
+    width: 100%;
+    padding: 5px;
+  }
+  .modal {
+    height: 100%;
+  }
+  .modal-content {
+    /* height: 90%; */
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .accordion-item form {
+    width: 100%;
+    padding: 2px;
+  }
+  .accordion-item  input {
+    padding: 1px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .add_users select {
+    width: 98%;
+    margin-bottom: 10px;
+  }
+
+  .add_cards {
+    width: 90%;
+    margin: auto;
+
+    text-align: center;
+  }
+  .add_cards_btn {
+    margin: auto;
+  }
+
+
+
   .exports-fields {
       flex-direction: column;
   }
@@ -1238,4 +1295,32 @@ color: #333;
   .exports-fields form, .exports-fields fieldset {
     width: 100%;
   }
+
+  .cards-btns {
+    display: flex;
+
+    margin-top: 20px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .del-all-cards-btn, .QR_work {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+  }
+
+  .del-all-cards-btn button {
+    margin: auto;
+  }
+
+
+
+  .QR_work {
+    width: 100%;
+  }
+  
 }
+

@@ -21,17 +21,19 @@ $('.add_btn').on('click', function () { // добавляет карту
 
 
 $('#del_all_cards').on('click', function(event) { // удаляет карту
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'del_all_cards'            
-        }),
+    if (confirm('Are you sure you want to save this thing into the database?')) {
+        $.ajax({
+            type: "POST",
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'operation': 'del_all_cards'            
+            }),
 
-        success: function(response) {
-            take_cards()
-        }
-    })
+            success: function(response) {
+                take_cards()
+            }
+        })
+    }
 })
