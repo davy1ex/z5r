@@ -389,14 +389,14 @@
 			</div>
 			<div class="accordion-item-body">
 			  <div class="accordion-item-body-content">
-				<form action="" class="write-config">
+				<form enctype="multipart/form-data" class="write-config" method="post">
 				  <fieldset>
 					<legend>Обновить биос</legend>
-					<input type="file" placeholder="upload" required/>
+					<input type="file" type="file" name="files[]" placeholder="upload" required/>
 					<!-- <input type="time" placeholder="Начало" required/>
 					<input type="time" placeholder="Конец" required/>
 					<input type="text" placeholder="Дни" required/>-->
-					<button id="write-config" class="container_check_btn" type="button">Прошить</button> 
+					<button id="write-config" class="container_check_btn" type="submit">Прошить</button> 
 				  </fieldset>
 				</form>
   

@@ -110,3 +110,8 @@ if ($data['operation'] == 'del_user') {
     del_user($data['user_id']);
 }
 
+
+// 27.07.20 - ПРОШИВКИ
+if ($data['operation'] == 'put_config') {
+    put_config();
+}

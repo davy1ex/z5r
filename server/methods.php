@@ -1,6 +1,7 @@
 <?php
-include_once ('functions.php');
+// include_once ('functions.php');
 session_start();
+require_once ('db.php');
 
 function power_on($active, $mode) {
     // хз зачем это
@@ -41,7 +42,7 @@ function check_usr($login, $password) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `users` WHERE login = ? AND password = ?');
     $query -> execute([$login, $password]);
-    $users = $query -> fetchAll();
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
 
     header("Content-Type: application/json");
@@ -89,14 +90,13 @@ function check_usr($login, $password) {
 // ];
 
 // 13.07.20 (все карты через бд)
-require_once ('db.php');
 
 function get_cards() { 
     // получает все карты из бд
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `cards`');
     $query -> execute();
-    $cards = $query -> fetchAll();
+    $cards = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
     
     header("Content-Type: application/json");
@@ -112,7 +112,7 @@ function get_card($card_id) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `cards` WHERE id=?');
     $query -> execute([(int)$card_id]);
-    $cards = $query -> fetchAll();
+    $cards = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
 
     header("Content-Type: application/json");
@@ -155,7 +155,7 @@ function add_card($numb_card, $block_type, $shord_code, $tz) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `cards` WHERE card = ?');
     $query -> execute([$numb_card]);
-    $cards = $query -> fetchAll();
+    $cards = $query -> fetchAll(PDO::FETCH_ASSOC);
 
     header("Content-Type: application/json");
 
@@ -195,13 +195,13 @@ function get_events() {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `events` ORDER BY `events`.`date` ASC');
     $query -> execute();
-    $events = $query -> fetchAll();
+    $events = $query -> fetchAll(PDO::FETCH_ASSOC);
 
     header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
         'events'     => $events
-    ]);
+    ], JSON_FORCE_OBJECT);
 }
 
 // 16.07.20 (добавление событий)
@@ -254,7 +254,7 @@ function add_device_by_token($token, $device_id, $device_type, $device_mac) {
     $query -> execute([
         $token
     ]);
-    $users = $query -> fetchAll();
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
     
     
     header("Content-Type: application/json");
@@ -285,7 +285,7 @@ function get_users() {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `users`');
     $query -> execute();
-    $users = $query -> fetchAll();
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
     header("Content-Type: application/json");
     echo json_encode([
@@ -299,7 +299,7 @@ function get_user($user_id) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `users` WHERE id=?');
     $query -> execute([$user_id]);
-    $users = $query -> fetchAll();
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
 
     header("Content-Type: application/json");
@@ -313,7 +313,7 @@ function add_user($username, $login, $password, $access) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `users` WHERE login = ?');
     $query -> execute([$login]);
-    $users = $query -> fetchAll();
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
     if ($users[0]['login'] == $login) { // если пользователь уже есть в бд
         $query = $pdo -> prepare('UPDATE `users` SET `username` = ?, `login` = ?, `password` = ?, `access` = ? WHERE id = ?');
         $query -> execute([
@@ -356,5 +356,14 @@ function del_user($user_id) {
     header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1
+    ]);
+}
+
+// 27.07.20 - ПРОШИВКИ
+function put_config() {
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success' => 1,
+        'files' => $_FILES
     ]);
 }
