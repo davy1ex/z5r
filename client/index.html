@@ -62,7 +62,7 @@
 
 			<div class="accordion-item">
 				<div class="accordion-item-header">
-					Пользователи
+					Операторы
 				</div>
 				
 				<div class="accordion-item-body">
@@ -71,7 +71,7 @@
 						<div class="qr-code-field"></div>
 						
 						<div class="add_users">
-							<legend>Пользователь
+							<legend>Имя
 								<input id="username" name='username' type="text"/>
 							</legend>
 							
@@ -104,7 +104,7 @@
 
         <div class="accordion-item">
         	<div class="accordion-item-header">
-            	Управление и контроль
+            	Пропуска
           	</div>
         	<div class="accordion-item-body">
             	<div class="accordion-item-body-content">
@@ -132,7 +132,7 @@
 						<div class="add_cards_btn">
 							<button id="add_card" class="add_btn">
 								<legend  class="tooltip">
-									Добавить <span class="tooltiptext"> Если в памяти контроллера уже имеется карта с таким-же номером, для этой карты обновляются флаги  и временные зоны. </span>
+									Добавить <span class="tooltiptext"> Если в памяти контроллера уже имеется карта с таким-же номером, для этой карты обновляются флаги  и временные интервалы. </span>
 								</legend>
 							</button>
 						</div>
@@ -143,24 +143,54 @@
 							<button  id='del_all_cards'>Удаление всех карт</button>
 						</div>
 	
-						<div class="QR_work">
-							<div class="qr-code-read">
-								<button ><a href="/client/QR/index.html ">Считать QR код</a></button>
-							</div>
-						</div>
+						
 					</div>
             	</div>
           	</div>
-        </div>
+		</div>
+		
+		<div class="accordion-item">
+			<div class="accordion-item-header">
+			  Уровни доступа и временные зоны
+			</div>
+			<div class="accordion-item-body">
+			  <div class="accordion-item-body-content">
+				<form action="" class="time_zone">
+				  <fieldset>
+					<legend>Устанавка параметров временной зоны контроллера</legend>
+					<input type="text" placeholder="Зона" required/>
+					<input type="time" placeholder="Начало" required/>
+					<input type="time" placeholder="Конец" required/>
+					<input type="text" placeholder="Дни" required/>
+					<button id="time_zone_btn" class="container_check_btn" type="button">Сохранить</button>
+				  </fieldset>
+				</form>
+  
+  
+				<form action="">
+				  <fieldset>
+					<legend>Устанавка параметров открывания и контроля состояния двери </legend>
+					<input type="number" placeholder="Время подачи сигнала открывания замка (в 1/10 секунды) " />
+					<input type="number" placeholder="Время контроля открытия двери (в 1/10 секунды) " />
+					<input type="number" placeholder="Время контроля закрытия двери (в 1/10 секунды) " />
+					<button id="save_btn" type="button">Сохранить</button>
+				  </fieldset>
+				</form>
+  
+  
+			  </div>
+			</div>
+		  </div>
+
         <div class="accordion-item">
           <div class="accordion-item-header">
-            Режим работы
+            Настройки контроллера доступа
           </div>
           <div class="accordion-item-body">
             <div class="accordion-item-body-content">
               <form action="">
                 <fieldset>
-                  <legend>Установка режима работы контроллера </legend>
+                  <legend>Режим работы </legend>
 									<div class="radio-toolbar">
 												    <input type="radio"  class='mode0'  id="option-one" name="selector" value="Норма" checked>
 												    <label for="option-one">Норма</label>
@@ -178,7 +208,7 @@
               </form>
 							<form action="">
 								<fieldset>
-									<legend>Точка доступа</legend>
+									<legend>Тип точки доступа</legend>
 									<div class="radio-toolbar">
 														<input type="radio" id="option-one-door" name="selector" value="Односторнняя дверь">
 														<label for="option-one-door">Односторнняя дверь</label>
@@ -196,7 +226,7 @@
 							</form>
               <form action="" >
                 <fieldset>
-                  <legend>Активация / деактивация работы контроллера с сервером </legend>
+                  <legend>Синхронизация с сервером </legend>
                   <div class="switch_block">
                     <label class="switch">
                       <input id='set_active' type="checkbox" >
@@ -209,38 +239,7 @@
             </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <div class="accordion-item-header">
-            Настройки контроллера
-          </div>
-          <div class="accordion-item-body">
-            <div class="accordion-item-body-content">
-              <form action="" class="time_zone">
-                <fieldset>
-                  <legend>Устанавка параметров временной зоны контроллера</legend>
-                  <input type="text" placeholder="Зона" required/>
-                  <input type="time" placeholder="Начало" required/>
-                  <input type="time" placeholder="Конец" required/>
-                  <input type="text" placeholder="Дни" required/>
-                  <button class="container_check_btn" type="button">Сохранить</button>
-                </fieldset>
-              </form>
-
-
-              <form action="">
-                <fieldset>
-                  <legend>Устанавка параметров открывания и контроля состояния двери </legend>
-                  <input type="number" placeholder="Время подачи сигнала открывания замка (в 1/10 секунды) " />
-                  <input type="number" placeholder="Время контроля открытия двери (в 1/10 секунды) " />
-                  <input type="number" placeholder="Время контроля закрытия двери (в 1/10 секунды) " />
-                  <button type="button">Сохранить</button>
-                </fieldset>
-              </form>
-
-
-            </div>
-          </div>
-		</div>
+        
 		
 		<div class="accordion-item">
 			<div class="accordion-item-header">
@@ -250,7 +249,7 @@
 			  <div class="accordion-item-body-content">
 				<form enctype="multipart/form-data" class="write-config" method="post">
 				  <fieldset>
-					<legend>Обновить биос</legend>
+					<legend>Обновить программу обновления контроллера</legend>
 					<input id='input-write-config' type="file" type="file" name="files[]" placeholder="upload" required/>
 					<!-- <input type="time" placeholder="Начало" required/>
 					<input type="time" placeholder="Конец" required/>
@@ -263,15 +262,22 @@
 				<div class="exports-fields">
 					<form action="" class="export-config">
 						<fieldset>
-						  <legend>Экспорт конфигурации</legend>
+						  <legend>Конфигурация контроллера</legend>
 						  <button id="export-config-btn" type="button">Экспорт</button>
+
+						  <!-- <legend>Конфигурация</legend> -->
+						  <button id="import-config-btn" type="button">Импорт</button>
+
+						  <button id="clear-config-btn" type="button">Очистить</button>
 						</fieldset>
 					  </form>
 	  
-					  <form action="" class="export-config-btn">
+					  <form action="" class="event-config">
 						  <fieldset>
-							<legend>Экспорт событий</legend>
+							<legend>Журнал событий</legend>
 							<button id="export-events-btn" type="button">Экспорт</button>
+
+							<button id="clear-config-btn" type="button">Очистить</button>
 						  </fieldset>
 						</form>
 					</div>
@@ -355,7 +361,13 @@
 <img src="/client/img/door.png" alt="">
 				<img src="/client/img/press_120412.png" class="img_sec" alt="">
 <div class="content1_btn">
+	<div class="QR_work">
+		<div class="qr-code-read">
+			<button ><a href="/client/QR/index.html ">Считать QR код</a></button>
+		</div>
+	</div>
 	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
 	<button id='unlock-oneside-door-btn' class="ghost" type="button" name="">Разблокировать</button>
 	<button id='close-oneside-door-btn' class="ghost" type="button" name="">Закрыть</button>
 
@@ -370,6 +382,7 @@
 <img src="/client/img/card-reader.png" class="img_sec" alt="">
 <div class="content1_btn">
 	<button class="ghost" type="button" name="">Открыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
 		<button  class="ghost" type="button" name="">Разблокировать</button>
 	<button class="ghost" type="button" name="">Закрыть</button>
 
@@ -384,6 +397,7 @@
 <div class="content1_btn">
 	<div class="conten_h2"><h2>Вход</h2></div>
 	<button class="ghost" type="button" name="">Открыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
 		<button  class="ghost" type="button" name="">Разблокировать</button>
 	<button class="ghost" type="button" name="">Закрыть</button>
 
@@ -393,6 +407,7 @@
 <div class="content1_btn">
 	<div  class="conten_h2" ><h2>Выход</h2></div>
 	<button class="ghost" type="button" name="">Открыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
 		<button  class="ghost" type="button" name="">Разблокировать</button>
 	<button class="ghost" type="button" name="">Закрыть</button>
 
@@ -408,6 +423,7 @@
 <div class="content1_btn">
 	<div class="conten_h2"><h2>Вход</h2></div>
 	<button class="ghost" type="button" name="">Открыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
 		<button  class="ghost" type="button" name="">Разблокировать</button>
 	<button class="ghost" type="button" name="">Закрыть</button>
 
@@ -417,6 +433,7 @@
 <div class="content1_btn">
 	<div  class="conten_h2" ><h2>Выход</h2></div>
 	<button class="ghost" type="button" name="">Открыть</button>
+	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
 		<button  class="ghost" type="button" name="">Разблокировать</button>
 	<button class="ghost" type="button" name="">Закрыть</button>
 

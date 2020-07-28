@@ -4,11 +4,13 @@ $('#open-oneside-door-btn').on('click', function(event) {
     $.ajax({
         type: "POST",
         url: '/server/api.php',
-        data: {
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
             'operation': 'new_event',
             'action': 'открытие',
             'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        }
+        })
     })
 }) 
 

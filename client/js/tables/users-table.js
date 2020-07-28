@@ -5,7 +5,7 @@ function get_users_table(users_list) { // рисует таблицу с пол�
     '<table>\
         <thead>\
             <tr>\
-                <th scope="col">Имя пользователя</th>\
+                <th scope="col">Имя</th>\
                 <th scope="col">Тип учетной записи</th>\
                 <th scope="col">ID</th>\
                 <th scope="col">Устройство</th>\
