@@ -1233,10 +1233,7 @@ color: #333;
   align-items: center;
   justify-content: center;
 }
-.elsys {
-  margin-top: 20px;
-  text-align: center;
-}
+
 
 /* .export-config, .export-config-btn {
   padding: 0px;
@@ -1277,11 +1274,24 @@ color: #333;
   background-color: #c90000;
 }
 
+body {
+  margin-bottom: 0px;
+}
 
-@media screen and (max-width:700px) {
-  * {
-    font-size: 1em;
+@media screen and (max-height: 740px) {
+  .elsys {
+    margin-top: 500px;
+    text-align: center;
   }
+
+  body {
+    margin: 0px;
+  }
+}
+@media screen and (max-width:700px) {
+  /* * {
+    font-size: small !important;
+  } */
   body {
     height: 100%;
     width: 97%;
