@@ -200,18 +200,19 @@ function get_events() {
     header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
-        'events'     => $events
+        'events'     => array_slice($events, -5)
     ], JSON_FORCE_OBJECT);
 }
 
 // 16.07.20 (добавление событий)
-function add_event($event, $source, $date) {
+function add_event($action, $date, $source_type, $source_name) {
     global $pdo;
-    $query = $pdo -> prepare('INSERT INTO events (action, source, date) VALUES (?, ?, ?)');
+    $query = $pdo -> prepare('INSERT INTO events (action, date, source_type, source_name) VALUES (?, ?, ?, ?)');
     $query -> execute([
-        $event,
-        $source,
-        $date
+        $action,        
+        $date,
+        $source_type,
+        $source_name
     ]);  
     $pdo = null;
     header("Content-Type: application/json");
@@ -306,6 +307,22 @@ function get_user($user_id) {
     echo json_encode([
         'success'   => 1,
         'user'     => $users[0]
+    ]);
+}
+
+function current_user() {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `users` WHERE login=?');
+    $query -> execute([$_SESSION['login']]);
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
+    $pdo = null;
+
+
+    header('Content-Type: application/json');
+
+    echo json_encode([
+        'success' => 1,
+        'user' => $users[0]
     ]);
 }
 

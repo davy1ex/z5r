@@ -72,7 +72,11 @@ if ($data['operation'] == 'get_events') {
 
 // 16.07.20 (добавление событий)
 if ($data['operation'] == 'new_event') {
-    add_event($data['action'], $data['source'], $data['date']);
+    add_event($data['action'], $data['date'], $data['source_type'], $data['source_name']);
+}
+
+if ($data['operation'] == 'action') {
+    add_event($data['action'], $data['date'], $data['source_type'], $data['source_name']);
 }
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки) 
@@ -96,6 +100,10 @@ if ($data['operation'] == 'add_device') {
 // 18.07.20 - ПОЛЬЗОТВАТЕЛИ
 if ($data['operation'] == 'get_users') {
     get_users();
+}
+
+if ($data['operation'] == 'current_user') {
+    current_user();
 }
 
 if ($data['operation'] == 'get_user') {

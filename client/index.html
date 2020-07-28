@@ -341,109 +341,109 @@
   </div>
 </section>
 <section id="control" class="control">
-<div class="control_left">
-	<div class="products_ind ">
-				<input class="text-center input_left" id="tab1" type="radio" name="tabs" checked>
-				<label for="tab1" id="products_ind_1" >Односторнняя дверь</label>
+	<div class="control_left">
+		<div class="products_ind ">
+			<input class="text-center input_left" id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1" id="products_ind_1" >Односторнняя дверь</label>
 
-				<input class="text-center input_left" id="tab2" type="radio" name="tabs2 " disabled >
-				<label for="tab2" id="products_ind_2" > Двусторонняя дверь</label>
+			<input class="text-center input_left" id="tab2" type="radio" name="tabs2 " disabled >
+			<label for="tab2" id="products_ind_2" > Двусторонняя дверь</label>
 
-				<input class="text-center input_left" id="tab3" type="radio" name="tabs3" disabled >
-				<label for="tab3" id="products_ind_3" > Турникет</label>
+			<input class="text-center input_left" id="tab3" type="radio" name="tabs3" disabled >
+			<label for="tab3" id="products_ind_3" > Турникет</label>
 
-				<input class="text-center input_left" id="tab4" type="radio" name="tabs4" disabled>
+			<input class="text-center input_left" id="tab4" type="radio" name="tabs4" disabled>
 			<label for="tab4" class="label_left" id="products_ind_4" > Распашной турникет</label>
 
 			<section id="content1">
-							<h2 class="content_h2_1">Односторнняя дверь</h2>
-								<img src="/client/img/card-reader.png" class="img_sec" alt="">
-<img src="/client/img/door.png" alt="">
+				<h2 class="content_h2_1">Односторнняя дверь</h2>
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/door.png" alt="">
 				<img src="/client/img/press_120412.png" class="img_sec" alt="">
-<div class="content1_btn">
-	<div class="QR_work">
-		<div class="qr-code-read">
-			<button ><a href="/client/QR/index.html ">Считать QR код</a></button>
+				<div class="content1_btn">
+					<!-- <div class="QR_work">
+						<div class="qr-code-read">
+							<button ><a href="/client/QR/index.html ">Считать QR код</a></button>
+						</div>
+					</div> -->
+					<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть</button>
+					<button id='open-qr-oneside-door-btn' class="ghost" type="button" name=""><a class='link-to-qr' href="/client/QR/index.html ">Считать QR код</a></button>
+					<button id='unlock-oneside-door-btn' class="ghost" type="button" name="">Разблокировать</button>
+					<button id='close-oneside-door-btn' class="ghost" type="button" name="">Закрыть</button>
+					<button id='lock-oneside-door-btn' class="ghost" type="button" name="">Заблокировать</button>
+				</div>
+			</section>
+			
+			<section id="content2">
+				<h2 class="content_h2_2">Двусторонняя дверь</h2>
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/double-door.png" alt="">
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+				<div class="content1_btn">
+					<button id='open-twoside-door-btn' class="ghost" type="button" name="">Открыть</button>
+					<button id='open-qr-twoside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
+					<button id='unlock-twoside-door-btn' class="ghost" type="button" name="">Разблокировать</button>
+					<button id='close-twoside-door-btn' class="ghost" type="button" name="">Закрыть</button>
+					<button id='lock-twoside-door-btn' class="ghost" type="button" name="">Заблокировать</button>
+				</div>
+			</section>
+			
+			<section id="content3">
+				<h2 class="content_h2_3">Турникет</h2>
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/turnstile.png" alt="">
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+				<div class="content1_btn">
+					<div class="conten_h2"><h2>Вход</h2></div>
+					
+					<button id='open-wicketentry-btn' class="ghost" type="button" name="">Открыть</button>
+					<button id='open-qr-wicketentry-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
+					<button id='unlock-wicketentry-btn' class="ghost" type="button" name="">Разблокировать</button>
+					<button id='close-wicketentry-btn' class="ghost" type="button" name="">Закрыть</button>
+					<button id='lock-wicketentry-btn' class="ghost" type="button" name="">Заблокировать</button>
+				</div>
+
+				<div class="content1_btn">
+					<div  class="conten_h2" ><h2>Выход</h2></div>
+					
+					<button id='open-wicketexit-btn' class="ghost" type="button" name="">Открыть</button>
+					<button id='open-qr-wicketexit-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
+					<button id='unlock-wicketexit-btn' class="ghost" type="button" name="">Разблокировать</button>
+					<button id='close-wicketexit-btn' class="ghost" type="button" name="">Закрыть</button>
+					<button id='lock-wicketexit-btn' class="ghost" type="button" name="">Заблокировать</button>
+				</div>
+			</section>
+			
+			<section id="content4">
+				<h2 class="content_h2_4">Распашной турникет</h2>
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+				<img src="/client/img/turnstiles-and-door.png"  alt="">
+				<img src="/client/img/card-reader.png" class="img_sec" alt="">
+
+				<div class="content1_btn">
+					<div class="conten_h2"><h2>Вход</h2></div>
+					
+					<button id='open-swingenry-door-btn' class="ghost" type="button" name="">Открыть</button>
+					<button id='open-qr-swingenry-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
+					<button id='unlock-swingenty-door-btn' class="ghost" type="button" name="">Разблокировать</button>
+					<button id='close-swingentry-door-btn' class="ghost" type="button" name="">Закрыть</button>
+					<button id='lock-swingentry-door-btn' class="ghost" type="button" name="">Заблокировать</button>
+				</div>
+
+				<div class="content1_btn">
+					<div  class="conten_h2" ><h2>Выход</h2></div>
+					
+					<button id='open-swingexit-door-btn' class="ghost" type="button" name="">Открыть</button>
+					<button id='open-qr-swingexit-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
+					<button id='unlock-swingexit-door-btn' class="ghost" type="button" name="">Разблокировать</button>
+					<button id='close-swingexit-door-btn' class="ghost" type="button" name="">Закрыть</button>
+					<button id='lock-swingexit-door-btn' class="ghost" type="button" name="">Заблокировать</button>
+				</div>
+			</section>
 		</div>
 	</div>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть</button>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
-	<button id='unlock-oneside-door-btn' class="ghost" type="button" name="">Разблокировать</button>
-	<button id='close-oneside-door-btn' class="ghost" type="button" name="">Закрыть</button>
 
-	<button id='lock-oneside-door-btn' class="ghost" type="button" name="">Заблокировать</button>
-</div>
-
-			</section>
-			<section id="content2">
-							<h2 class="content_h2_2">Двусторонняя дверь</h2>
-				<img src="/client/img/card-reader.png" class="img_sec" alt="">
-<img src="/client/img/double-door.png" alt="">
-<img src="/client/img/card-reader.png" class="img_sec" alt="">
-<div class="content1_btn">
-	<button class="ghost" type="button" name="">Открыть</button>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
-		<button  class="ghost" type="button" name="">Разблокировать</button>
-	<button class="ghost" type="button" name="">Закрыть</button>
-
-	<button class="ghost" type="button" name="">Заблокировать</button>
-</div>
-			</section>
-			<section id="content3">
-							<h2 class="content_h2_3">Турникет</h2>
-				<img src="/client/img/card-reader.png" class="img_sec" alt="">
-<img src="/client/img/turnstile.png" alt="">
-<img src="/client/img/card-reader.png" class="img_sec" alt="">
-<div class="content1_btn">
-	<div class="conten_h2"><h2>Вход</h2></div>
-	<button class="ghost" type="button" name="">Открыть</button>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
-		<button  class="ghost" type="button" name="">Разблокировать</button>
-	<button class="ghost" type="button" name="">Закрыть</button>
-
-	<button class="ghost" type="button" name="">Заблокировать</button>
-</div>
-
-<div class="content1_btn">
-	<div  class="conten_h2" ><h2>Выход</h2></div>
-	<button class="ghost" type="button" name="">Открыть</button>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
-		<button  class="ghost" type="button" name="">Разблокировать</button>
-	<button class="ghost" type="button" name="">Закрыть</button>
-
-	<button class="ghost" type="button" name="">Заблокировать</button>
-</div>
-			</section>
-			<section id="content4">
-							<h2 class="content_h2_4">Распашной турникет</h2>
-				<img src="/client/img/card-reader.png" class="img_sec" alt="">
-<img src="/client/img/turnstiles-and-door.png"  alt="">
-<img src="/client/img/card-reader.png" class="img_sec" alt="">
-
-<div class="content1_btn">
-	<div class="conten_h2"><h2>Вход</h2></div>
-	<button class="ghost" type="button" name="">Открыть</button>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
-		<button  class="ghost" type="button" name="">Разблокировать</button>
-	<button class="ghost" type="button" name="">Закрыть</button>
-
-	<button class="ghost" type="button" name="">Заблокировать</button>
-</div>
-
-<div class="content1_btn">
-	<div  class="conten_h2" ><h2>Выход</h2></div>
-	<button class="ghost" type="button" name="">Открыть</button>
-	<button id='open-oneside-door-btn' class="ghost" type="button" name="">Открыть по qr-code</button>
-		<button  class="ghost" type="button" name="">Разблокировать</button>
-	<button class="ghost" type="button" name="">Закрыть</button>
-
-	<button class="ghost" type="button" name="">Заблокировать</button>
-</div>
-			</section>
-	</div>
-
-</div>
-<div class="control_right">
+	<div class="control_right">
 		<div class="control_right_btn">
 			<a href="http://fors.gtechs.ru./" target="_blank"><span class="tooltip_2"><img class="question" src="/client/img/questionmark_83826.png" alt=""><span class="tooltip-text">Помощь</span></span>
 </a>
@@ -485,6 +485,7 @@
 <script src="/client/js/script.js"></script>
 <script src="/client/js/auth.js"></script>
 <script src="/client/js/access.js"></script>
+<script src="/client/js/functions.js"></script>
 
 <!-- подключение таблиц -->
 

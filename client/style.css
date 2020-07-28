@@ -1258,7 +1258,9 @@ color: #333;
 #export-events-btn:hover,
 #clear-events-btn:hover,
 #export-events-btn:hover,
-#clear-events-btn:hover {
+#clear-events-btn:hover,
+
+#open-qr-oneside-door-btn:hover{
   background: #0099FF;
 }
 
@@ -1272,6 +1274,15 @@ color: #333;
 
 #del_all_cards:hover, .del-usr-btn:hover, .del_btn:hover {
   background-color: #c90000;
+}
+
+.link-to-qr {
+  color: #FFFFFF !important;
+  padding: 10px;
+}
+
+.link-to-qr a, .link-to-qr a:visited, .link-to-qr a:active {
+  color: #FFFFFF !important;
 }
 
 body {
