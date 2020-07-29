@@ -118,6 +118,10 @@ if ($data['operation'] == 'del_user') {
     del_user($data['user_id']);
 }
 
+if ($data['operation'] == 'del_all_users') {
+    del_all_users();
+}
+
 
 // 27.07.20 - ПРОШИВКИ
 if ($data['operation'] == 'put_config') {
@@ -138,4 +142,9 @@ if ($data['operation'] == 'set_point_type') {
 
 if ($data['operation'] == 'set_active') {
     set_active((int)$data['active']);
+}
+
+
+if ($data['operation'] == 'import_config') {
+    import_config($data['filename']);
 }

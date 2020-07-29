@@ -1,6 +1,5 @@
 function create_access_settings_div() {
     settings_access = get_settings_access()
-    console.log(settings_access[0].mode)
     
     if (settings_access[0].mode == "1") {
         $('#option-one').prop("checked", 1);        

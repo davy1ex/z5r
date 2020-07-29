@@ -260,24 +260,34 @@
   
   
 				<div class="exports-fields">
+					<legend>Конфигурация контроллера</legend>
 					<form action="" class="export-config">
 						<fieldset>
-						  <legend>Конфигурация контроллера</legend>
+						  
 						  <button id="export-config-btn" type="button">Экспорт</button>
 
 						  <!-- <legend>Конфигурация</legend> -->
-						  <button id="import-config-btn" type="button">Импорт</button>
-
+						  <!-- <button id="import-config-btn" type="button">Импорт</button> -->
+						  
 						  <button id="clear-config-btn" type="button">Очистить</button>
 						</fieldset>
-					  </form>
-	  
-					  <form action="" class="event-config">
-						  <fieldset>
-							<legend>Журнал событий</legend>
-							<button id="export-events-btn" type="button">Экспорт</button>
+					</form>
 
-							<button id="clear-config-btn" type="button">Очистить</button>
+					<form id="import-config" enctype="multipart/form-data" class="write-config" method="post">
+					<fieldset>
+						<input id='input-import-config' type="file" type="file" name="files[]" placeholder="upload" required/>
+						<!-- <input type="time" placeholder="Начало" required/>
+						<input type="time" placeholder="Конец" required/>
+						<input type="text" placeholder="Дни" required/>-->
+						<button id="import-config-btn" class="container_check_btn" type="submit">Импорт</button> 
+					</fieldset>
+					</form>
+	  
+					  	<form action="" class="event-config">
+							<fieldset>
+								<legend>Журнал событий</legend>
+								<button id="export-events-btn" type="button">Экспорт</button>
+								<button id="clear-config-btn" type="button">Очистить</button>
 						  </fieldset>
 						</form>
 					</div>

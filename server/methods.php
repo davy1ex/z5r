@@ -376,6 +376,21 @@ function del_user($user_id) {
     ]);
 }
 
+function del_all_users() {
+    global $pdo;
+    $query = $pdo -> prepare('DELETE FROM users');
+    $query -> execute();
+    $pdo = null;
+
+    header("Content-Type: application/json");
+
+    echo json_encode([
+        'success'   => 1
+    ]);
+}
+
+
+
 // 27.07.20 - ПРОШИВКИ
 function put_config($namefile) {
     $uploaddir = '/configs/';
@@ -405,14 +420,14 @@ function get_settings_access() {
     echo json_encode([
         'success'   => 1,
         'settings'     => $settings
-    ], JSON_FORCE_OBJECT);
+    ]);
 }
 
 function set_mode($mode) {
     global $pdo;    
     $query = $pdo -> prepare('UPDATE `settings_access` SET `mode` = ? WHERE id = 1');
     $query -> execute([
-        $mode
+        (int)$mode
     ]);
     $pdo = null;
 
@@ -426,7 +441,7 @@ function set_point_type($point_type) {
     global $pdo;    
     $query = $pdo -> prepare('UPDATE `settings_access` SET `point_type` = ? WHERE id = 1');
     $query -> execute([
-        $point_type
+        (int)$point_type
     ]);
     $pdo = null;
 
@@ -440,12 +455,24 @@ function set_active($active) {
     global $pdo;    
     $query = $pdo -> prepare('UPDATE `settings_access` SET `server_sync` = ? WHERE id = 1');
     $query -> execute([
-        $active
+        (int)$active
     ]);
     $pdo = null;
 
     header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1
+    ], JSON_FORCE_OBJECT);
+}
+
+
+function import_config($filename) {
+    $string = file_get_contents("../configs/" . $filename, true);
+    $json_a = json_decode($string);
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1,
+        'path' => "configs/" . $filename,
+        'file' => $json_a
     ], JSON_FORCE_OBJECT);
 }

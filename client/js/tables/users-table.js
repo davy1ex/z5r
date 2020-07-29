@@ -29,7 +29,6 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             else if (item.access == 'main_guard') {
                 var access = 'Начальник службы безопасности'
             }
-            console.log(item)
             html += '<td data-label="Пользователь">' + item.username + "</td>";
             html += '<td data-label="Тип учетной записи">' + access + "</td>";
             html += '<td data-label="ID">' + item.device_id + "</td>";

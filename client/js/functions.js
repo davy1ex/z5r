@@ -35,6 +35,46 @@ function get_current_user() {
     return current_user
 }
 
+function add_user(username, login, password, access) {
+    var response = function() {
+        var tmp = null
+        $.ajax({
+            async: false,
+            type: "POST",
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'operation':    'add_user',
+                'username':     username,
+                'login':        login,
+                'password':     password,
+                'access':       access
+            }),
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp  
+    }()
+
+    return response
+}
+
+function clear_users() {
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'del_all_users'            
+        })
+    })
+}
+
 
 function get_settings_access() {
     var settings = function() { 
@@ -98,4 +138,46 @@ function set_active(active) {
             'active': active
         })        
     })   
+}
+
+
+function add_card(numb_card, block_type, shord_code, tz) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'operation':    'add_card',
+                'numb_card':    numb_card,
+                'block_type':   block_type,  // 1 or 0
+                'shord_code':   shord_code,  // 1 or 0
+                'tz':           tz
+            }),
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+function clear_cards(success_func=null) {
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'del_all_cards'            
+        }),
+
+        success: success_func
+    })
 }
