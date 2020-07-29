@@ -394,3 +394,58 @@ function put_config($namefile) {
         ]);
     }
 }
+
+function get_settings_access() {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `settings_access`');
+    $query -> execute();
+    $settings = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1,
+        'settings'     => $settings
+    ], JSON_FORCE_OBJECT);
+}
+
+function set_mode($mode) {
+    global $pdo;    
+    $query = $pdo -> prepare('UPDATE `settings_access` SET `mode` = ? WHERE id = 1');
+    $query -> execute([
+        $mode
+    ]);
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1
+    ], JSON_FORCE_OBJECT);
+}
+
+function set_point_type($point_type) {
+    global $pdo;    
+    $query = $pdo -> prepare('UPDATE `settings_access` SET `point_type` = ? WHERE id = 1');
+    $query -> execute([
+        $point_type
+    ]);
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1
+    ], JSON_FORCE_OBJECT);
+}
+
+function set_active($active) {
+    global $pdo;    
+    $query = $pdo -> prepare('UPDATE `settings_access` SET `server_sync` = ? WHERE id = 1');
+    $query -> execute([
+        $active
+    ]);
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1
+    ], JSON_FORCE_OBJECT);
+}

@@ -34,3 +34,68 @@ function get_current_user() {
     }()
     return current_user
 }
+
+
+function get_settings_access() {
+    var settings = function() { 
+        var tmp = null
+        $.ajax({
+            async: false,
+            type: "POST",
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'operation': 'get_settings_access'
+            }),
+
+            success: function(response) {
+                tmp = response.settings
+            }
+            
+        })
+        return tmp
+    }()
+    return settings
+}
+
+
+function set_mode(mode) { 
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'set_mode',
+            'mode': mode
+        })        
+    })
+}
+
+function set_point_type(point_type) { 
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'set_point_type',
+            'point_type': point_type
+        })        
+    })
+}
+
+function set_active(active) {
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'set_active',
+            'active': active
+        })        
+    })   
+}

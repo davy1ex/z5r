@@ -182,63 +182,63 @@
 			</div>
 		  </div>
 
-        <div class="accordion-item">
-          <div class="accordion-item-header">
-            Настройки контроллера доступа
-          </div>
-          <div class="accordion-item-body">
-            <div class="accordion-item-body-content">
-              <form action="">
-                <fieldset>
-                  <legend>Режим работы </legend>
-									<div class="radio-toolbar">
-												    <input type="radio"  class='mode0'  id="option-one" name="selector" value="Норма" checked>
-												    <label for="option-one">Норма</label>
-
-												    <input type="radio"  id="option-two" name="selector" value="Блок">
-												    <label for="option-two">Блок</label>
-
-												    <input type="radio" id="option-three" name="selector" value="Свободный проход">
-												    <label for="option-three">Свободный проход</label>
-
-														<input type="radio" id="option-four" name="selector" value="Ожидание свободного прохода">
-														<label for="option-four">Ожидание свободного прохода</label>
-										</div>
-                </fieldset>
-              </form>
-							<form action="">
-								<fieldset>
-									<legend>Тип точки доступа</legend>
-									<div class="radio-toolbar">
-														<input type="radio" id="option-one-door" name="selector" value="Односторнняя дверь">
-														<label for="option-one-door">Односторнняя дверь</label>
-
-														<input type="radio"  id="option-two-door" name="selector" value="Двусторонняя дверь">
-														<label for="option-two-door"> Двусторонняя дверь</label>
-
-														<input type="radio" id="option-three-tab" name="selector" value="Турникет">
-														<label for="option-three-tab">Турникет</label>
-
-														<input type="radio" id="option-four-tab" name="selector" value="Распашной турникет">
-														<label for="option-four-tab"> Распашной турникет</label>
-										</div>
-								</fieldset>
-							</form>
-              <form action="" >
-                <fieldset>
-                  <legend>Синхронизация с сервером </legend>
-                  <div class="switch_block">
-                    <label class="switch">
-                      <input id='set_active' type="checkbox" >
-                      <span class="slider round"></span>
-                    </label>
-                  </div>
-                </fieldset>
-              </form>
-
-            </div>
-          </div>
-        </div>
+        <div id="settings_access" class="accordion-item">
+			<div class="accordion-item-header">
+				Настройки контроллера доступа
+			  </div>
+			  <div class="accordion-item-body">
+				<div class="accordion-item-body-content">
+				  <form action="">
+					<fieldset>
+					  <legend>Режим работы </legend>
+										<div class="radio-toolbar">
+														<input type="radio"  class='mode0'  id="option-one" name="selector" value="Норма">
+														<label for="option-one">Норма</label>
+	
+														<input type="radio"  id="option-two" name="selector" value="Блок">
+														<label for="option-two">Блок</label>
+	
+														<input type="radio" id="option-three" name="selector" value="Свободный проход">
+														<label for="option-three">Свободный проход</label>
+	
+															<input type="radio" id="option-four" name="selector" value="Ожидание свободного прохода">
+															<label for="option-four">Ожидание свободного прохода</label>
+											</div>
+					</fieldset>
+				  </form>
+								<form action="">
+									<fieldset>
+										<legend>Тип точки доступа</legend>
+										<div class="radio-toolbar">
+															<input type="radio" id="option-one-door" name="selector" value="Односторнняя дверь">
+															<label for="option-one-door">Односторнняя дверь</label>
+	
+															<input type="radio"  id="option-two-door" name="selector" value="Двусторонняя дверь">
+															<label for="option-two-door"> Двусторонняя дверь</label>
+	
+															<input type="radio" id="option-three-tab" name="selector" value="Турникет">
+															<label for="option-three-tab">Турникет</label>
+	
+															<input type="radio" id="option-four-tab" name="selector" value="Распашной турникет">
+															<label for="option-four-tab"> Распашной турникет</label>
+											</div>
+									</fieldset>
+								</form>
+				  <form action="" >
+					<fieldset>
+					  <legend>Синхронизация с сервером </legend>
+					  <div class="switch_block">
+						<label class="switch">
+						  <input id='set_active' type="checkbox" >
+						  <span class="slider round"></span>
+						</label>
+					  </div>
+					</fieldset>
+				  </form>
+	
+				</div>
+			  </div>
+		</div>
         
 		
 		<div class="accordion-item">
@@ -283,7 +283,7 @@
 					</div>
 				</div>
 			</div>
-		  </div>
+		</div>
 
       </div>
     </div>
@@ -468,6 +468,7 @@
 
 <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
 <script src="/client/js/jquery.js"></script>
+<script src="/client/js/functions.js"></script>
 
 <script src="/client/js/tables/events-table.js"></script>
 <script src="/client/js/tables/cards-table.js"></script>
@@ -480,12 +481,12 @@
 <script src="/client/js/ajax-events/export-events.js"></script>
 
 
-
 <script src="/client/js/qrcode.min.js"></script>
 <script src="/client/js/script.js"></script>
 <script src="/client/js/auth.js"></script>
+<script src="/client/js/settings_access.js"></script>
+<script src="/client/js/ajax-events/settings_access-events.js"></script>
 <script src="/client/js/access.js"></script>
-<script src="/client/js/functions.js"></script>
 
 <!-- подключение таблиц -->
 

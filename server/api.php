@@ -123,3 +123,19 @@ if ($data['operation'] == 'del_user') {
 if ($data['operation'] == 'put_config') {
     put_config($data['filename']);
 }
+
+if ($data['operation'] == 'get_settings_access') {
+    get_settings_access();
+}
+
+if ($data['operation'] == 'set_mode') {
+    set_mode((int)$data['mode']);
+}
+
+if ($data['operation'] == 'set_point_type') {
+    set_point_type((int)$data['point_type']);
+}
+
+if ($data['operation'] == 'set_active') {
+    set_active((int)$data['active']);
+}

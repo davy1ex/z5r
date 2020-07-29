@@ -30,7 +30,7 @@ function get_session() {
                 take_cards()
                 take_users()	
                 create_events_table()
-
+                create_access_settings_div()
                 $(document).ready(function(){
                     setInterval(create_events_table, 20000);
                 });
