@@ -85,6 +85,8 @@ $('#export-config-btn').on('click', function() {
     }()
 
     config["users"] = users
+
+    config["access_settings"] = get_settings_access()
     download(JSON.stringify(config), 'config', 'application/json')
 })
 
