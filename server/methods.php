@@ -122,6 +122,21 @@ function get_card($card_id) {
     ]);
 }
 
+function get_card_by_card_numb($card_numb) {
+    // Получает карту
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `cards` WHERE card=?');
+    $query -> execute([$card_numb]);
+    $cards = $query -> fetchAll(PDO::FETCH_ASSOC);
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1,
+        'card'     => $cards[0]
+    ]);
+}
+
 
 function del_all_cards() {
     global $pdo;
@@ -299,7 +314,7 @@ function get_user($user_id) {
     // Получает юзера
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `users` WHERE id=?');
-    $query -> execute([$user_id]);
+    $query -> execute([(int)$user_id]);
     $users = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
 
@@ -368,6 +383,7 @@ function del_user($user_id) {
     global $pdo;
     $query = $pdo -> prepare('DELETE FROM `users` WHERE id=?');
     $query -> execute(array((int)$user_id));
+    $query = $pdo -> prepare('DELETE FROM `users` WHERE id=?');
     $pdo = null;
 
     header("Content-Type: application/json");
@@ -380,10 +396,18 @@ function del_all_users() {
     global $pdo;
     $query = $pdo -> prepare('DELETE FROM users');
     $query -> execute();
+
+    $query = $pdo -> prepare('INSERT INTO users (id, username, login, password, access) VALUES (?, ?, ?, ?, ?)');
+    $query -> execute([
+        1,
+        'root',
+        'root',
+        'toor',
+        'admin'
+    ]);
     $pdo = null;
 
     header("Content-Type: application/json");
-
     echo json_encode([
         'success'   => 1
     ]);

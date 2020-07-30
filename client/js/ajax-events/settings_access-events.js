@@ -42,3 +42,16 @@ $('#set_active').click(function () {
         set_active(0)
     }
 })
+
+$('#clear-config-btn').click(function() {
+    clear_cards()
+
+    clear_users()
+
+    set_mode(0)
+    set_point_type(0)
+    set_active(0)
+
+
+    location.reload()
+})

@@ -42,5 +42,4 @@ function create_access_settings_div() {
         $('#set_active').prop("checked", 1);        
     }
 
-
 }

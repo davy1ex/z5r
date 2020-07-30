@@ -62,6 +62,33 @@ function add_user(username, login, password, access) {
     return response
 }
 
+function get_user(user_id) {
+    var user = function() { 
+        var tmp = null
+        $.ajax({
+            async: false,
+            type: "POST",
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation': 'get_user',
+                'user_id': user_id
+            }),
+
+            success: function(response) {
+                tmp = response.user
+            }
+            
+        })
+        return tmp
+    }()
+    return user
+}
+
+
 function clear_users() {
     $.ajax({
         type: "POST",
@@ -167,7 +194,32 @@ function add_card(numb_card, block_type, shord_code, tz) {
     return response
 }
 
-function clear_cards(success_func=null) {
+function get_card_by_card_numb(card_numb) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'get_card_by_card_numb',
+                'card_numb':    card_numb
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+function clear_cards() {
     $.ajax({
         type: "POST",
         async: false,
@@ -176,8 +228,23 @@ function clear_cards(success_func=null) {
         contentType: 'application/json',
         data: JSON.stringify({
             'operation': 'del_all_cards'            
-        }),
+        })
+    })
+}
 
-        success: success_func
+function action(action_name, souce_type, source_name) {
+    var current_date = new Date()    
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'action',
+            'action': action_name,
+            'source_type': souce_type,
+            'source_name': source_name,
+            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+        })
     })
 }

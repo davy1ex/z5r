@@ -1,26 +1,24 @@
 // 16.07.20 (добавление событий)
 // односторонняя дверь
 $('#open-oneside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'открытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    // var current_date = new Date()    
+    // $.ajax({
+    //     type: "POST",
+    //     url: '/server/api.php',
+    //     dataType: 'json',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify({
+    //         'operation': 'action',
+    //         'action': 'открытие',
+    //         'source_type': 'оператор',
+    //         'source_name': get_current_user().username,
+    //         'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+    //     })
+    // })
+    action('открытие', 'оператор', get_current_user().username)
 }) 
 $('#close-oneside-door-btn').on('click', function(event) {
     var current_date = new Date()
-    var current_user = get_current_user()
-    var username = current_user.username
     $.ajax({
         type: "POST",
         url: '/server/api.php',
@@ -425,7 +423,8 @@ $('#test_event').on('click', function(event) {
             data: JSON.stringify({
             'operation': 'new_event',
             'action': test_events[Math.floor(Math.random() * test_events.length)],
-            'source': 'устройство',
+            'source_type': 'устройство',
+            'source_name': 'устройство',
             'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
         })
     })

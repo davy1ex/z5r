@@ -31,9 +31,9 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             }
             html += '<td data-label="Пользователь">' + item.username + "</td>";
             html += '<td data-label="Тип учетной записи">' + access + "</td>";
-            html += '<td data-label="ID">' + item.device_id + "</td>";
-            html += '<td data-label="Устройство">' + item.device_type + "</td>";
-            html += '<td data-label="MAC-адрес">' + item.device_mac + "</td>";
+            html += '<td data-label="ID">' + (item.device_id == null ? '-' : item.device_id) + "</td>";
+            html += '<td data-label="Устройство">' + (item.device_type == null ? '-' : item.device_type) + "</td>";
+            html += '<td data-label="MAC-адрес">' + (item.device_mac == null ? '-' : item.device_mac)  + "</td>";
             // html += '<td>' + </td>'
             html += '<td>' + '<button id=' + String(item.id) + ' class="edit-usr-btn">' + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>' +'<button id=' + String(item.id) + ' class="del-usr-btn"><img src="/client/img/remove.png"></button>' + '<button id= ' + String(item.id) + ' class="generate_qr_token">\
                 <span class="tooltip_2">\
@@ -98,6 +98,9 @@ function get_users_table(users_list) { // рисует таблицу с пол�
         })
             
         qrcode.makeCode(JSON.stringify(token_data)); // make another code.
+
+        $('#qrcode').append(get_user(this.id).username)
+
         console.log('token-qr-code created')
         
         $.ajax({

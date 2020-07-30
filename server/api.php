@@ -52,6 +52,10 @@ if ($data['operation'] == 'get_card') {
     get_card($data['card_id']);
 }
 
+if ($data['operation'] == 'get_card_by_card_numb') {
+    get_card_by_card_numb($data['card_numb']);
+}
+
 if ($data['operation'] == 'del_card') {
     del_card($data['card_id']);
 }

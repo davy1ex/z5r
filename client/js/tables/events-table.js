@@ -20,9 +20,9 @@ function create_events_table() {
                 <thead>\
                     <tr>\
                         <th scope="col">Дата и время</th>\
-                        <th scope="col">Источник</th>\
+                        <th scope="col">Тип источника</th>\
                         <th scope="col">Событие</th>\
-                        <th scope="col">Источник</th>\
+                        <th scope="col">Оператор</th>\
                     </tr>\
                 </thead>\
                 <tr>';
