@@ -23,11 +23,31 @@
 					console.log(get_card_by_card_numb(content.card))
 					if (get_card_by_card_numb(content.card).card != null) { // если карта есть в бд
 						console.log('такая карта есть')
-						action('открытие', 'устройство', get_current_user().username)
+
+						var response = get_settings_access()[0].point_type
+						var source_name = null
+						
+						if (response == '1') {
+							source_name = 'Открыта односторонняя дверь'
+						}
+
+						else if (response == '2') {
+							source_name = 'Двусторонняя дверь'
+						}
+
+						if (response == '3') {
+							source_name = 'Турникет'
+						}
+
+						if (response == '4') {
+							source_name = 'Распашной турникет'
+						}
+
+						action('открытие', 'считыватель qr-code',  source_name)
 					}
 
 					else {
-						console.log('soryan')
+						console.log('карта не найдена')
 					}
 
 				});

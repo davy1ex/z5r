@@ -1,22 +1,9 @@
 // 16.07.20 (добавление событий)
 // односторонняя дверь
 $('#open-oneside-door-btn').on('click', function(event) {
-    // var current_date = new Date()    
-    // $.ajax({
-    //     type: "POST",
-    //     url: '/server/api.php',
-    //     dataType: 'json',
-    //     contentType: 'application/json',
-    //     data: JSON.stringify({
-    //         'operation': 'action',
-    //         'action': 'открытие',
-    //         'source_type': 'оператор',
-    //         'source_name': get_current_user().username,
-    //         'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-    //     })
-    // })
     action('открытие', 'оператор', get_current_user().username)
 }) 
+
 $('#close-oneside-door-btn').on('click', function(event) {
     var current_date = new Date()
     $.ajax({

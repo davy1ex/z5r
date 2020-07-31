@@ -21,3 +21,6 @@
     width: 100%;
 }
 
+#qrcode, #qrcode2  {
+    margin: 100px;
+}

@@ -28,7 +28,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             }
 
             else {
-                block_type = '<span class="close">×</span>'
+                block_type = '<span class="close">x</span>'
             }
 
             if(parseInt(item.shord_code)) {
@@ -40,11 +40,11 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             }
 
             else {
-                shord_code = '<span class="close">×</span>'
+                shord_code = '<span class="close">x</span>'
             }
 
             html += "<td data-label='Card number'>" + item.card + "</td>";
-            html += "<td data-label='Operator name'>" + item.operator_name + "</td>";
+            html += "<td data-label='Operator name'>" + (item.operator_name == '' ? '-' : item.operator_name)  + "</td>";
             html += "<td data-label='Blocking card'>" + block_type + "</td>";
             html += "<td data-label='Short code card'>" + shord_code + "</td>";
             html += "<td data-label='tz'>" + item.tz + "</td>";
@@ -77,6 +77,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             success: function(response) {
                 console.log(response.card)
                 $('#numb_card').val(response.card.card)
+                $('#operator_name').val(response.card.operator_name)
                 $('#cbk1').val(response.card.block_type)
                 $('#cbk2').val(response.card.shord_code)
                 $('#card_tz').val(response.card.tz)
