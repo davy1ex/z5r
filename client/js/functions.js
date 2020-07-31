@@ -168,7 +168,7 @@ function set_active(active) {
 }
 
 
-function add_card(numb_card, block_type, shord_code, tz) {
+function add_card(numb_card, operator_name, block_type, shord_code, tz) {
     var response = function () {
         var tmp = null
         $.ajax({
@@ -179,11 +179,12 @@ function add_card(numb_card, block_type, shord_code, tz) {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({
-                'operation':    'add_card',
-                'numb_card':    numb_card,
-                'block_type':   block_type,  // 1 or 0
-                'shord_code':   shord_code,  // 1 or 0
-                'tz':           tz
+                'operation':        'add_card',
+                'numb_card':        numb_card,
+                'operator_name':    operator_name,
+                'block_type':       block_type,  // 1 or 0
+                'shord_code':       shord_code,  // 1 or 0
+                'tz':               tz
             }),
             success: function(response) {
                 tmp = response

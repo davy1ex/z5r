@@ -66,7 +66,7 @@ if ($data['operation'] == 'del_all_cards') {
 
 // 14.07.20 (добавление карт)
 if ($data['operation'] == 'add_card') {
-    add_card($data['numb_card'], $data['block_type'], $data['shord_code'], $data['tz']);
+    add_card($data['numb_card'], $data['operator_name'], $data['block_type'], $data['shord_code'], $data['tz']);
 }
 
 // 15.07.20 (отображение лога на стороне клиента)

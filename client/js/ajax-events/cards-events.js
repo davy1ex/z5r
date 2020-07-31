@@ -20,6 +20,7 @@ $('.add_btn').on('click', function () { // добавляет карту
 
     add_card(
         $('#numb_card').val(),
+        $('#operator_name').val(),
         $('#cbk1').is(':checked') == true ? 1 : 0,
         $('#cbk2').is(':checked') == true ? 1 : 0, 
         $('#card_tz').val()

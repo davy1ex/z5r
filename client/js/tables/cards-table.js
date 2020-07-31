@@ -7,6 +7,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
         <thead>\
             <tr>\
                 <th scope="col">Номер карты</th>\
+                <th scope="col">ФИО</th>\
                 <th scope="col">Блокирующая карта</th>\
                 <th scope="col">Короткий код карты</th>\
                 <th scope="col">tz</th>\
@@ -43,6 +44,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             }
 
             html += "<td data-label='Card number'>" + item.card + "</td>";
+            html += "<td data-label='Operator name'>" + item.operator_name + "</td>";
             html += "<td data-label='Blocking card'>" + block_type + "</td>";
             html += "<td data-label='Short code card'>" + shord_code + "</td>";
             html += "<td data-label='tz'>" + item.tz + "</td>";

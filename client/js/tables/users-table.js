@@ -99,7 +99,9 @@ function get_users_table(users_list) { // рисует таблицу с пол�
             
         qrcode.makeCode(JSON.stringify(token_data)); // make another code.
 
-        $('#qrcode').append(get_user(this.id).username)
+        $('#qrcode').append('Имя: ', get_user(this.id).username, '<br>')
+        $('#qrcode').append('Логин: ', get_user(this.id).login, '<br>')
+        $('#qrcode').append('Тип учётной записи: ', get_user(this.id).access)
 
         console.log('token-qr-code created')
         

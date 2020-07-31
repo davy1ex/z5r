@@ -1,5 +1,4 @@
 <?php
-// include_once ('functions.php');
 session_start();
 require_once ('db.php');
 
@@ -21,21 +20,6 @@ function power_on($active, $mode) {
 
     
 }
-
-// function check_usr($login, $password) {
-//     // проверяет данные пользователя
-//     if ($login == 'root' and $password == 'toor') {
-//         echo json_encode([
-//             'success' => 1
-//         ]);
-//     }
-
-//     else {
-//         echo json_encode([
-//             'success' => 0
-//         ]);
-//     }
-// }
 
 // 17.07.20 (авторизация с параметрами доступа)
 function check_usr($login, $password) {
@@ -166,7 +150,7 @@ function del_card($card_id) {
 }
 
 // 14.07.20 (добавление карт) 
-function add_card($numb_card, $block_type, $shord_code, $tz) {
+function add_card($numb_card, $operator_name, $block_type, $shord_code, $tz) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `cards` WHERE card = ?');
     $query -> execute([$numb_card]);
@@ -175,8 +159,9 @@ function add_card($numb_card, $block_type, $shord_code, $tz) {
     header("Content-Type: application/json");
 
     if (count($cards) > 0) { // если карта уже есть в бд
-        $query = $pdo -> prepare('UPDATE `cards` SET `block_type` = ?, `shord_code` = ?, `tz` = ? WHERE card = ?');
+        $query = $pdo -> prepare('UPDATE `cards` SET `operator_name` = ?, `block_type` = ?, `shord_code` = ?, `tz` = ? WHERE card = ?');
         $query -> execute([
+            $operator_name,
             (int)$block_type,
             (int)$shord_code,
             (int)$tz,
@@ -190,9 +175,10 @@ function add_card($numb_card, $block_type, $shord_code, $tz) {
     } 
 
     else {
-        $query = $pdo -> prepare('INSERT INTO cards (card, block_type, shord_code, tz) VALUES (?, ?, ?, ?)');
+        $query = $pdo -> prepare('INSERT INTO cards (card, operator_name, block_type, shord_code, tz) VALUES (?, ?, ?, ?, ?)');
         $query -> execute([
             $numb_card,
+            $operator_name,
             (int)$block_type,
             (int)$shord_code,
             (int)$tz
@@ -265,17 +251,19 @@ function remove_token($token) {
 }
 
 function add_device_by_token($token, $device_id, $device_type, $device_mac) {
-    global $pdo;
+    global $pdo;    
     $query = $pdo -> prepare('SELECT * FROM `users` WHERE token = ?');
     $query -> execute([
         $token
     ]);
-    $users = $query -> fetchAll(PDO::FETCH_ASSOC);
-    
+    $users = $query -> fetchAll(PDO::FETCH_ASSOC);        
     
     header("Content-Type: application/json");
-    if ($users[0]['id']) {
-        // global $pdo;
+    if (count($users) == 0)  {
+        echo json_encode(['success' => false, 'status' => 'token not found']);
+    }
+
+    else {
         $query = $pdo -> prepare('UPDATE `users` SET device_id=?, device_type=?, device_mac=?, token=? WHERE token = ?');
         $query -> execute([
             $device_id,
@@ -288,10 +276,7 @@ function add_device_by_token($token, $device_id, $device_type, $device_mac) {
 
         echo json_encode(['success' => true]);
     }
-
-    else {
-        echo json_encode(['success' => false]);
-    }
+    
 }
 
 
