@@ -7,8 +7,6 @@ $('#auth').submit(function (event) { // авторизация: Создаёт �
 
     console.log(login)
     console.log(password)
-    // var login = $('#auth_login').val()
-    // var password = $('#auth_password').val()
 
     $.ajax({
         type: "POST",
@@ -19,10 +17,6 @@ $('#auth').submit(function (event) { // авторизация: Создаёт �
         
         success: function(response) {            
             if (response.success) {
-                alert('u loginned')
-                
-                // setCookie('login', 'root')
-                // setCookie('access', response.access)
                 location.reload()
             }
             
@@ -34,9 +28,6 @@ $('#auth').submit(function (event) { // авторизация: Создаёт �
 })
 
 $('.log_out').on('click', function () { // выход: удаляет куки login=root
-    // deleteCookie('login')
-    // deleteCookie('access')
-    // window.location.href = '/client/index.html?#'
     $.ajax({
         type: "POST",
         url: '/server/api.php',
@@ -46,15 +37,7 @@ $('.log_out').on('click', function () { // выход: удаляет куки l
         
         success: function(response) {            
             if (response.success) {
-                alert('u disloginned')
-                
-                // setCookie('login', 'root')
-                // setCookie('access', response.access)
                 location.reload()
-            }
-            
-            else {
-                alert('try again')        
             }
         }
     })

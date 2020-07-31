@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-;
+}
+
+.video-container {
+    min-width: 95%;
+}
+.button-back {
+    width: 40px;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.button-back img {
+    width: 100%;
+}
+
