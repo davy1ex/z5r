@@ -541,6 +541,23 @@ function get_work_schedules() {
     header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
-        'work_shedule'     => $work_shedule
-    ], JSON_FORCE_OBJECT);
+        'work_schedule'     => $work_shedule
+    ]);
+}
+
+
+function add_day($schedule_name, $day) {
+    global $pdo;
+    $query = $pdo -> prepare('INSERT INTO work_time (start_time, end_time, title) VALUES (?, ?, ?)');
+    $query -> execute([
+        $start_time,
+        $end_time,
+        $title
+    ]);
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1
+    ]);
 }

@@ -17,17 +17,11 @@
 
 <div class="work-days-container">
     <div class="selected">
+        <input type="text" name="selected-days" id="selected-days" hidden value="0">
         <h2>Выбраны</h2>
 
-        <div class="all-days-cell"></div>
+        <div class="all-selected-days-cell"></div>
         <script>
-            var work_shedule = get_work_schedules().work_shedule[0]
-            console.log(work_shedule)
-            
-            $.each(JSON.parse(work_shedule.work_days).days, function(i, item) {
-                $('.selected .all-days-cell').append("<div class='day'> <div class='day-title'>" + item.day + "</div></div>")
-                // console.log(item.day)
-            })
         </script>
     </div>
 
@@ -35,15 +29,45 @@
         <h2>Выбрать</h2>
 
         <div class="all-days-cell">
-            <div class="day">
+            <div id="1" class="day">
                 <div class="day-title">
                     Пн
                 </div>                
             </div>
 
-            <div class="day">
+            <div id="2" class="day">
                 <div class="day-title">
                     Вт
+                </div>
+            </div>
+
+            <div id="3" class="day">
+                <div class="day-title">
+                    Ср
+                </div>
+            </div>
+
+            <div id="4" class="day">
+                <div class="day-title">
+                    Чт
+                </div>
+            </div>
+
+            <div id="5" class="day">
+                <div class="day-title">
+                    Пт
+                </div>
+            </div>
+
+            <div id="6" class="day">
+                <div class="day-title">
+                    Сб
+                </div>
+            </div>
+
+            <div id="7" class="day">
+                <div class="day-title">
+                    Вс
                 </div>
             </div>
         </div>

@@ -135,20 +135,62 @@ function get_work_schedules() {
     return response
 }
 
-var json = {
-    "days": [
-        {
-            "day": "пн",
-            "schedule": [
-                {"start_time": "10:00", "end_time": "18:00"}
-            ]
-        },
 
-        {
-            "day": "вт",
-            "schedule": [
-                {"start_time": "11:00", "end_time": "17:00"}
-            ]
-        }
-    ]
+function add_work_day(day) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'add_day',
+                'day':          day
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
 }
+
+function get_selected_days() {
+    return JSON.parse("[" + $('#selected-days').val().slice(" ") + "]")
+}
+
+function get_day_by_numb(numb) {
+    if (numb == "1") return "пн"
+    if (numb == "2") return "вт"
+    if (numb == "3") return "ср"
+    if (numb == "4") return "чт"
+    if (numb == "5") return "пт"
+    if (numb == "6") return "сб"
+    if (numb == "7") return "вс"
+}
+
+// var json = {
+//     "days": [
+//         {
+//             "day": "пн",
+//             "schedule": [
+//                 {"start_time": "10:00", "end_time": "18:00"},
+//                 {"start_time": "11:00", "end_time": "12:00"}
+//             ]
+//         },
+
+//         {
+//             "day": "вт",
+//             "schedule": [
+//                 {"start_time": "11:00", "end_time": "17:00"}
+//             ]
+//         }
+//     ]
+// }
+

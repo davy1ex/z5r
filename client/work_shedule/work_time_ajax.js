@@ -15,3 +15,23 @@ $('.del-work-time-btn').on('click', function(event) {
         show_work_time_table()
     }
 })
+
+$('.day').on('click', function() {
+    var day_id = this.id
+    console.log(day_id)
+    if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
+        $('#selected-days').val(function () {
+            return this.value + "," + day_id
+        })
+        
+        html = 
+        "<div class='day'>\
+            <div class='day-title'>" + get_day_by_numb(day_id) + "</div>\
+            <div class='day-schedule'>\
+            \
+            </div>\
+        </div>"
+
+        $('.all-selected-days-cell').append(html)
+    }
+})
