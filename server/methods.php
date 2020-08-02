@@ -485,3 +485,62 @@ function import_config($filename) {
         'file' => $json_a
     ], JSON_FORCE_OBJECT);
 }
+
+
+function get_all_work_times() {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `work_time`');
+    $query -> execute();
+    $work_time = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1,
+        'work_time'     => $work_time
+    ], JSON_FORCE_OBJECT);
+}
+
+
+function add_work_time($start_time, $end_time, $title) {
+    global $pdo;
+    $query = $pdo -> prepare('INSERT INTO work_time (start_time, end_time, title) VALUES (?, ?, ?)');
+    $query -> execute([
+        $start_time,
+        $end_time,
+        $title
+    ]);
+    $pdo = null;
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1
+    ]);
+}
+
+
+function del_work_time($work_time_id) {
+    global $pdo;
+    $query = $pdo -> prepare('DELETE FROM work_time WHERE id=:id');
+    $query -> execute(array(':id' => (int)$work_time_id));
+    $pdo = null;
+
+    header("Content-Type: application/json");
+
+    echo json_encode([
+        'success'   => 1
+    ]);
+}
+
+
+function get_work_schedules() {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `work_schedule`');
+    $query -> execute();
+    $work_shedule = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'success'   => 1,
+        'work_shedule'     => $work_shedule
+    ], JSON_FORCE_OBJECT);
+}

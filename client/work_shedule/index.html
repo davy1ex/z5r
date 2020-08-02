@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рабочий график</title>
+    
+    
+    <script src="/client/js/jquery.js"></script>
+    <script src="/client/js/functions.js"></script>
+    <script src="/client/work_shedule/functions.js"></script>
+
+    <link rel="stylesheet" href="/client/style.css">
+    <link rel="stylesheet" href="/client/work_shedule/style.css">
+</head>
+<body>
+
+<div class="work-days-container">
+    <div class="selected">
+        <h2>Выбраны</h2>
+
+        <div class="all-days-cell"></div>
+        <script>
+            var work_shedule = get_work_schedules().work_shedule[0]
+            console.log(work_shedule)
+            
+            $.each(JSON.parse(work_shedule.work_days).days, function(i, item) {
+                $('.selected .all-days-cell').append("<div class='day'> <div class='day-title'>" + item.day + "</div></div>")
+                // console.log(item.day)
+            })
+        </script>
+    </div>
+
+    <div class="select">
+        <h2>Выбрать</h2>
+
+        <div class="all-days-cell">
+            <div class="day">
+                <div class="day-title">
+                    Пн
+                </div>                
+            </div>
+
+            <div class="day">
+                <div class="day-title">
+                    Вт
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="work-time-container">
+    <div class="title"><h1>Время работы</h1></div>   
+    
+    <div id="work-time-table"></div>
+    <script>show_work_time_table()</script>
+
+
+    <div class="add-work-time-container">
+        <form id="add-work-time-form" method="POST">
+            <div class="start-time-contaner time">
+                <label for="start-time">Начало</label> <br>
+                <input id="start-time" name="start-time" type="time">
+            </div>
+            
+            <div class="end-time-container time">
+                <label for="end-time">Конец</label>        <br>   
+                <input id="end-time" name="end-time" type="time">
+            </div>
+            
+            <div class="title-container">
+                <label for="title">Название</label>
+                <input id="title" name="title" type="text">            
+            </div>
+
+            <div class="button-container">
+                <button type="submit">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+
+<script src="/client/work_shedule/work_time_ajax.js"></script>
+<script src="/client/work_shedule/live.js"></script>
+</body>
+</html>

@@ -152,3 +152,23 @@ if ($data['operation'] == 'set_active') {
 if ($data['operation'] == 'import_config') {
     import_config($data['filename']);
 }
+
+if ($data['operation'] == 'get_all_work_times') {
+    get_all_work_times();
+}
+
+
+if ($data['operation'] == 'add_work_time') {
+    add_work_time($data['start_time'], $data['end_time'], $data['title']);
+}
+
+if ($data['operation'] == 'del_work_time') {
+    del_work_time($data['work_time_id']);
+}
+
+
+
+// WORK SHEDUELS
+if ($data['operation'] == 'get_work_schedules') {
+    get_work_schedules();
+}
