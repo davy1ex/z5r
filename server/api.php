@@ -158,8 +158,8 @@ if ($data['operation'] == 'get_all_work_times') {
 }
 
 
-if ($data['operation'] == 'add_work_time') {
-    add_work_time($data['start_time'], $data['end_time'], $data['title']);
+if ($data['operation'] == 'add_schedule') {
+    add_schedule($data['title'], $data['work_days'], $data['periodicity']);
 }
 
 if ($data['operation'] == 'del_work_time') {

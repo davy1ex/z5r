@@ -546,13 +546,13 @@ function get_work_schedules() {
 }
 
 
-function add_day($schedule_name, $day) {
+function add_schedule($title, $work_days, $periodicity) {
     global $pdo;
-    $query = $pdo -> prepare('INSERT INTO work_time (start_time, end_time, title) VALUES (?, ?, ?)');
+    $query = $pdo -> prepare('INSERT INTO work_schedule (title, work_days, periodicity) VALUES (?, ?, ?)');
     $query -> execute([
-        $start_time,
-        $end_time,
-        $title
+        $title,
+        $work_days,
+        (int)$periodicity
     ]);
     $pdo = null;
 

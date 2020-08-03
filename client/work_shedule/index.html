@@ -16,63 +16,77 @@
 <body>
 
 <div class="work-days-container">
-    <div class="selected">
-        <input type="text" name="selected-days" id="selected-days" hidden value="0">
-        <h2>Выбраны</h2>
-
-        <div class="all-selected-days-cell"></div>
-        <script>
-        </script>
-    </div>
-
+    
     <div class="select">
+        <div class="title">
+            <label for="title">Название</label>
+            <input type="text" name="title" id="title">
+        </div>
         <h2>Выбрать</h2>
 
         <div class="all-days-cell">
-            <div id="1" class="day">
+            <div id="0" class="day">
                 <div class="day-title">
                     Пн
                 </div>                
             </div>
 
-            <div id="2" class="day">
+            <div id="1" class="day">
                 <div class="day-title">
                     Вт
                 </div>
             </div>
 
-            <div id="3" class="day">
+            <div id="2" class="day">
                 <div class="day-title">
                     Ср
                 </div>
             </div>
 
-            <div id="4" class="day">
+            <div id="3" class="day">
                 <div class="day-title">
                     Чт
                 </div>
             </div>
 
-            <div id="5" class="day">
+            <div id="4" class="day">
                 <div class="day-title">
                     Пт
                 </div>
             </div>
 
-            <div id="6" class="day">
+            <div id="5" class="day">
                 <div class="day-title">
                     Сб
                 </div>
             </div>
 
-            <div id="7" class="day">
+            <div id="6" class="day">
                 <div class="day-title">
                     Вс
                 </div>
             </div>
         </div>
     </div>
+    <hr>
+    <form method="POST">
+        
+        <div class="selected">           
+            <input type="text" name="selected-days" id="selected-days" hidden value="-1">
+            <h2>Временные интервалы</h2>
+
+            <div class="all-selected-days-cell"></div>
+            <script>
+            </script>
+
+            <div class="submit-btn">
+                <button id="create-schedule-btn" type="submit">Создать</button>
+            </div>
+        </div>
+    </form>
 </div>
+
+
 
 <!-- <div class="work-time-container">
     <div class="title"><h1>Время работы</h1></div>   
