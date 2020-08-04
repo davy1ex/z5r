@@ -79,6 +79,13 @@ if ($data['operation'] == 'new_event') {
     add_event($data['action'], $data['date'], $data['source_type'], $data['source_name']);
 }
 
+if ($data['operation'] == 'clear_events') {
+    clear_events();
+}
+
+
+
+
 if ($data['operation'] == 'action') {
     add_event($data['action'], $data['date'], $data['source_type'], $data['source_name']);
 }

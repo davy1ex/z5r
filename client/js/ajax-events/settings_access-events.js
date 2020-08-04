@@ -44,14 +44,22 @@ $('#set_active').click(function () {
 })
 
 $('#clear-config-btn').click(function() {
-    clear_cards()
+    if (confirm('Вы уверены, что хотите очистить конфигурацию контроллера?')) {
+        clear_cards()
+        clear_users()    
 
-    clear_users()
-
-    set_mode(0)
-    set_point_type(0)
-    set_active(0)
+        set_mode(0)
+        set_point_type(0)
+        set_active(0)
 
 
-    location.reload()
+        location.reload()
+    }
+})
+
+$('#clear-events-btn').click(function() {
+    if (confirm('Вы уверены, что хотите очистить журнал событий?')) {
+        clear_events()
+        location.reload()
+    }
 })

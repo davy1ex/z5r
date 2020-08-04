@@ -222,6 +222,21 @@ function add_event($action, $date, $source_type, $source_name) {
     ]);
 }
 
+function clear_events() {
+    global $pdo;
+    $query = $pdo -> prepare('DELETE FROM events');
+    $query -> execute();
+    $pdo = null;
+
+    header("Content-Type: application/json");
+
+    echo json_encode([
+        'success'   => 1
+    ]);
+}
+
+
+
 
 // 16.07.20 (Генерация кр кода с токеном по нажанию кнопки)
 function add_token($token, $user_id) {

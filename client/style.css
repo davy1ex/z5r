@@ -1239,15 +1239,46 @@ color: #333;
   padding: 0px;
 } */
 
+#open-qr-oneside-door-btn {
+  margin-bottom: 50px;
+}
+
 #log_in:hover,
 .log_out:hover,
 #control_btn:hover,
 #myBtn:hover, 
+
 #open-oneside-door-btn:hover,
 #open-oneside-door-btn:hover, 
 #unlock-oneside-door-btn:hover, 
 #close-oneside-door-btn:hover, 
 #lock-oneside-door-btn:hover,
+
+#open-twoside-door-btn:hover,
+#unlock-twoside-door-btn:hover,
+#close-twoside-door-btn:hover,
+#lock-twoside-door-btn:hover,
+
+#open-wicketentry-btn:hover,
+#unlock-wicketentry-btn:hover,
+#close-wicketentry-btn:hover,
+#lock-wicketentry-btn:hover,
+
+#open-wicketexit-btn:hover,
+#unlock-wicketexit-btn:hover,
+#close-wicketexit-btn:hover,
+#lock-wicketexit-btn:hover,
+
+#open-swingenry-door-btn:hover,
+#unlock-swingenty-door-btn:hover,
+#close-swingentry-door-btn:hover,
+#lock-swingentry-door-btn:hover,
+
+#open-swingexit-door-btn:hover,
+#unlock-swingexit-door-btn:hover,
+#close-swingexit-door-btn:hover,
+#lock-swingexit-door-btn:hover,
+
 #test_event:hover,
 #time_zone_btn:hover,
 #save_btn:hover,
@@ -1263,6 +1294,8 @@ color: #333;
 #open-qr-oneside-door-btn:hover{
   background: #0099FF;
 }
+
+
 
 .add_btn:hover {
   background: #00FF66;

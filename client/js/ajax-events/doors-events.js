@@ -5,52 +5,13 @@ $('#open-oneside-door-btn').on('click', function(event) {
 }) 
 
 $('#close-oneside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'закрытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':')
-        })
-    })
+    action('закрытие', 'оператор', get_current_user().username)
 })
 $('#unlock-oneside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'разблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('разблокирование', 'оператор', get_current_user().username)
 })
 $('#lock-oneside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'заблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('заблокирование', 'оператор', get_current_user().username)
 })
 
 
@@ -58,68 +19,16 @@ $('#lock-oneside-door-btn').on('click', function(event) {
 
 // Двусторонняя дверь
 $('#open-twoside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'открытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('открытие', 'оператор', get_current_user().username)
 })
 $('#unlock-twoside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'разблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('разблокирование', 'оператор', get_current_user().username)
 })
 $('#close-twoside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'закрытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('закрытие', 'оператор', get_current_user().username)
 })
 $('#lock-twoside-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'заблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('заблокирование', 'оператор', get_current_user().username)
 })
 
 
@@ -128,133 +37,29 @@ $('#lock-twoside-door-btn').on('click', function(event) {
 
 // Турникет вход
 $('#open-wicketentry-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'открытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('открытие', 'оператор', get_current_user().username)
 })
 $('#unlock-wicketentry-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'разблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('разблокирование', 'оператор', get_current_user().username)
 })
 $('#close-wicketentry-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'закрытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('закрытие', 'оператор', get_current_user().username)
 })
 $('#lock-wicketentry-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'заблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('заблокирование', 'оператор', get_current_user().username)
 })
 // Турникет выход
 $('#open-wicketexit-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'открытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('открытие', 'оператор', get_current_user().username)
 })
 $('#unlock-wicketexit-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'разблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('разблокирование', 'оператор', get_current_user().username)
 })
 $('#close-wicketexit-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'закрытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('закрытие', 'оператор', get_current_user().username)
 })
 $('#lock-wicketexit-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'заблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('заблокирование', 'оператор', get_current_user().username)
 })
 
 
@@ -262,68 +67,16 @@ $('#lock-wicketexit-btn').on('click', function(event) {
 
 // Распашной турникет вход
 $('#open-swingenry-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'открытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('открытие', 'оператор', get_current_user().username)
 })
 $('#unlock-swingenty-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'разблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('разблокирование', 'оператор', get_current_user().username)
 })
 $('#close-swingentry-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'закрытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('закрытие', 'оператор', get_current_user().username)
 })
 $('#lock-swingentry-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'заблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('заблокирование', 'оператор', get_current_user().username)
 })
 
 
@@ -331,68 +84,16 @@ $('#lock-swingentry-door-btn').on('click', function(event) {
 
 // Распашной турникет выход
 $('#open-swingexit-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'открытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('открытие', 'оператор', get_current_user().username)
 })
 $('#unlock-swingexit-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'разблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('разблокирование', 'оператор', get_current_user().username)
 })
 $('#close-swingexit-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'закрытие',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('закрытие', 'оператор', get_current_user().username)
 })
 $('#lock-swingexit-door-btn').on('click', function(event) {
-    var current_date = new Date()
-    $.ajax({
-        type: "POST",
-        url: '/server/api.php',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'operation': 'action',
-            'action': 'заблокирование',
-            'source_type': 'оператор',
-            'source_name': get_current_user().username,
-            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
-        })
-    })
+    action('заблокирование', 'оператор', get_current_user().username)
 })
 
 

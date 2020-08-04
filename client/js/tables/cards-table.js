@@ -87,7 +87,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
 
     $('.del_btn').on('click', function() { //удаляет карту
         console.log(this.id)
-        if (confirm('Are you sure you want to save this thing into the database?')) {
+        if (confirm('Вы уверены, что хотите удалить карту?')) {
             $.ajax({
                 type: "POST",
                 url: '/server/api.php',

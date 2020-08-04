@@ -401,3 +401,27 @@ function get_work_times(day_id) {
     })
     return day_list
 }
+
+function clear_events() {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'clear_events'
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
