@@ -32,7 +32,8 @@ function get_session() {
                 take_cards()
                 take_users()	
                 create_events_table()
-                show_work_schedules_table()
+                // show_work_schedules_table()
+                take_work_schedules()
                 create_access_settings_div()
                 
                 $(document).ready(function(){

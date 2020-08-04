@@ -1,22 +1,3 @@
-console.log('события расписаний загружены')
-// $('#add-work-time-form').submit(function (event) {
-//     var data = $('#add-work-time-form').serializeArray();
-    
-//     add_work_time(
-//         $('#add-work-time-form').find("input[name='start-time'").val(),
-//         $('#add-work-time-form').find("input[name='end-time'").val(),
-//         $('#add-work-time-form').find("input[name='title'").val()
-//     )
-// })
-
-$('.del-work-schedule-btn').on('click', function(event) {
-    console.log('yes')
-    if (confirm('Вы действительно хотите удалить это время?')) {
-        del_work_schedule(this.id)
-        show_work_schedules_table()
-    }
-})
-
 $('.day').on('click', function() {
     $(this).addClass('day-selected')
     var day_id = this.id
@@ -43,7 +24,6 @@ $('.day').on('click', function() {
 })
 
 $('#create-schedule-btn').on('click', function() {
-    // console.log($('#title').val())
     var work_days = {"days": []}
     
     $.each(get_selected_days(), function (i, day) {
@@ -59,4 +39,6 @@ $('#create-schedule-btn').on('click', function() {
         work_days = work_days,
         periodicity = 0
     )
+    // show_work_schedules_table()
+    take_work_schedules()
 })

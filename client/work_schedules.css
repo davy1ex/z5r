@@ -68,6 +68,7 @@ hr {
 .all-days-cell .day:hover {
     cursor: pointer;
     background: #3399FF;
+    color: white;
 }
 
 .all-days-cell .day-selected {
