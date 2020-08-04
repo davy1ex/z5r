@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/client/style.css">
+  <link rel="stylesheet" href="/client/work_schedules.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
   <link rel="icon" href="/client/img/favicon.ico" type="image/x-icon">
 
 
   <script src="/client/js/cookie.js"></script>
-
+  <script src="/client/js/jquery.js"></script>
 
 </head>
 <body>
@@ -105,7 +106,77 @@
 			<div class="accordion-item-header">
 				Рабочий график
 			</div>
+			
 			<div class="accordion-item-body">
+				<div id="work_schedule" class="accordion-item-body-content">
+					<div class="work-days-container">    
+						<div class="select">
+							<div class="title">
+								<label for="title">Название</label>
+								<input type="text" name="title" id="title">
+							</div>
+							<h2>Выбрать</h2>
+					
+							<div class="all-days-cell">
+								<div id="0" class="day">
+									<div class="day-title">
+										Пн
+									</div>                
+								</div>
+					
+								<div id="1" class="day">
+									<div class="day-title">
+										Вт
+									</div>
+								</div>
+					
+								<div id="2" class="day">
+									<div class="day-title">
+										Ср
+									</div>
+								</div>
+					
+								<div id="3" class="day">
+									<div class="day-title">
+										Чт
+									</div>
+								</div>
+					
+								<div id="4" class="day">
+									<div class="day-title">
+										Пт
+									</div>
+								</div>
+					
+								<div id="5" class="day">
+									<div class="day-title">
+										Сб
+									</div>
+								</div>
+					
+								<div id="6" class="day">
+									<div class="day-title">
+										Вс
+									</div>
+								</div>
+							</div>
+						</div>
+							
+						<div class="selected">           
+							<input type="text" name="selected-days" id="selected-days" hidden value="-1">
+							<h2>Временные интервалы</h2>				
+							<div class="all-selected-days-cell"></div>				
+							<div class="submit-btn">
+								<button id="create-schedule-btn" type="submit">Создать</button>
+							</div>
+						</div>
+					</div>
+
+					<div id="work-schedules-table"></div>
+				</div>
+			</div>
+
+			<!-- <div class="accordion-item-body">
 				<div class="accordion-item-body-content">
 				<form action="" class="time_zone">
 					<fieldset>
@@ -118,8 +189,10 @@
 					</fieldset>
 				</form>
 				</div>
-			</div>
+			</div> -->
+			
 		</div>
+		
 
         <div class="accordion-item">
         	<div class="accordion-item-header">
@@ -484,29 +557,29 @@
 
 
 <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
-<script src="/client/js/jquery.js"></script>
 <script src="/client/js/functions.js"></script>
 
+<!-- подключение таблиц -->
 <script src="/client/js/tables/events-table.js"></script>
 <script src="/client/js/tables/cards-table.js"></script>
 <script src="/client/js/tables/users-table.js"></script>
+<script src="/client/js/tables/work_schedules-table.js"></script>
+
+<script src="/client/js/settings_access.js"></script>
+<script src="/client/js/access.js"></script>
 
 <!-- подключение ajax-событий на элементы -->
 <script src="/client/js/ajax-events/cards-events.js"></script>
 <script src="/client/js/ajax-events/doors-events.js"></script>
 <script src="/client/js/ajax-events/users-events.js"></script>
 <script src="/client/js/ajax-events/export-events.js"></script>
-
+<script src="/client/js/ajax-events/work_schedules-events.js"></script>
 
 <script src="/client/js/qrcode.min.js"></script>
 <script src="/client/js/script.js"></script>
 <script src="/client/js/auth.js"></script>
-<script src="/client/js/settings_access.js"></script>
+
 <script src="/client/js/ajax-events/settings_access-events.js"></script>
-<script src="/client/js/access.js"></script>
-
-<!-- подключение таблиц -->
-
 
 
 

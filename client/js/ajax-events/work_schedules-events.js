@@ -1,3 +1,4 @@
+console.log('события расписаний загружены')
 // $('#add-work-time-form').submit(function (event) {
 //     var data = $('#add-work-time-form').serializeArray();
     
@@ -8,15 +9,16 @@
 //     )
 // })
 
-// $('.del-work-time-btn').on('click', function(event) {
-    
-//     if (confirm('Вы действительно хотите удалить это время?')) {
-//         del_work_time(this.id)
-//         show_work_time_table()
-//     }
-// })
+$('.del-work-schedule-btn').on('click', function(event) {
+    console.log('yes')
+    if (confirm('Вы действительно хотите удалить это время?')) {
+        del_work_schedule(this.id)
+        show_work_schedules_table()
+    }
+})
 
 $('.day').on('click', function() {
+    $(this).addClass('day-selected')
     var day_id = this.id
     console.log(day_id)
     if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
@@ -42,23 +44,13 @@ $('.day').on('click', function() {
 
 $('#create-schedule-btn').on('click', function() {
     // console.log($('#title').val())
-    var work_days = {"days": []
-    }
-    // $.each(get_selected_days(), function (i, item) {
-    //     work_days.days.push({"day": get_day_by_numb(item), "schedule": []})
-
-        // $.each($('.work-time'), function(j, item) {
-        //     work_days.days[i].schedule.push({'start_time': item['children'][0]['value'], "end_time": item['children'][1]['value']})
-        // })
-    // })
-
-    $.each(work_days.days, function(i, item) {
-        $.each($('.work-time'), function(j, time) {
-            item.schedule.push({'start_time': time['children'][0]['value']})
-            console.log(item)
-            // console.log($(time['children'][0]['value']))
-            // item.schedule.push({'start_time': time['children'][0]['value'], "end_time": time['children'][1]['value']})
-        })
+    var work_days = {"days": []}
+    
+    $.each(get_selected_days(), function (i, day) {
+        var work_time = get_work_times(day)
+        if (work_time.schedule.length > 0) {
+            work_days.days.push(work_time)
+        }
     })
     
     console.log(work_days)

@@ -249,3 +249,160 @@ function action(action_name, souce_type, source_name) {
         })
     })
 }
+
+
+function get_all_work_schedules() {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'get_work_schedules'
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+function add_schedule(title, work_days, periodicity) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'get_work_schedules'
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+function get_work_schedules() {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'get_work_schedules'
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+
+function add_schedule(title, work_days, periodicity) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'add_schedule',
+                'title':        title,
+                'work_days':    JSON.stringify(work_days),
+                'periodicity':  periodicity
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+function del_work_schedule(work_schedule_id) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'del_work_schedule',
+                'work_schedule_id': work_schedule_id
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
+function get_selected_days() {
+    return JSON.parse("[" + $('#selected-days').val().slice(" ") + "]")
+}
+
+function get_day_by_numb(numb) {
+    if (numb == "0") return "Пн"
+    if (numb == "1") return "Вт"
+    if (numb == "2") return "Ср"
+    if (numb == "3") return "Чт"
+    if (numb == "4") return "Пт"
+    if (numb == "5") return "Сб"
+    if (numb == "6") return "Вс"
+}
+
+function get_work_times(day_id) {
+    var day = $('#selected-day' + day_id)
+    // console.log(day.find('.start_time').val())
+    var day_list = {'day': get_day_by_numb(day_id), "schedule": []}
+
+    $.each(day.find('.work-time'), function (i, work_time) {
+        if ($(work_time).find('.start_time').val() != "" && $(work_time).find('.end_time').val() != "") {
+            day_list.schedule.push({"start_time": $(work_time).find('.start_time').val(), "end_time": $(work_time).find('.end_time').val()})
+        }
+        // console.log($(work_time).find('.start_time').val())
+        // console.log($(work_time).find('.end_time').val())
+    })
+
+    // console.log(day_list)
+    return day_list
+}

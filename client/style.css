@@ -691,7 +691,7 @@ table th {
     left:8px;
     top:12px;
 }
-.del_btn {
+.del_btn, .del-work-schedule-btn {
   border: 1px solid #FF0033;
   background-color: #FF0033;
       padding: 6px 15px;
@@ -705,13 +705,13 @@ table th {
       margin-top: 0px;
 }
 
-.edit-usr-btn, .edit-card-btn, .del-usr-btn, .del_btn, .generate_qr_token, .del-btn {
+.edit-usr-btn, .edit-card-btn, .del-usr-btn, .del_btn, .generate_qr_token, .del-btn, .del-work-schedule-btn {
   padding: 5px !important;
   margin: 2px;
   border-radius: 50% !important;
 }
 
-.del-usr-btn, .del_btn {
+.del-usr-btn, .del_btn, .del-work-schedule-btn {
   background-color: #FF0033;
   border: 1px  solid white;
 }
@@ -724,7 +724,7 @@ table th {
   background: #CC6600;
 }
 
-.edit-usr-btn img, .edit-card-btn img, .del-usr-btn img, .del_btn img, .generate_qr_token img, .del_btn img {
+.edit-usr-btn img, .edit-card-btn img, .del-usr-btn img, .del_btn img, .generate_qr_token img, .del_btn img, .del-work-schedule-btn img {
   width: 20px !important;
 }
 
@@ -1272,7 +1272,7 @@ color: #333;
   background: none;
 }
 
-#del_all_cards:hover, .del-usr-btn:hover, .del_btn:hover {
+#del_all_cards:hover, .del-usr-btn:hover, .del_btn:hover, .del-work-schedule-btn:hover {
   background-color: #c90000;
 }
 
@@ -1393,3 +1393,6 @@ body {
   
 }
 
+#work_schedule object {
+  width: 100%;
+}

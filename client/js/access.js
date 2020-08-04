@@ -1,14 +1,16 @@
 // access = getCookie('access')
 // console.log(access)
 
-function create_session_data(login, access) {
-    return {'login': login, 'access': access}
-}
+// function create_session_data(login, access) {
+//     return {'login': login, 'access': access}
+// }
 
 function get_session() {
     $.ajax({
         type: 'POST', 
         url: '/server/api.php', 
+        async: false,
+        global: false,
         dataType: 'json', 
         contentType: 'application/json', 
         data: JSON.stringify({'operation': 'get_session'}),
@@ -30,7 +32,9 @@ function get_session() {
                 take_cards()
                 take_users()	
                 create_events_table()
+                show_work_schedules_table()
                 create_access_settings_div()
+                
                 $(document).ready(function(){
                     setInterval(create_events_table, 20000);
                 });

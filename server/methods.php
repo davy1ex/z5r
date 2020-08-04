@@ -487,18 +487,18 @@ function import_config($filename) {
 }
 
 
-function get_all_work_times() {
-    global $pdo;
-    $query = $pdo -> prepare('SELECT * FROM `work_time`');
-    $query -> execute();
-    $work_time = $query -> fetchAll(PDO::FETCH_ASSOC);
+// function get_all_work_times() {
+//     global $pdo;
+//     $query = $pdo -> prepare('SELECT * FROM `work_time`');
+//     $query -> execute();
+//     $work_time = $query -> fetchAll(PDO::FETCH_ASSOC);
 
-    header("Content-Type: application/json");
-    echo json_encode([
-        'success'   => 1,
-        'work_time'     => $work_time
-    ], JSON_FORCE_OBJECT);
-}
+//     header("Content-Type: application/json");
+//     echo json_encode([
+//         'success'   => 1,
+//         'work_time'     => $work_time
+//     ], JSON_FORCE_OBJECT);
+// }
 
 
 function add_work_time($start_time, $end_time, $title) {
@@ -518,10 +518,10 @@ function add_work_time($start_time, $end_time, $title) {
 }
 
 
-function del_work_time($work_time_id) {
+function del_work_schedule($work_schedule_id) {
     global $pdo;
-    $query = $pdo -> prepare('DELETE FROM work_time WHERE id=:id');
-    $query -> execute(array(':id' => (int)$work_time_id));
+    $query = $pdo -> prepare('DELETE FROM work_schedule WHERE id=:id');
+    $query -> execute(array(':id' => (int)$work_schedule_id));
     $pdo = null;
 
     header("Content-Type: application/json");
@@ -536,12 +536,12 @@ function get_work_schedules() {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `work_schedule`');
     $query -> execute();
-    $work_shedule = $query -> fetchAll(PDO::FETCH_ASSOC);
+    $work_schedule = $query -> fetchAll(PDO::FETCH_ASSOC);
 
     header("Content-Type: application/json");
     echo json_encode([
         'success'   => 1,
-        'work_schedule'     => $work_shedule
+        'work_schedule'     => $work_schedule
     ]);
 }
 
