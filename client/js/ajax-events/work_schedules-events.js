@@ -23,6 +23,43 @@ $('.day').on('click', function() {
     }
 })
 
+$('#periodicity-btn').click(function () {
+    if($(this).is(":checked")) {
+        var start_day_html = 
+        "\
+        <legend>\
+            Первый день:\
+            <input id='start_day' type='time'>\
+        </legend>\
+        "
+
+
+        var n_work_day_html = 
+        "\
+        <legend>\
+            Количество рабочих дней\
+            <input id='start_day' type='number' min='1' max='7' value=1>\
+        </legend>\
+        "
+
+        var n_holiday_html = 
+        "\
+        <legend>\
+            Количество выходных\
+            <input id='n_holiday_html' type='number' min='1' max='7' value=1>\
+        </legend>\
+        "
+
+        $('#add_start_day').html(start_day_html)
+        $('#add_n_work_day').html(n_work_day_html)
+        $('#add_n_holiday').html(n_holiday_html)
+    } else {
+        $('#add_start_day').html("")
+        $('#add_n_work_day').html("")
+        $('#add_n_holiday').html("")
+    }
+})
+
 $('#create-schedule-btn').on('click', function() {
     var work_days = {"days": []}
     

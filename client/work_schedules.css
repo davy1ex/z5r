@@ -1,9 +1,3 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    color: #111111;
-} */
-
 body {
     margin: 0 !important;
     height: 100%;
@@ -15,15 +9,43 @@ body {
     flex-direction: column;
 }
 
-hr {
-    color: black;
-    width: 100%;
-    margin: 2px;
+.select {
+    width: 300px;
+    margin: auto;
 }
 
-.selected, .select {
+.select input {
+    width: 100%;
+}
+.select #start_day,
+.select #n_holiday_html {
+    width: 25px;
+    padding: 0;
+    margin: 5px;
+}
+
+.select #start_day {
+    width: 60px;
+}
+
+.select .title {
+    margin-bottom: 20px;
+}
+
+.select .all-days-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.selected {
     width: 70%;
     margin: auto;
+    margin-top: 20px;
+}
+
+.selected h2 {
+    margin: 20px;
 }
 
 .selected .all-selected-days-cell {
@@ -62,7 +84,6 @@ hr {
     border: 1px solid #3399FF;
     border-radius: 20px;
     padding: 5px;
-    margin: 5px;
 }
 
 .all-days-cell .day:hover {
@@ -81,9 +102,23 @@ hr {
     text-align: center;
 }
 
+#work-schedules-table {
+    margin-top: 30px;
+}
+
 @media screen and (max-width: 500px) {
+    .select {
+        width: 100%;
+    }
     .selected {
         width: 95% !important;
         margin: auto;
+    }
+
+    .day {
+        border: 1px solid #3399FF;
+        /* width: 20px; */
+        border-radius: 20px;
+        padding: 5px;
     }
 }

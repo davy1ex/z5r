@@ -113,9 +113,18 @@
 				<div id="work_schedule" class="accordion-item-body-content">
 					<div class="work-days-container">    
 						<div class="select">
+							
+							<div class="switch_block">
+								<label class="switch">
+								  <input id='periodicity-btn' type="checkbox" >
+								  <span class="slider round"></span>
+								</label>
+							  </div>
 							<div class="title">
-								<label for="title">Название</label>
-								<input type="text" name="title" id="title">
+								<legend> Название
+									<input type="text" name="title" id="title">
+								</legend>
+								
 							</div>
 							<h2>Выбрать</h2>
 					
@@ -162,6 +171,10 @@
 									</div>
 								</div>
 							</div>
+
+							<div id='add_start_day'></div>
+							<div id='add_n_work_day'></div>
+							<div id='add_n_holiday'></div>
 						</div>
 							
 						<div class="selected">           
