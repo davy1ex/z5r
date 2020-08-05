@@ -18,7 +18,8 @@ body {
     width: 100%;
 }
 .select #start_day,
-.select #n_holiday_html {
+.select #n_work_day,
+.select #n_holiday {
     width: 25px;
     padding: 0;
     margin: 5px;

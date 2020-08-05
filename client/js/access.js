@@ -35,6 +35,7 @@ function get_session() {
                 // show_work_schedules_table()
                 take_work_schedules()
                 create_access_settings_div()
+                $('#create-periodicity-schedule-btn').hide()
                 
                 $(document).ready(function(){
                     setInterval(create_events_table, 20000);

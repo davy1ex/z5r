@@ -390,9 +390,13 @@ function get_day_by_numb(numb) {
     if (numb == "6") return "Вс"
 }
 
-function get_work_times(day_id) {
+function get_work_times(day_id, periodicity) {
     var day = $('#selected-day' + day_id)
-    var day_list = {'day': get_day_by_numb(day_id), "schedule": []}
+    if (periodicity) {
+        var day_list = {'day': 'день ' + day_id, "schedule": []}    
+    }
+    else { var day_list = {'day': get_day_by_numb(day_id), "schedule": []} }
+    
 
     $.each(day.find('.work-time'), function (i, work_time) {
         if ($(work_time).find('.start_time').val() != "" && $(work_time).find('.end_time').val() != "") {
