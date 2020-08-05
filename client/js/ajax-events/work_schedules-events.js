@@ -16,18 +16,60 @@ function add_day_to_selected_cell(day_id, periodicity) {
     $('.all-selected-days-cell').append(html)
 }
 
-$('.day').on('click', function() {
-    $(this).addClass('day-selected')
-    var day_id = this.id
-    console.log(day_id)
-    if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
-        $('#selected-days').val(function () {
-            return this.value + "," + day_id
-        })
+function show_all_days_cell() {
+    html = 
+    '<div id="0" class="day">\
+        <div class="day-title">\
+            Пн\
+        </div>\
+    </div>\
+    <div id="1" class="day">\
+        <div class="day-title">\
+            Вт\
+        </div>\
+    </div>\
+    <div id="2" class="day">\
+        <div class="day-title">\
+            Ср\
+        </div>\
+    </div>\
+    <div id="3" class="day">\
+        <div class="day-title">\
+            Чт\
+        </div>\
+    </div>\
+    <div id="4" class="day">\
+        <div class="day-title">\
+            Пт\
+        </div>\
+    </div>\
+    <div id="5" class="day">\
+        <div class="day-title">\
+            Сб\
+        </div>\
+    </div>\
+    <div id="6" class="day">\
+        <div class="day-title">\
+            Вс\
+        </div>\
+    </div>'
+    $('.all-days-cell').html(html)
+    $('#selected-days').val('-1')
+    $('.day').on('click', function() {
+        $(this).addClass('day-selected')
+        var day_id = this.id
+        console.log(day_id)
+        if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
+            $('#selected-days').val(function () {
+                return this.value + "," + day_id
+            })
+    
+            add_day_to_selected_cell(day_id)
+        }
+    })
+}
 
-        add_day_to_selected_cell(day_id)
-    }
-})
+
 
 $('#periodicity-btn').click(function () {
     if($(this).is(":checked")) {
@@ -60,12 +102,13 @@ $('#periodicity-btn').click(function () {
         $('#create-schedule-btn').hide() // скрывает кнопка создания непериодического графика
         $('#create-periodicity-schedule-btn').show() // показывает кнопку создания периодческого графика
         $('.all-selected-days-cell').html("") // очищает выбранные дни, если они были
+        $('#selected-periodicity-days').val('1') // сбрасывает количество рабочих дней периодического графика
         
         add_day_to_selected_cell(1, 1) // создаёт первый (дефолтный) день
 
         $('#n_work_day_btn').on('click', function() {
             var day_id = 0;
-            
+
             $('#selected-periodicity-days').val(function () {
                 day_id = parseInt(this.value) + 1
                 return day_id
@@ -80,9 +123,10 @@ $('#periodicity-btn').click(function () {
 
         $('.all-days-cell').show() // показывает блок с выбором рабочих дней непериодического графика
         $('#create-periodicity-schedule-btn').hide() // скрывает кнопку добавления периодического расписания
-        $('#create-schedule-btn').show() // показывает кнопку добавления непериодического расписания
+        
 
         $('.all-selected-days-cell').html("") // очищает выбранные дни
+        show_all_days_cell()
     }
 })
 
