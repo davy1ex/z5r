@@ -2,24 +2,6 @@
 session_start();
 require_once ('db.php');
 
-function power_on($active, $mode) {
-    // хз зачем это
-    $response = create_request();
-
-    array_push($response['messages'], array(
-        'id'            =>  123456789,
-        'operation'     =>  'power_on',
-        'fw'            =>  '1.0.1',
-        'conn_fw'       =>  0,
-        'active'        =>  $active,
-        'mode'          =>  $mode,
-        'controller_ip' =>  '192.168.0.222'
-    ));
-    
-    return $response;
-
-    
-}
 
 // 17.07.20 (авторизация с параметрами доступа)
 function check_usr($login, $password) {
@@ -380,16 +362,25 @@ function add_user($username, $login, $password, $access) {
 
 function del_user($user_id) {
     // удаляет карту по её айди 
-    global $pdo;
-    $query = $pdo -> prepare('DELETE FROM `users` WHERE id=?');
-    $query -> execute(array((int)$user_id));
-    $query = $pdo -> prepare('DELETE FROM `users` WHERE id=?');
-    $pdo = null;
-
     header("Content-Type: application/json");
-    echo json_encode([
-        'success'   => 1
-    ]);
+    
+    if ((int)$user_id == 1) {
+        echo json_encode([
+            'success'   => 0,
+            'status'    => 'u cannot remove root'
+        ]);
+    }
+    else{
+        global $pdo;
+        $query = $pdo -> prepare('DELETE FROM `users` WHERE id=?');
+        $query -> execute(array((int)$user_id));
+        $pdo = null;
+
+        
+        echo json_encode([
+            'success'   => 1
+        ]);
+    }
 }
 
 function del_all_users() {

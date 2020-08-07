@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  
-	<link rel="stylesheet" type="text/css" href="/client/style.css">
-  	<link rel="stylesheet" href="/client/work_schedules.css">
+	<link rel="stylesheet" type="text/css" href="/client/styles/style.css">
+  	<link rel="stylesheet" href="/client/styles/work_schedules.css">
   	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
   
   	<link rel="icon" href="/client/img/favicon.ico" type="image/x-icon">
 
 
-  <!-- <script src="/client/js/cookie.js"></script> -->
-  	<script src="/client/js/jquery.js"></script>
+  
+  	<script src="/client/js/vendors/jquery.js"></script>
 
 </head>
 <body>
@@ -534,37 +534,32 @@
 
 
 <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
-<script src="/client/js/functions.js"></script>
+<!-- ПОДКЛЮЧЕНИЕ ФУНКЦИЙ -->
+<script src="/client/js/modules/users/users-functions.js"></script>
+<script src="/client/js/modules/cards/cards-functions.js"></script>
+<script src="/client/js/modules/events/events-functions.js"></script>
+<script src="/client/js/modules/work-schedules/work_schedules-functions.js"></script>
+<script src="/client/js/modules/system_tools/system_tools-functions.js"></script>
+<script src="/client/js/modules/settings_access/settings_access-functions.js"></script>
+<script src="/client/js/modules/auth/auth-functions.js"></script>
 
-<!-- подключение таблиц -->
-<script src="/client/js/tables/events-table.js"></script>
-<script src="/client/js/tables/cards-table.js"></script>
-<script src="/client/js/tables/users-table.js"></script>
-<script src="/client/js/tables/work_schedules-table.js"></script>
 
-<script src="/client/js/settings_access.js"></script>
-<script src="/client/js/script.js"></script>
-<script src="/client/js/auth.js"></script>
 
 
 <!-- подключение ajax-событий на элементы -->
-<script src="/client/js/ajax-events/cards-events.js"></script>
-<script src="/client/js/ajax-events/doors-events.js"></script>
-<script src="/client/js/ajax-events/users-events.js"></script>
-<script src="/client/js/ajax-events/export-events.js"></script>
-<script src="/client/js/ajax-events/work_schedules-events.js"></script>
-
-<script src="/client/js/access.js"></script>
-
-<script src="/client/js/qrcode.min.js"></script>
+<script src="/client/js/modules/users/users-events.js"></script>
+<script src="/client/js/modules/cards/cards-events.js"></script>
+<script src="/client/js/modules/events/events-events.js"></script>
+<script src="/client/js/modules/work-schedules/work_schedules-events.js"></script>
+<script src="/client/js/modules/system_tools/system_tools-events.js"></script>
+<script src="/client/js/modules/settings_access/settings_access-events.js"></script>
+<script src="/client/js/modules/auth/auth-events.js"></script>
 
 
-<script src="/client/js/ajax-events/settings_access-events.js"></script>
+<script src="/client/js/script.js"></script>
+<script src="/client/js/modules/auth_access/access.js"></script>
 
-
-
-
-
+<script src="/client/js/vendors/qrcode.min.js"></script>
 
 </body>
 </html>

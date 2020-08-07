@@ -1,25 +1,11 @@
 <?php
-include_once ('functions.php');
+// include_once ('functions.php');
 include_once ('methods.php');
 session_start();
 
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if ($data['operation'] == 'power_on') {
-    header("HTTP/1.1 200 Content-type: application/json ");
-    echo json_encode(power_on($data['active'], $data['mode']));
-}
-
-
-if ($data['operation'] == 'set_active') {
-    if (power_on($data['active'], $data['mode'])) {
-        echo json_encode([
-            'id'        => 123456789,
-            'success'   => 1
-        ]);
-    }
-}
 
 if ($data['operation'] == 'login') {
     check_usr($data['login'], $data['password']);

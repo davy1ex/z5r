@@ -1,3 +1,42 @@
+function set_mode(mode) { 
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'set_mode',
+            'mode': mode
+        })        
+    })
+}
+
+function set_point_type(point_type) { 
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'set_point_type',
+            'point_type': point_type
+        })        
+    })
+}
+
+function set_active(active) {
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'set_active',
+            'active': active
+        })        
+    })   
+}
+
 function create_access_settings_div() {
     settings_access = get_settings_access()
     

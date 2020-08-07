@@ -1,3 +1,20 @@
+function action(action_name, souce_type, source_name) {
+    var current_date = new Date()    
+    $.ajax({
+        type: "POST",
+        url: '/server/api.php',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'operation': 'action',
+            'action': action_name,
+            'source_type': souce_type,
+            'source_name': source_name,
+            'date': [current_date.getFullYear(), current_date.getMonth() + 1, current_date.getDate()].join('-') + ' ' + [current_date.getHours(), current_date.getMinutes(), current_date.getSeconds()].join(':'),
+        })
+    })
+}
+
 // 15.07.20 (отображение лога на стороне клиента)
 function create_events_table() {
     console.log('event table created/updated')
@@ -44,4 +61,28 @@ function create_events_table() {
             $('#events-table').html(html)
         }
     })
+}
+
+function clear_events() {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'clear_events'
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
 }
