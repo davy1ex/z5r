@@ -1320,11 +1320,15 @@ color: #333;
 
 body {
   margin-bottom: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-height: 740px) {
   .elsys {
-    margin-top: 500px;
+    /* margin-top: 500px; */
+    /* display: flex; */
+    align-items: center;
     text-align: center;
   }
 

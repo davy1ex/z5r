@@ -1,5 +1,4 @@
 body {
-    margin: 0 !important;
     height: 100%;
 }
 
@@ -42,6 +41,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.select #add_n_work_day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .selected {

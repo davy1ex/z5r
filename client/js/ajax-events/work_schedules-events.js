@@ -76,7 +76,7 @@ $('#periodicity-btn').click(function () {
         var start_day_html = 
         "\
         <legend>\
-            Первый день:\
+            Опорная дата:\
             <input id='start_day' type='time'>\
         </legend>\
         "
@@ -88,7 +88,7 @@ $('#periodicity-btn').click(function () {
         var n_holiday_html = 
         "\
         <legend>\
-            Количество выходных\
+            Период\
             <input id='n_holiday' type='number' min='1' max='7' value=1>\
         </legend>\
         "
@@ -122,6 +122,7 @@ $('#periodicity-btn').click(function () {
         $('#add_n_holiday').html("") // очищает поле ввода выходных
 
         $('.all-days-cell').show() // показывает блок с выбором рабочих дней непериодического графика
+        $('#create-schedule-btn').show()
         $('#create-periodicity-schedule-btn').hide() // скрывает кнопку добавления периодического расписания
         
 
