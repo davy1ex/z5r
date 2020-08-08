@@ -162,9 +162,19 @@ function get_users_table(users_list) { // рисует таблицу с пол�
 
             success: function(response) {
                 $('#username').val(response.user.username)
-                $('#login').val(response.user.login)
+                
+                $('#login').val(response.user.login)                
                 $('#password').val(response.user.password)
                 $('#access').val(response.user.access)
+                
+                if (response.user.login == 'root') { // если рут пользователь, то редактировать логин и уровень доступа нельзя
+                    $('#login').prop('disabled', true)
+                    $('#access').prop('disabled', true)
+                }
+                else {                               // иначе можно
+                    $('#login').attr('disabled', false)
+                    $('#access').prop('disabled', false)
+                }               
             }
         })
     })

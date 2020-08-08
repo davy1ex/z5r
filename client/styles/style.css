@@ -1140,8 +1140,11 @@ color: #333;
 {
     display: block;
 }
+.del-all-cards-btn {
+  display: flex;
+  justify-content: center;
+}
 #del_all_cards{
-  float: right;
   background-color: #FF0033;
   border-color: #FF0033;
 }
@@ -1390,6 +1393,11 @@ body {
   }
   .add_cards_btn {
     margin: auto;
+  }
+  #del_all_cards {
+    width: 50%;
+    padding: 6px 15px;
+    margin-top: 14px;
   }
 
 

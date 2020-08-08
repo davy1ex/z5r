@@ -50,7 +50,7 @@ function add_schedule(title, work_days, periodicity) {
     return response
 }
 
-function del_work_schedule(work_schedule_id) {
+function del_work_schedule(work_schedule_id) { // удаляет рабочий график по айди
     var response = function () {
         var tmp = null
         $.ajax({
@@ -79,7 +79,7 @@ function get_selected_days() {
     return JSON.parse("[" + $('#selected-days').val().slice(" ") + "]")
 }
 
-function get_day_by_numb(numb) {
+function get_day_by_numb(numb) { // возвращает день недели по числу (пн = 0 и т.д.)
     if (numb == "0") return "Пн"
     if (numb == "1") return "Вт"
     if (numb == "2") return "Ср"
@@ -89,12 +89,19 @@ function get_day_by_numb(numb) {
     if (numb == "6") return "Вс"
 }
 
-function get_work_times(day_id, periodicity) {
+function get_work_times(day_id, like_as, periodicity) {
     var day = $('#selected-day' + day_id)
     if (periodicity) {
         var day_list = {'day': 'день ' + day_id, "schedule": []}    
     }
+
+    else if (like_as){
+        var day_list = {'day': get_day_by_numb(like_as), "schedule": []}    
+    }
+
     else { var day_list = {'day': get_day_by_numb(day_id), "schedule": []} }
+
+    
     
 
     $.each(day.find('.work-time'), function (i, work_time) {
@@ -108,6 +115,7 @@ function get_work_times(day_id, periodicity) {
 function show_work_schedules_table(work_schedules) {
     var work_schedule_list = work_schedules.work_schedule
     var html = ""
+    
     $.each(work_schedule_list, function(i, item) {
         html += 
         '<table>\
@@ -115,19 +123,21 @@ function show_work_schedules_table(work_schedules) {
                 <tr>\
                     <th scope="col">Название</th>'
                     
-
                     $.each(JSON.parse(item.work_days).days, function(i, day) {
                         html += '<th scope="col">' + day.day + '</th>'
                     })
+
                     html += 
                     '<th scope="col">Действия</th>\
                 </tr>\
             </thead>\
             <tbody>\
             <tr>';
+
             var title = item.title
             html += '<td data-label="Название">' + title + '</td>'
             var work_schedule_id = item.id
+            
             $.each(JSON.parse(item.work_days).days, function(i, day) {
                 if (day.schedule.length > 0) {
                     var day_label = day.day
@@ -159,7 +169,7 @@ function show_work_schedules_table(work_schedules) {
 }
 
 
-function take_work_schedules() { // получает массив карт с сервера    
+function take_work_schedules() { // получает массив рабочих графиков с сервера  
     $.ajax({
         type: "POST",
         url: '/server/api.php',
@@ -177,6 +187,21 @@ function take_work_schedules() { // получает массив карт с с
     })
 } 
 
+function create_select_like_another_day(day_id) {
+    html = 
+        "как в: <select class='like-another-day-select'>\
+        <option value='-'>-</option>"
+
+            $.each(get_selected_days(), function (i, select_day) {
+                if (select_day != "-1" && select_day != day_id) {
+                    html += "<option value=" + select_day + ">" + get_day_by_numb(select_day) + "</option>"
+                }
+            })
+        html += "</select>"
+    
+    $('#selected-day' + day_id +  ' .like-another-day').html(html)
+}
+
 
 function add_day_to_selected_cell(day_id, periodicity) {
     html = 
@@ -184,7 +209,11 @@ function add_day_to_selected_cell(day_id, periodicity) {
         if (!periodicity) {html += "<div class='day-title'>" + get_day_by_numb(day_id) + "</div>"}
         else {html += "<div class='day-title'>день " + day_id + "</div>"}
         
-        html += "<div class='day-schedule'>\
+        html += "<div class='like-another-day'></div>"
+            
+
+        html += 
+        "<div class='day-schedule'>\
             <div class='work-time'>1. <input id='start_time1' class='start_time' type='time'>-<input id='end_time1' class='end_time' type='time'></div>\
             <div class='work-time'>2. <input id='start_time2' class='start_time' type='time'>-<input id='end_time2' class='end_time' type='time'></div>\
             <div class='work-time'>3. <input id='start_time3' class='start_time' type='time'>-<input id='end_time3' class='end_time' type='time'></div>\
@@ -192,8 +221,11 @@ function add_day_to_selected_cell(day_id, periodicity) {
             <div class='work-time'>5. <input id='start_time5' class='start_time' type='time'>-<input id='end_time5' class='end_time' type='time'></div>\
         </div>\
     </div>"
-
     $('.all-selected-days-cell').append(html)
+
+    $.each(get_selected_days(), function (i, select_day) {
+        create_select_like_another_day(select_day)
+    })
 }
 
 function show_all_days_cell() {

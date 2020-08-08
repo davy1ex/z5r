@@ -73,11 +73,8 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
     '<table>\
         <thead>\
             <tr>\
-                <th scope="col">Номер карты</th>\
                 <th scope="col">ФИО</th>\
-                <th scope="col">Блокирующая карта</th>\
-                <th scope="col">Короткий код карты</th>\
-                <th scope="col">tz</th>\
+                <th scope="col">Номер карты</th>\
                 <th scope="col">Удаление</th>\
             </tr>\
         </thead>';
@@ -110,12 +107,8 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
                 shord_code = '<span class="close">x</span>'
             }
 
-            html += "<td data-label='Card number'>" + item.card + "</td>";
             html += "<td data-label='Operator name'>" + (item.operator_name == '' ? '-' : item.operator_name)  + "</td>";
-            html += "<td data-label='Blocking card'>" + block_type + "</td>";
-            html += "<td data-label='Short code card'>" + shord_code + "</td>";
-            html += "<td data-label='tz'>" + item.tz + "</td>";
-            // html += "<td data-label='Del'>" + '<button id=' + item.id + ' class="del_btn">Удалить</button>' + "</td>";
+            html += "<td data-label='Card number'>" + item.card + "</td>";
             html  += '<td>'
              + '<button id=' + String(item.id) + ' class="edit-card-btn">'
                  + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>'
@@ -142,12 +135,8 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             data: JSON.stringify({'operation': 'get_card', 'card_id': this.id}),
 
             success: function(response) {
-                console.log(response.card)
-                $('#numb_card').val(response.card.card)
                 $('#operator_name').val(response.card.operator_name)
-                $('#cbk1').val(response.card.block_type)
-                $('#cbk2').val(response.card.shord_code)
-                $('#card_tz').val(response.card.tz)
+                $('#numb_card').val(response.card.card)
             }
         })
     })

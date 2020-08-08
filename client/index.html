@@ -86,14 +86,17 @@
 								<input id="password" name='password' type="password"/>
 							</legend>
 
-							<legend> Тип учётной записи
-								<!-- <input id="access" name='access'  type="text"/> -->
-								<select id="access">
-									<option value="admin">админ</option>
-									<option value="main_guard">Начальник службы безопасности </option>
-									<option value="guard">Охранник</option>							
-								</select>
-							</legend>
+							<div id="select-access-container" class="select-access-container">
+								<legend> Тип учётной записи
+									<!-- <input id="access" name='access'  type="text"/> -->
+									<select id="access">
+										<option value="admin">админ</option>
+										<option value="main_guard">Начальник службы безопасности </option>
+										<option value="guard">Охранник</option>							
+									</select>
+								</legend>
+							</div>
+							
 							
 							
 							<div class="add_users_btn">
@@ -179,28 +182,13 @@
             	<div class="accordion-item-body-content">
 					<div id="cards-table" class='cards-table'></div>							 
 					<div class="add_cards">
-						<legend>Номер карты
-							<input id="numb_card" type="text"/>
-						</legend>
-
 						<legend>ФИО
 							<input id="operator_name" type="text"/>
 						</legend>
-						
-						<legend>Блокирующая карта
-								<input type="checkbox" id="cbk1">
-								<span class="cbx"></span>
-						</legend>
-						
-						<legend> Короткий код карты
-							<input type="checkbox" id="cbk2" checked>
-							<span class="cbx">
-							</span>
-						</legend>
-	
-						<legend> tz
-							<input id="card_tz" type="text"/>
-						</legend>						
+
+						<legend>Номер карты
+							<input id="numb_card" type="text"/>
+						</legend>												
 						
 						<div class="add_cards_btn">
 							<button id="add_card" class="add_btn">
@@ -210,13 +198,9 @@
 							</button>
 						</div>
 					</div>
-
-					<div class="cards-btns">
-						<div class="del-all-cards-btn">
-							<button  id='del_all_cards'>Удаление всех карт</button>
-						</div>
-	
-						
+					
+					<div class="del-all-cards-btn">
+						<button  id='del_all_cards'>Удалить все пропуска</button>
 					</div>
             	</div>
           	</div>
