@@ -76,15 +76,18 @@ $('#create-schedule-btn').on('click', function() {
                 work_days.days.push(work_time)
             }
 
-            add_schedule(
-                title = $('#title').val(),
-                work_days = work_days,
-                periodicity = 0
-            )
-
-            take_work_schedules()
+            
         }
+        
     })
+
+    add_schedule(
+        title = $('#title').val(),
+        work_days = work_days,
+        periodicity = 0
+    )
+
+    take_work_schedules()
     
     
     // $.each(get_selected_days(), function (i, day) {
