@@ -91,15 +91,22 @@ function get_day_by_numb(numb) { // возвращает день недели �
 
 function get_work_times(day_id, like_as, periodicity) {
     var day = $('#selected-day' + day_id)
+    var day_list = {'day': '', "schedule": [], "like_as": null} 
     if (periodicity) {
-        var day_list = {'day': 'день ' + day_id, "schedule": []}    
+        // var day_list = {'day': 'день ' + day_id, "schedule": []}    
+        day_list['day'] = 'день ' + day_id
     }
 
     else if (like_as){
-        var day_list = {'day': get_day_by_numb(like_as), "schedule": []}    
+        // var day_list = {'day': get_day_by_numb(day_id), "schedule": [], "like_as": like_as}    
+        day_list['day'] = get_day_by_numb(day_id)
+        day_list['like_as'] = like_as
     }
 
-    else { var day_list = {'day': get_day_by_numb(day_id), "schedule": []} }
+    else { 
+        //var day_list = {'day': get_day_by_numb(day_id), "schedule": []} 
+        day_list['day'] = get_day_by_numb(day_id)
+    }
 
     
     
@@ -117,13 +124,22 @@ function show_work_schedules_table(work_schedules) {
     var html = ""
     
     $.each(work_schedule_list, function(i, item) {
+        // console.log('превая итерация:')
+        // console.log(item)
         html += 
         '<table>\
             <thead>\
                 <tr>\
                     <th scope="col">Название</th>'
                     
-                    $.each(JSON.parse(item.work_days).days, function(i, day) {
+                    // $.each(JSON.parse(item.work_days).days, function(i, day) {
+                    //     // console.log("итерация по дням: ")
+                    //     // console.log(day)
+                    //     html += '<th scope="col">' + day.day + '</th>'
+                    // })
+                    $.each(JSON.parse(item.work_days), function(i, day) {
+                        // console.log("итерация по дням: ")
+                        console.log(day)
                         html += '<th scope="col">' + day.day + '</th>'
                     })
 
@@ -137,14 +153,26 @@ function show_work_schedules_table(work_schedules) {
             var title = item.title
             html += '<td data-label="Название">' + title + '</td>'
             var work_schedule_id = item.id
+            console.log(item.work_days)
             
-            $.each(JSON.parse(item.work_days).days, function(i, day) {
-                if (day.schedule.length > 0) {
+            $.each(JSON.parse(item.work_days), function(i, day) {
+                console.log(day)
+                if (day.schedule.length > 0 || day.like_as != null) {
                     var day_label = day.day
                     html += '<td data-label=' + day_label + '>'
-                    $.each(day.schedule, function (i, schedule) {
-                        html += schedule.start_time + '-' + schedule.end_time + '<br>'
-                    })
+                    if (day.like_as == null) {
+                        $.each(day.schedule, function (i, schedule) {
+                            html += schedule.start_time + '-' + schedule.end_time + '<br>'
+                        })
+                    }
+                    else {
+                        for (var i in JSON.parse(item.work_days)) {
+                            if (JSON.parse(item.work_days)[i]['day'] == get_day_by_numb(day.like_as)) {var like_as_day = JSON.parse(item.work_days)[i]}
+                        }
+                        $.each(like_as_day.schedule, function (i, schedule) {
+                            html += schedule.start_time + '-' + schedule.end_time + '<br>'
+                        })
+                    }
                     html += '</td>'
                 } 
                 

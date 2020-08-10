@@ -60,51 +60,43 @@ $('#periodicity-btn').click(function () {
 
 $('#create-schedule-btn').on('click', function() {
     var work_days = {"days": []}
+
     $.each(get_selected_days(), function (i, select_day) {
         if (select_day != -1) {
             var like_another_value = $('#selected-day' + select_day + ' .like-another-day-select').val()
+            
             if (like_another_value !== "-") {
-                console.log('день скопипзжен')
-                var work_time = get_work_times(like_as=$('#selected-day' + select_day + ' .like-another-day-select').val(), day_id=select_day, periodicity=0)
+                console.log('копируется день: ')
+                var work_time = get_work_times(day_id=select_day, like_as=$('#selected-day' + select_day + ' .like-another-day-select').val(), periodicity=0)
+                console.log(work_time)
             }
 
             else {
+                console.log('создаётся день: ')
                 var work_time = get_work_times(select_day, periodicity=0)
+                console.log(work_time)
             }
 
-            if (work_time.schedule.length > 0) {
+            if (work_time.schedule.length > 0 || work_time.like_as != null) {
+                console.log('добавляется день')
                 work_days.days.push(work_time)
+                console.log(work_days)
             }
 
             
         }
         
     })
+    // work_days.days.sort(function (a, b) {if (a.like_as != null) {return -1} if (b.like_as == null) {return 1} return 0}), - сортирует нуллы в конце
+    // work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}) - нулы в начале
 
     add_schedule(
         title = $('#title').val(),
-        work_days = work_days,
+        work_days = work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}),
         periodicity = 0
     )
 
     take_work_schedules()
-    
-    
-    // $.each(get_selected_days(), function (i, day) {
-    //     var work_time = get_work_times(day, periodicity=0)
-        // if (work_time.schedule.length > 0) {
-        //     work_days.days.push(work_time)
-        // }
-    // })
-    
-    // console.log(work_days)
-    // add_schedule(
-    //     title = $('#title').val(),
-    //     work_days = work_days,
-    //     periodicity = 0
-    // )
-
-    // take_work_schedules()
 })
 
 $('#create-periodicity-schedule-btn').on('click', function() {
