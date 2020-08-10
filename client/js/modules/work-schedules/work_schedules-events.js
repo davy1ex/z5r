@@ -89,7 +89,7 @@ $('#create-schedule-btn').on('click', function() {
     })
     // work_days.days.sort(function (a, b) {if (a.like_as != null) {return -1} if (b.like_as == null) {return 1} return 0}), - сортирует нуллы в конце
     // work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}) - нулы в начале
-
+    console.log(work_days)
     add_schedule(
         title = $('#title').val(),
         work_days = work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}),
