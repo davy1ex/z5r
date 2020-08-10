@@ -89,30 +89,24 @@ function get_day_by_numb(numb) { // возвращает день недели �
     if (numb == "6") return "Вс"
 }
 
+function get_numb_by_day(day) {
+    day = day.toLowerCase()
+    if (day == "Пн") return "0"
+    if (day == "Вт") return "1"
+    if (day == "Ср") return "2"
+    if (day == "Чт") return "3"
+    if (day == "Пт") return "4"
+    if (day == "Сб") return "5"
+    if (day == "Вс") return "6"
+}
+
 function get_work_times(day_id, like_as, periodicity) {
     var day = $('#selected-day' + day_id)
-    // var day_list = {'day': '', "schedule": [], "like_as": null} 
     var day_list = {'day': day_id, "schedule": [], "like_as": null} 
-    if (periodicity) {
-        // var day_list = {'day': 'день ' + day_id, "schedule": []}    
-        // day_list['day'] = 'день ' + day_id
-        day_list['day'] = day_id
-    }
-
-    else if (like_as){
-        // var day_list = {'day': get_day_by_numb(day_id), "schedule": [], "like_as": like_as}    
-        // day_list['day'] = get_day_by_numb(day_id)
-        
+    
+    if (like_as){
         day_list['like_as'] = like_as
-    }
-
-    // else { 
-    //     //var day_list = {'day': get_day_by_numb(day_id), "schedule": []} 
-    //     // day_list['day'] = get_day_by_numb(day_id)
-    // }
-
-    
-    
+    }   
 
     $.each(day.find('.work-time'), function (i, work_time) {
         if ($(work_time).find('.start_time').val() != "" && $(work_time).find('.end_time').val() != "") {
@@ -133,12 +127,7 @@ function show_work_schedules_table(work_schedules) {
             <thead>\
                 <tr>\
                     <th scope="col">Название</th>'
-                    
-                    // $.each(JSON.parse(item.work_days).days, function(i, day) {
-                    //     // console.log("итерация по дням: ")
-                    //     // console.log(day)
-                    //     html += '<th scope="col">' + day.day + '</th>'
-                    // })
+
                     $.each(item.work_days, function(i, day) {
                         html += '<th scope="col">' + get_day_by_numb(day.day) + '</th>'
                     })
@@ -215,17 +204,34 @@ function take_work_schedules() { // получает массив рабочих
 
 function create_select_like_another_day(day_id) {
     html = 
-        "как в: <select class='like-another-day-select'>\
+        "как в: <select  class='like-another-day-select'>\
         <option value='-'>-</option>"
 
             $.each(get_selected_days(), function (i, select_day) {
-                if (select_day != "-1" && select_day != day_id) {
+                if (select_day != "-1" && select_day != day_id && get_selected_days().indexOf(day_id) > get_selected_days().indexOf(select_day)) {
                     html += "<option value=" + select_day + ">" + get_day_by_numb(select_day) + "</option>"
                 }
             })
         html += "</select>"
     
     $('#selected-day' + day_id +  ' .like-another-day').html(html)
+    
+    $('.like-another-day-select').change(function() {
+        console.log('it changed')
+        if ($('#selected-day' + day_id + ' .like-another-day-select').val() != '-') {
+            console.log($('#selected-day' + day_id + ' .like-another-day-select').val())
+            $.each(get_work_times($('#selected-day' + day_id + ' .like-another-day-select').val()).schedule, function(i, item) {
+                console.log(i)
+                console.log(item)
+                $('#selected-day' + day_id + ' .start_time' + parseInt(i+1)).val(item.start_time)
+                $('#selected-day' + day_id + ' .end_time' + parseInt(i+1)).val(item.end_time)
+            })
+        }
+    
+        else {
+            $('#selected-day' + day_id + ' .day-schedule').show()
+        }
+    })
 }
 
 
@@ -240,11 +246,11 @@ function add_day_to_selected_cell(day_id, periodicity) {
 
         html += 
         "<div class='day-schedule'>\
-            <div class='work-time'>1. <input id='start_time1' class='start_time' type='time'>-<input id='end_time1' class='end_time' type='time'></div>\
-            <div class='work-time'>2. <input id='start_time2' class='start_time' type='time'>-<input id='end_time2' class='end_time' type='time'></div>\
-            <div class='work-time'>3. <input id='start_time3' class='start_time' type='time'>-<input id='end_time3' class='end_time' type='time'></div>\
-            <div class='work-time'>4. <input id='start_time4' class='start_time' type='time'>-<input id='end_time4' class='end_time' type='time'></div>\
-            <div class='work-time'>5. <input id='start_time5' class='start_time' type='time'>-<input id='end_time5' class='end_time' type='time'></div>\
+            <div class='work-time'>1. <input id='start_time1' class='start_time1' type='time'>-<input id='end_time1' class='end_time1' type='time'></div>\
+            <div class='work-time'>2. <input id='start_time2' class='start_time2' type='time'>-<input id='end_time2' class='end_time2' type='time'></div>\
+            <div class='work-time'>3. <input id='start_time3' class='start_time3' type='time'>-<input id='end_time3' class='end_time3' type='time'></div>\
+            <div class='work-time'>4. <input id='start_time4' class='start_time4' type='time'>-<input id='end_time4' class='end_time4' type='time'></div>\
+            <div class='work-time'>5. <input id='start_time5' class='start_time5' type='time'>-<input id='end_time5' class='end_time5' type='time'></div>\
         </div>\
     </div>"
     $('.all-selected-days-cell').append(html)
