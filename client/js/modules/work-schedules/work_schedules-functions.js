@@ -76,7 +76,8 @@ function del_work_schedule(work_schedule_id) { // удаляет рабочий 
 }
 
 function get_selected_days() {
-    return JSON.parse("[" + $('#selected-days').val().slice(" ") + "]")
+    // return JSON.parse("[" + $('#selected-days').val().slice(" ") + "]")
+    return JSON.parse("[" + $('#selected-days').val() + "]")
 }
 
 function get_day_by_numb(numb) { // возвращает день недели по числу (пн = 0 и т.д.)
@@ -246,11 +247,11 @@ function add_day_to_selected_cell(day_id, periodicity) {
 
         html += 
         "<div class='day-schedule'>\
-            <div class='work-time'>1. <input id='start_time1' class='start_time1' type='time'>-<input id='end_time1' class='end_time1' type='time'></div>\
-            <div class='work-time'>2. <input id='start_time2' class='start_time2' type='time'>-<input id='end_time2' class='end_time2' type='time'></div>\
-            <div class='work-time'>3. <input id='start_time3' class='start_time3' type='time'>-<input id='end_time3' class='end_time3' type='time'></div>\
-            <div class='work-time'>4. <input id='start_time4' class='start_time4' type='time'>-<input id='end_time4' class='end_time4' type='time'></div>\
-            <div class='work-time'>5. <input id='start_time5' class='start_time5' type='time'>-<input id='end_time5' class='end_time5' type='time'></div>\
+            <div class='work-time'>1. <input id='start_time1' class='start_time' type='time'>-<input id='end_time' class='end_time' type='time'></div>\
+            <div class='work-time'>2. <input id='start_time2' class='start_time' type='time'>-<input id='end_time' class='end_time' type='time'></div>\
+            <div class='work-time'>3. <input id='start_time3' class='start_time' type='time'>-<input id='end_time' class='end_time' type='time'></div>\
+            <div class='work-time'>4. <input id='start_time4' class='start_time' type='time'>-<input id='end_time' class='end_time' type='time'></div>\
+            <div class='work-time'>5. <input id='start_time5' class='start_time' type='time'>-<input id='end_time' class='end_time' type='time'></div>\
         </div>\
     </div>"
     $('.all-selected-days-cell').append(html)
@@ -260,55 +261,59 @@ function add_day_to_selected_cell(day_id, periodicity) {
     })
 }
 
-function show_all_days_cell() {
-    html = 
-    '<div id="0" class="day">\
-        <div class="day-title">\
-            Пн\
-        </div>\
-    </div>\
-    <div id="1" class="day">\
-        <div class="day-title">\
-            Вт\
-        </div>\
-    </div>\
-    <div id="2" class="day">\
-        <div class="day-title">\
-            Ср\
-        </div>\
-    </div>\
-    <div id="3" class="day">\
-        <div class="day-title">\
-            Чт\
-        </div>\
-    </div>\
-    <div id="4" class="day">\
-        <div class="day-title">\
-            Пт\
-        </div>\
-    </div>\
-    <div id="5" class="day">\
-        <div class="day-title">\
-            Сб\
-        </div>\
-    </div>\
-    <div id="6" class="day">\
-        <div class="day-title">\
-            Вс\
-        </div>\
-    </div>'
-    $('.all-days-cell').html(html)
-    $('#selected-days').val('-1')
-    $('.day').on('click', function() {
-        $(this).addClass('day-selected')
-        var day_id = this.id
-        console.log(day_id)
-        if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
-            $('#selected-days').val(function () {
-                return this.value + "," + day_id
-            })
-    
-            add_day_to_selected_cell(day_id)
-        }
-    })
+function del_day_to_selected_cell(day_id) {
+    $('#selected-day'+day_id).remove()
 }
+
+// function show_all_days_cell() {
+//     html = 
+//     '<div id="0" class="day">\
+//         <div class="day-title">\
+//             Пн\
+//         </div>\
+//     </div>\
+//     <div id="1" class="day">\
+//         <div class="day-title">\
+//             Вт\
+//         </div>\
+//     </div>\
+//     <div id="2" class="day">\
+//         <div class="day-title">\
+//             Ср\
+//         </div>\
+//     </div>\
+//     <div id="3" class="day">\
+//         <div class="day-title">\
+//             Чт\
+//         </div>\
+//     </div>\
+//     <div id="4" class="day">\
+//         <div class="day-title">\
+//             Пт\
+//         </div>\
+//     </div>\
+//     <div id="5" class="day">\
+//         <div class="day-title">\
+//             Сб\
+//         </div>\
+//     </div>\
+//     <div id="6" class="day">\
+//         <div class="day-title">\
+//             Вс\
+//         </div>\
+//     </div>'
+//     $('.all-days-cell').html(html)
+//     $('#selected-days').val('-1')
+//     $('.day').on('click', function() {
+//         $(this).addClass('day-selected')
+//         var day_id = this.id
+//         console.log(day_id)
+//         if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
+//             $('#selected-days').val(function () {
+//                 return this.value + "," + day_id
+//             })
+    
+//             add_day_to_selected_cell(day_id)
+//         }
+//     })
+// }

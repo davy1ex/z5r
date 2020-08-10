@@ -132,7 +132,41 @@
 							<h2>Выбрать</h2>
 					
 							<div class="all-days-cell">
-								
+								<div id="0" class="day">
+									<div class="day-title">
+										Пн
+									</div>
+								</div>
+								<div id="1" class="day">
+									<div class="day-title">
+										Вт
+									</div>
+								</div>
+								<div id="2" class="day">
+									<div class="day-title">
+										Ср
+									</div>
+								</div>
+								<div id="3" class="day">
+									<div class="day-title">
+										Чт
+									</div>
+								</div>
+								<div id="4" class="day">
+									<div class="day-title">
+										Пт
+									</div>
+								</div>
+								<div id="5" class="day">
+									<div class="day-title">
+										Сб
+									</div>
+								</div>
+								<div id="6" class="day">
+									<div class="day-title">
+										Вс
+									</div>
+								</div>
 							</div>
 
 							<div id='add_start_day'></div>
@@ -141,10 +175,24 @@
 						</div>
 							
 						<div class="selected">           
-							<input type="text" name="selected-days" id="selected-days" hidden value="-1">
+							<!-- <input type="text" name="selected-days" id="selected-days" hidden value="-1"> -->
+							<input name="selected-days" id="selected-days" type="hidden" value="">
 							<input type="text" name="selected-periodicity-days" id="selected-periodicity-days" hidden value="1">
 							<h2>Временные интервалы</h2>				
-							<div class="all-selected-days-cell"></div>				
+							<div class="all-selected-days-cell">
+								<!-- <div class='day' id=selected-day0>
+									<div class='day-title'>Пн</div>
+									
+									<div class='like-another-day'></div>
+									<div class='day-schedule'>
+										<div class='work-time'>1. <input id='start_time1' class='start_time1' type='time'>-<input id='end_time1' class='end_time1' type='time'></div>
+										<div class='work-time'>2. <input id='start_time2' class='start_time2' type='time'>-<input id='end_time2' class='end_time2' type='time'></div>
+										<div class='work-time'>3. <input id='start_time3' class='start_time3' type='time'>-<input id='end_time3' class='end_time3' type='time'></div>
+										<div class='work-time'>4. <input id='start_time4' class='start_time4' type='time'>-<input id='end_time4' class='end_time4' type='time'></div>
+										<div class='work-time'>5. <input id='start_time5' class='start_time5' type='time'>-<input id='end_time5' class='end_time5' type='time'></div>
+									</div>
+								</div> -->
+							</div>				
 							<div class="submit-btn">
 								<button id="create-schedule-btn" type="submit">Создать</button>
 								<button id="create-periodicity-schedule-btn" type="submit">Создать</button>

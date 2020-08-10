@@ -54,7 +54,7 @@ $('#periodicity-btn').click(function () {
         
 
         $('.all-selected-days-cell').html("") // очищает выбранные дни
-        show_all_days_cell()
+        // show_all_days_cell()
     }
 })
 
@@ -119,5 +119,31 @@ $('#create-periodicity-schedule-btn').on('click', function() {
     take_work_schedules()
 })
 
+$('.day').on('click', function() {
+    $(this).addClass('day-selected')
+    var day_id = this.id
+    console.log(day_id)
 
+    array_selected_days = JSON.parse("[" + $('#selected-days').val() + "]")
+
+    if (!array_selected_days.includes(parseInt(day_id))) {
+        $('#selected-days').val(function () {
+            if (this.value == "") {
+                return day_id
+            }
+
+            return this.value + "," + day_id
+        })
+
+        add_day_to_selected_cell(day_id)
+    }
+
+    else {
+        array_selected_days.splice(array_selected_days.indexOf(day_id), 1)
+        $('#selected-days').val(array_selected_days)
+        $(this).removeClass('day-selected')
+
+        del_day_to_selected_cell(day_id)
+    }
+})
 

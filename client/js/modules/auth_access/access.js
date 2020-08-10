@@ -35,7 +35,7 @@ function get_session() {
                 // show_work_schedules_table()
                 take_work_schedules()
                 create_access_settings_div()
-                show_all_days_cell()
+                // show_all_days_cell()
                 $('#create-periodicity-schedule-btn').hide()
                 
                 $(document).ready(function(){
