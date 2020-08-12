@@ -63,12 +63,17 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 .selected .all-selected-days-cell .day {
     max-width: 100%;
     min-width: 30%;
-    margin: auto;
-    margin-bottom: 10px;
+    /* margin: auto !important; */
+    margin-bottom: 10px !important; 
+    width: 45%;
+    /* margin: auto; */
+    /* margin-bottom: 10px; */
 }
 .selected .submit-btn {
     display: flex;
@@ -91,13 +96,13 @@ body {
     justify-content: center;
 }
 
-.day {
+.select-day, .day {
     border: 1px solid #3399FF;
     border-radius: 20px;
     padding: 5px;
 }
 
-.all-days-cell .day:hover {
+.all-days-cell .select-day:hover {
     cursor: pointer;
     background: #3399FF;
     color: white;

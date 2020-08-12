@@ -28,7 +28,7 @@ $('#periodicity-btn').click(function () {
         
         $('#create-schedule-btn').hide() // скрывает кнопка создания непериодического графика
         $('#create-periodicity-schedule-btn').show() // показывает кнопку создания периодческого графика
-        $('.all-selected-days-cell').html("") // очищает выбранные дни, если они были
+        // $('.all-selected-days-cell').html("") // очищает выбранные дни, если они были
         $('#selected-periodicity-days').val('1') // сбрасывает количество рабочих дней периодического графика
         
         add_day_to_selected_cell(1, 1) // создаёт первый (дефолтный) день
@@ -53,9 +53,11 @@ $('#periodicity-btn').click(function () {
         $('#create-periodicity-schedule-btn').hide() // скрывает кнопку добавления периодического расписания
         
 
-        $('.all-selected-days-cell').html("") // очищает выбранные дни
-        // show_all_days_cell()
+        // $('.all-selected-days-cell').html("") // очищает выбранные дни
+        show_all_days_cell()
     }
+
+    $('.all-selected-days-cell').html("")
 })
 
 $('#create-schedule-btn').on('click', function() {
@@ -66,21 +68,15 @@ $('#create-schedule-btn').on('click', function() {
             var like_another_value = $('#selected-day' + select_day + ' .like-another-day-select').val()
             
             if (like_another_value !== "-") {
-                console.log('копируется день: ')
                 var work_time = get_work_times(day_id=select_day, like_as=$('#selected-day' + select_day + ' .like-another-day-select').val(), periodicity=0)
-                console.log(work_time)
             }
 
             else {
-                console.log('создаётся день: ')
                 var work_time = get_work_times(select_day, periodicity=0)
-                console.log(work_time)
             }
 
             if (work_time.schedule.length > 0 || work_time.like_as != null) {
-                console.log('добавляется день')
                 work_days.days.push(work_time)
-                console.log(work_days)
             }
 
             
@@ -89,7 +85,6 @@ $('#create-schedule-btn').on('click', function() {
     })
     // work_days.days.sort(function (a, b) {if (a.like_as != null) {return -1} if (b.like_as == null) {return 1} return 0}), - сортирует нуллы в конце
     // work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}) - нулы в начале
-    console.log(work_days)
     add_schedule(
         title = $('#title').val(),
         work_days = work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}),
@@ -110,40 +105,14 @@ $('#create-periodicity-schedule-btn').on('click', function() {
     })
     
     console.log(work_days)
-    add_schedule(
-        title = $('#title').val(),
-        work_days = work_days,
-        periodicity = 1
-    )
+    // add_schedule(
+    //     title = $('#title').val(),
+    //     work_days = work_days,
+    //     periodicity = 1
+    // )
 
-    take_work_schedules()
+    // take_work_schedules()
 })
 
-$('.day').on('click', function() {
-    $(this).addClass('day-selected')
-    var day_id = this.id
-    console.log(day_id)
 
-    array_selected_days = JSON.parse("[" + $('#selected-days').val() + "]")
-
-    if (!array_selected_days.includes(parseInt(day_id))) {
-        $('#selected-days').val(function () {
-            if (this.value == "") {
-                return day_id
-            }
-
-            return this.value + "," + day_id
-        })
-
-        add_day_to_selected_cell(day_id)
-    }
-
-    else {
-        array_selected_days.splice(array_selected_days.indexOf(day_id), 1)
-        $('#selected-days').val(array_selected_days)
-        $(this).removeClass('day-selected')
-
-        del_day_to_selected_cell(day_id)
-    }
-})
 
