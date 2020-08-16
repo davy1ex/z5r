@@ -100,7 +100,7 @@
 							
 							
 							<div class="add_users_btn">
-								<button  name='add' type="submit" id="add-user-btn" class="add_btn add_2" >Добавить</button>
+								<button  name='add' type="submit" id="add-user-btn" class="add_btn add_2" >Добавить/Изменить</button>
 							</div>
 						</div>
 					</div>
@@ -169,15 +169,25 @@
 								</div> -->
 							</div>
 
-							<div id='add_start_day'></div>
-							<div id='add_n_work_day'></div>
-							<div id='add_n_holiday'></div>
+							<div id='add_start_day'>
+								<legend>
+									Опорная дата:
+									<input id='start_day' type='date'>
+								</legend>
+							</div>
+							<!-- <div id='add_n_work_day'></div> -->
+							<div id='n_work_days'>
+								<legend>
+									Период
+									<input id='n_work_days_input' type='number' min='1' max='31' value=1>
+								</legend>
+							</div>
 						</div>
 							
 						<div class="selected">           
 							<!-- <input type="text" name="selected-days" id="selected-days" hidden value="-1"> -->
 							<input name="selected-days" id="selected-days" type="hidden" value="">
-							<input type="text" name="selected-periodicity-days" id="selected-periodicity-days" hidden value="1">
+							<input type="text" name="selected-periodicity-days" id="selected-periodicity-days" hidden value="">
 							<h2>Временные интервалы</h2>				
 							<div class="all-selected-days-cell">
 								<!-- <div class='day' id=selected-day0>
@@ -194,8 +204,8 @@
 								</div> -->
 							</div>				
 							<div class="submit-btn">
-								<button id="create-schedule-btn" type="submit">Создать</button>
-								<button id="create-periodicity-schedule-btn" type="submit">Создать</button>
+								<button id="create-schedule-btn" type="submit">Создать/Изменить</button>
+								<button id="create-periodicity-schedule-btn" type="submit">Создать/Изменить</button>
 							</div>
 						</div>
 					</div>
@@ -241,7 +251,7 @@
 						<div class="add_cards_btn">
 							<button id="add_card" class="add_btn">
 								<legend  class="tooltip">
-									Добавить <span class="tooltiptext"> Если в памяти контроллера уже имеется карта с таким-же номером, для этой карты обновляются флаги  и временные интервалы. </span>
+									Добавить/Изменить <span class="tooltiptext"> Если в памяти контроллера уже имеется карта с таким-же номером, для этой карты обновляются флаги  и временные интервалы. </span>
 								</legend>
 							</button>
 						</div>

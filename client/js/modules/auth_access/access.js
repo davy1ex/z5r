@@ -36,6 +36,10 @@ function get_session() {
                 take_work_schedules()
                 create_access_settings_div()
                 show_all_days_cell()
+
+                $('#add_start_day').hide() // скрывает поле периодического графиа
+                $('#n_work_days').hide() // скрывает поле периодического графиа
+                
                 $('#create-periodicity-schedule-btn').hide()
                 
                 $(document).ready(function(){

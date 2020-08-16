@@ -22,6 +22,31 @@ function get_work_schedules() {
     return response
 }
 
+function get_work_schedule(work_schedule_id) {
+    var response = function () {
+        var tmp = null
+        $.ajax({
+            type: "POST",
+            async: false,
+            global: false,
+            url: '/server/api.php',
+            dataType: 'json',
+            contentType: 'application/json',
+            
+            data: JSON.stringify({
+                'operation':    'get_work_schedule',
+                'work_schedule_id': work_schedule_id
+            }),
+            
+            success: function(response) {
+                tmp = response
+            }
+        })
+        return tmp
+    }()
+    return response
+}
+
 
 function add_schedule(title, work_days, periodicity) {
     var response = function () {
@@ -75,8 +100,11 @@ function del_work_schedule(work_schedule_id) { // удаляет рабочий 
     return response
 }
 
-function get_selected_days() {
+function get_selected_days(periodicity=false) {
     // return JSON.parse("[" + $('#selected-days').val().slice(" ") + "]")
+    if (periodicity) {
+        return JSON.parse("[" + $('#selected-periodicity-days').val() + "]")        
+    }
     return JSON.parse("[" + $('#selected-days').val() + "]")
 }
 
@@ -101,7 +129,7 @@ function get_numb_by_day(day) { // возвращает номер дня по �
     if (day == "вс") return "6"
 }
 
-function get_work_times(day_id, like_as, periodicity) { // возвращает выбранные временные интервалы дня. Если это копипаст, то показывает индекс откуда копипаст
+function get_work_times(day_id, like_as) { // возвращает выбранные временные интервалы дня. Если это копипаст, то показывает индекс откуда копипаст
     var day = $('#selected-day' + day_id)
     var day_list = {'day': day_id, "schedule": [], "like_as": null} 
     
@@ -119,10 +147,9 @@ function get_work_times(day_id, like_as, periodicity) { // возвращает 
     return day_list
 }
 
-function show_work_schedules_table(work_schedules) { // вставляет таблицу с рабочими графиками
+function show_work_schedules_table(work_schedules, periodicity=false) { // вставляет таблицу с рабочими графиками
     var work_schedule_list = work_schedules.work_schedule
     var html = ""
-
     $.each(work_schedule_list, function(i, item) {
         item.work_days = JSON.parse(item.work_days).sort(function (a, b) {if (a.day < b.day) {return -1} if (a.day > b.day) {return 1} return 0 })
         html += 
@@ -132,7 +159,9 @@ function show_work_schedules_table(work_schedules) { // вставляет та�
                     <th scope="col">Название</th>'
 
                     $.each(item.work_days, function(i, day) {
-                        html += '<th scope="col">' + get_day_by_numb(day.day) + '</th>'
+                        if (item.periodicity == "1") {html += '<th scope="col">День ' + day.day + '</th>'}
+                        else {html += '<th scope="col">' + get_day_by_numb(day.day) + '</th>'}
+                        
                     })
 
                     html += 
@@ -172,7 +201,7 @@ function show_work_schedules_table(work_schedules) { // вставляет та�
 
                 
             })
-            html += '<td data-label="Действия">' + '<button id=' + String(work_schedule_id) + ' class="del-work-schedule-btn"><img src="/client/img/remove.png"></button></td>'
+            html += '<td data-label="Действия">' + '<button id=' + String(work_schedule_id) + ' class="edit-work-schedule-btn">' + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button><button id=' + String(work_schedule_id) + ' class="del-work-schedule-btn"><img src="/client/img/remove.png"></button></td>'
             html += '</tr></tbody></table>'
     })
     
@@ -183,6 +212,77 @@ function show_work_schedules_table(work_schedules) { // вставляет та�
             del_work_schedule(this.id)
             take_work_schedules()
         }
+    })
+
+    $('.edit-work-schedule-btn').on('click', function() {
+        $('.all-selected-days-cell').html("") // очищает выбранные дни
+        show_all_days_cell() // очищает сетку выбираемых дней
+        $('#create-schedule-btn').hide() // скрывает кнопка создания непериодического графика
+        $('#create-periodicity-schedule-btn').show() // показывает кнопку создания периодческого графика
+
+        var work_schedule = get_work_schedule(this.id).work_schedule // получает текущее расписание
+        $('#title').val(work_schedule[0].title)
+        if (work_schedule[0].periodicity) {
+            $('.all-days-cell').html('')
+            $('#add_start_day').show() 
+            $('#n_work_days').show()
+            $('#n_work_days_input').val(JSON.parse(work_schedule[0].work_days).length)
+        }
+        
+        $.each(JSON.parse(work_schedule[0].work_days), function(i, work_day) { // перебирает отсортированные дни графика)
+            // .sort(function (a, b) {if (a.day < b.day) {return -1} if (a.day > b.day) {return 1} return 0 })
+            $('#' + work_day.day).addClass('day-selected')
+            
+            if (work_schedule[0].periodicity) { // если график периодический
+                add_periodicity_day_to_select(work_day.day)        
+                $('.select-day').addClass('day-selected')
+            }            
+
+            add_day_to_selected_cell(work_day.day, periodicity=work_schedule[0].periodicity)
+
+            if (work_day.periodicity) {array_selected_days = JSON.parse("[" + $('#selected-periodicity-days').val() + "]")} // массив выбранных дней}
+            else {array_selected_days = JSON.parse("[" + $('#selected-days').val() + "]")} // массив выбранных дней}
+    
+            if (!array_selected_days.includes(parseInt(work_day.day))) { // если этот день не в выбранных
+                if (work_schedule[0].periodicity) {
+                    $('#selected-periodicity-days').val(function () { // добавляет в поле ввода выбранных дней
+                        if (this.value == "") {
+                            return work_day.day
+                        }
+            
+                        return this.value + "," + work_day.day
+                    })
+                }
+
+                else {
+                    $('#selected-days').val(function () { // добавляет в поле ввода выбранных дней
+                        if (this.value == "") {
+                            return work_day.day
+                        }
+            
+                        return this.value + "," + work_day.day
+                    })
+                }
+            }
+        })
+
+
+
+        $.each(JSON.parse(work_schedule[0].work_days), function(i, work_day) {
+            if (work_day.like_as != null) { // если копипаст рабочег графика               
+                create_select_like_another_day(work_day.day, work_day.like_as, periodicity=work_schedule[0].periodicity)                
+            }
+
+            else if (work_day.like_as == null) {
+                $.each(work_day.schedule, function(j, schedule) {
+                    $('#selected-day' + work_day.day + ' #start_time' + work_day.day + parseInt(j+1)).val(schedule.start_time).change()                    
+                    $('#selected-day' + work_day.day + ' #end_time' + work_day.day + parseInt(j+1)).val(schedule.end_time).change()
+                    
+                    $('#selected-day' + work_day.day + ' .like-another-day-select').val('-').change()
+                })
+            }
+
+        })
     })
 }
 
@@ -205,48 +305,64 @@ function take_work_schedules() { // получает массив рабочих
     })
 } 
 
-function create_select_like_another_day(day_id, selected_day=null) {
-    html = 
-        "как в: <select  class='like-another-day-select'>\
-        <option value='-'>-</option>"
 
-            $.each(get_selected_days(), function (i, select_day) {
-                // && get_selected_days().indexOf(day_id) > get_selected_days().indexOf(select_day)
-                if (select_day != day_id  && get_work_times(select_day).schedule.length > 0) {
+function create_select_like_another_day(day_id, periodicity=false) {
+    var html = 
+    "как в: <select  class='like-another-day-select'>\
+    <option value='-'>-</option>"
+
+        $.each(get_selected_days(periodicity), function (i, select_day) {
+            // && get_selected_days().indexOf(day_id) > get_selected_days().indexOf(select_day)
+            if (select_day != day_id  && get_work_times(select_day).schedule.length > 0) {
+                if (!periodicity) {
                     html += "<option value=" + select_day + ">" + get_day_by_numb(select_day) + "</option>"
                 }
-            })
+                else {
+                    html += "<option value=" + select_day + ">День " + select_day + "</option>"
+                }
+            }
+        })
 
-        html += "</select>"
-    
-    $('#selected-day' + day_id +  ' .like-another-day').html(html)
+    html += "</select>"
+    var selected_day = $('#selected-day' + day_id + ' .like-another-day-select').val()
+    $('#selected-day' + day_id +  ' .like-another-day').html(html)    
     
     $('#selected-day' + day_id +  ' .like-another-day-select').change(function() {
-
-        if ($('#selected-day' + day_id + ' .like-another-day-select').val() != '-') {
+        var selected_day = $('#selected-day' + day_id + ' .like-another-day-select').val()
+        if (this.value != '-') {            
+            $.each(Array(5), function(j) {
+                $('#selected-day' + day_id + ' #start_time' + day_id + parseInt(j+1)).val("").change()             
+                $('#selected-day' + day_id + ' #end_time' + day_id + parseInt(j+1)).val("").change()
+            })
             $('#selected-day' + day_id + ' .day-schedule').hide()
-            // $.each(get_work_times($('#selected-day' + day_id + ' .like-another-day-select').val()).schedule, function(i, item) {
-            //     $('#selected-day' + day_id + ' #start_time'+day_id+parseInt(i+1)).val(item.start_time)
-            //     $('#selected-day' + day_id + ' #end_time'+day_id+parseInt(i+1)).val(item.end_time)
-            // })
         }
     
         else {
-            // console.log('-')
-            // $.each(get_work_times($('#selected-day' + day_id + ' .like-another-day-select').val()).schedule, function(i, item) {
-            //     $('#selected-day' + day_id + ' #start_time'+day_id+parseInt(i+1)).val("")
-            //     $('#selected-day' + day_id + ' #end_time'+day_id+parseInt(i+1)).val("")
-            // })
             $('#selected-day' + day_id + ' .day-schedule').show()
         }
+        
+        if (selected_day == null || selected_day == undefined) {
+            $('#selected-day' + day_id + ' .like-another-day-select').val('-')
+            $('#selected-day' + day_id + ' .day-schedule').show()
+        }
+        else {
+            $('#selected-day' + day_id + ' .like-another-day-select').val(selected_day)
+            selected_day != '-' ? $('#selected-day' + day_id + ' .day-schedule').hide() : $('#selected-day' + day_id + ' .day-schedule').show()
+        }
     })
+    
+    if (selected_day == null || selected_day == undefined || !(get_selected_days(periodicity).includes(selected_day))) {
+        $('#selected-day' + day_id + ' .like-another-day-select').val('-')
+        $('#selected-day' + day_id + ' .day-schedule').show()
+    }
+    else {
+        $('#selected-day' + day_id + ' .like-another-day-select').val(selected_day)
+        selected_day != '-' ? $('#selected-day' + day_id + ' .day-schedule').hide() : $('#selected-day' + day_id + ' .day-schedule').show()
+    }
 }
 
-
-
-
-function add_day_to_selected_cell(day_id, periodicity) {
-    html = 
+function add_day_to_selected_cell(day_id, periodicity=false) {
+    var html = 
     "<div class='day' id=selected-day" + day_id + ">"
         if (!periodicity) {html += "<div class='day-title'>" + get_day_by_numb(day_id) + "</div>"}
         else {html += "<div class='day-title'>день " + day_id + "</div>"}
@@ -264,29 +380,27 @@ function add_day_to_selected_cell(day_id, periodicity) {
         </div>\
     </div>"
     $('.all-selected-days-cell').append(html)
-
-    $.each(get_selected_days(), function (i, select_day) {
-        create_select_like_another_day(select_day)
+    
+    $.each(get_selected_days(periodicity), function (i, select_day) {
+        create_select_like_another_day(select_day, periodicity=periodicity)
     })
 
     $('.start_time').change(function() {
-        $.each(get_selected_days(), function (i, select_day) {
-            var selected_like_as__day = $('#selected-day' + select_day + ' .like-another-day-select').val()
-            create_select_like_another_day(select_day, selected_day=$('#selected-day' + select_day + ' .like-another-day-select').val())
-            $('#selected-day' + select_day + ' .like-another-day-select').val(selected_like_as__day)
+        $.each(get_selected_days(periodicity), function (i, select_day) {
+            create_select_like_another_day(select_day,  periodicity = periodicity)
+            
         })
     })
     $('.end_time').change(function() {
-        $.each(get_selected_days(), function (i, select_day) {
-            var selected_like_as__day = $('#selected-day' + select_day + ' .like-another-day-select').val()
-            create_select_like_another_day(select_day)
-            $('#selected-day' + select_day + ' .like-another-day-select').val(selected_like_as__day)
+        $.each(get_selected_days(periodicity), function (i, select_day) {      
+            create_select_like_another_day(select_day, periodicity = periodicity)            
         })
     })
 }
 
 function del_day_to_selected_cell(day_id) {
-    $('#selected-day'+day_id).remove()
+    $('#selected-day'+day_id).remove()   
+    
 }
 
 function show_all_days_cell() {
@@ -328,17 +442,7 @@ function show_all_days_cell() {
     </div>'
     $('.all-days-cell').html(html)
     $('#selected-days').val('')
-    // $('.day').on('click', function() {
-    //     $(this).addClass('day-selected')
-    //     var day_id = this.id
-    //     if (!JSON.parse("[" + $('#selected-days').val().slice(" ") + "]").includes(parseInt(day_id))) {
-    //         $('#selected-days').val(function () {
-    //             return this.value + "," + day_id
-    //         })
     
-    //         add_day_to_selected_cell(day_id)
-    //     }
-    // })
     $('.select-day').on('click', function() {
         $(this).addClass('day-selected') // помечает день выбранным
         var day_id = this.id
@@ -364,6 +468,60 @@ function show_all_days_cell() {
             $(this).removeClass('day-selected') // помечает день не выбранным
     
             del_day_to_selected_cell(day_id) // удаляет выбранный день из выбранныех
+            console.log(get_selected_days())
+            $.each(array_selected_days, function (i, select_day) {
+                create_select_like_another_day(select_day, periodicity=false)
+            })
         }
     })
+}
+
+
+function add_periodicity_day_to_select(day_id) {
+    html = '<div id="' + day_id + '" class="select-day select-day' + day_id + '">\
+        <div class="day-title">\
+            день ' + day_id + '\
+        </div>\
+    </div>'
+    $('.all-days-cell').append(html)
+
+    $('.select-day'+day_id).on('click', function() {
+        var array_selected_days = JSON.parse("[" + $('#selected-periodicity-days').val() + "]")
+        var day_id = this.id
+
+        if (!array_selected_days.includes(parseInt(day_id))) {
+            $(this).addClass('day-selected')
+            
+            $('#selected-periodicity-days').val(function () { // добавляет в поле ввода выбранных дней
+                if (this.value == "") {
+                    return day_id
+                }
+    
+                return this.value + "," + day_id
+            })
+            add_day_to_selected_cell(day_id, periodicity=true)
+        }
+
+        else if (array_selected_days.includes(parseInt(day_id))) {
+            array_selected_days.splice(array_selected_days.indexOf(parseInt(day_id)), 1) // удаляет день из выбранных
+            $('#selected-periodicity-days').val(array_selected_days) // применяет массив выбранных дней в скрытое поле ввода            
+            $(this).removeClass('day-selected') // помечает день не выбранным    
+            del_day_to_selected_cell(day_id) // удаляет выбранный день из выбранныех
+            
+            $.each(array_selected_days, function (i, select_day) {
+                create_select_like_another_day(select_day, periodicity=true)
+            })
+        }
+    })
+}
+
+function del_periodicity_day_to_select(day_id) {
+    $('.all-days-cell ' + '#' + day_id).remove()
+    
+    var array_selected_days = JSON.parse("[" + $('#selected-periodicity-days').val() + "]")
+    array_selected_days.splice(array_selected_days.indexOf(parseInt(day_id)), 1) // удаляет день из выбранных
+    $('#selected-periodicity-days').val(array_selected_days) // применяет массив выбранных дней в скрытое поле ввода    
+    del_day_to_selected_cell(day_id) // удаляет выбранный день из выбранныех
+
+    
 }

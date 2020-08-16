@@ -165,3 +165,7 @@ if ($data['operation'] == 'del_work_schedule') {
 if ($data['operation'] == 'get_work_schedules') {
     get_work_schedules();
 }
+
+if ($data['operation'] == 'get_work_schedule') {
+    get_work_schedule($data['work_schedule_id']);
+}

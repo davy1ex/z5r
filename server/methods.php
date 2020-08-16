@@ -551,19 +551,54 @@ function get_work_schedules() {
     ]);
 }
 
-
-function add_schedule($title, $work_days, $periodicity) {
+function get_work_schedule($work_schedule_id) {
     global $pdo;
-    $query = $pdo -> prepare('INSERT INTO work_schedule (title, work_days, periodicity) VALUES (?, ?, ?)');
-    $query -> execute([
-        $title,
-        $work_days,
-        (int)$periodicity
-    ]);
+    $query = $pdo -> prepare('SELECT * FROM `work_schedule` WHERE id=?');
+    $query -> execute([(int)$work_schedule_id]);
+    $work_schedule = $query -> fetchAll(PDO::FETCH_ASSOC);
     $pdo = null;
 
     header("Content-Type: application/json");
     echo json_encode([
-        'success'   => 1
+        'success'   => 1,
+        'work_schedule'     => $work_schedule
     ]);
+}
+
+
+function add_schedule($title, $work_days, $periodicity) {
+    global $pdo;
+    $query = $pdo -> prepare('SELECT * FROM `work_schedule` WHERE `title` = ?');
+    $query -> execute([$title]);
+    $work_schedules = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+    header("Content-Type: application/json");
+
+    if (count($work_schedules) > 0) {
+        $query = $pdo -> prepare('UPDATE `work_schedule` SET `work_days` = ?, `periodicity` = ? WHERE `title` = ?');
+        $query -> execute([
+            $work_days,
+            $periodicity,
+            $title            
+        ]);
+        $pdo = null;
+        
+        echo json_encode([
+            'success'   => '1',
+        ]);
+    }
+
+    else {
+        $query = $pdo -> prepare('INSERT INTO work_schedule (title, work_days, periodicity) VALUES (?, ?, ?)');
+        $query -> execute([
+            $title,
+            $work_days,
+            (int)$periodicity
+        ]);
+        $pdo = null;
+
+        echo json_encode([
+            'success'   => 1
+        ]);
+    }   
 }

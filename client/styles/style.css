@@ -705,7 +705,7 @@ table th {
       margin-top: 0px;
 }
 
-.edit-usr-btn, .edit-card-btn, .del-usr-btn, .del_btn, .generate_qr_token, .del-btn, .del-work-schedule-btn {
+.edit-usr-btn, .edit-card-btn, .del-usr-btn, .del_btn, .generate_qr_token, .del-btn, .del-work-schedule-btn, .edit-work-schedule-btn {
   padding: 5px !important;
   margin: 2px;
   border-radius: 50% !important;
@@ -716,15 +716,15 @@ table th {
   border: 1px  solid white;
 }
 
-.edit-usr-btn, .edit-card-btn, .generate_qr_token {
+.edit-usr-btn, .edit-card-btn, .generate_qr_token, .edit-work-schedule-btn {
   border: 1px solid white;
   background:  #FF9933;
 }
-.edit-usr-btn:hover, .edit-card-btn:hover, .generate_qr_token:hover {
+.edit-usr-btn:hover, .edit-card-btn:hover, .generate_qr_token:hover, .edit-work-schedule-btn:hover {
   background: #CC6600;
 }
 
-.edit-usr-btn img, .edit-card-btn img, .del-usr-btn img, .del_btn img, .generate_qr_token img, .del_btn img, .del-work-schedule-btn img {
+.edit-usr-btn img, .edit-card-btn img, .del-usr-btn img, .del_btn img, .generate_qr_token img, .del_btn img, .del-work-schedule-btn img, .edit-work-schedule-btn img {
   width: 20px !important;
 }
 
