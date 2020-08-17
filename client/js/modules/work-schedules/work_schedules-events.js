@@ -1,37 +1,16 @@
-$('#periodicity-btn').click(function () {
+$('#periodicity-btn').change(function () {
     if($(this).is(":checked")) {
-        // var start_day_html = 
-        // "\
-        // <legend>\
-        //     Опорная дата:\
-        //     <input id='start_day' type='time'>\
-        // </legend>\
-        // "
-
-        // var n_work_days = 
-        // "\
-        // <legend>\
-        //     Период\
-        //     <input id='n_work_days_input' type='number' min='0' max='31' value=0>\
-        // </legend>\
-        // "
-
-        // $('#add_start_day').html(start_day_html) // добавляет поле ввода первого дня работы
         $('#add_start_day').show() // добавляет поле ввода первого дня работы
-        // $('#add_n_work_day').html(n_work_day_html) // кнопка добавления новых рабочих дней
         $('#n_work_days').show() // поле ввода рабочих дней
-
-        // $('.all-days-cell').hide() // скрывает блок выбора рабочих дней непериодического графика
-        
-        $('#create-schedule-btn').hide() // скрывает кнопка создания непериодического графика
         $('#create-periodicity-schedule-btn').show() // показывает кнопку создания периодческого графика
+
+        $('#create-schedule-btn').hide() // скрывает кнопка создания непериодического графика        
+        
         $('.all-selected-days-cell').html("") // очищает выбранные дни, если они были
         $('#selected-periodicity-days').val("") // сбрасывает количество рабочих дней периодического графика
+        $('.all-days-cell').html('') // очищает сетку дней для выбора
         
-        // add_day_to_selected_cell(1, 1) // создаёт первый (дефолтный) день
-        $('.all-days-cell').html('')
-        add_periodicity_day_to_select(1)
-        
+        if (get_selected_days(1).length < 1) {add_periodicity_day_to_select(1)} // добавляет первый день, если таковых ещё нет        
 
     } else {
         $('#add_start_day').hide() // очищает поле ввода первого дня работы
