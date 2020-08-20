@@ -119,7 +119,8 @@ $('#create-periodicity-schedule-btn').on('click', function() {
     add_schedule(
         title = $('#title').val(),
         work_days = work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}),
-        periodicity = 1
+        periodicity = 1,
+        start_day = $('#start_day').val()
     )
 
     take_work_schedules()

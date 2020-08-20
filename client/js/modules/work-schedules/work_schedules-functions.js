@@ -48,7 +48,7 @@ function get_work_schedule(work_schedule_id) {
 }
 
 
-function add_schedule(title, work_days, periodicity) {
+function add_schedule(title, work_days, periodicity, start_day=null) {
     var response = function () {
         var tmp = null
         $.ajax({
@@ -63,7 +63,8 @@ function add_schedule(title, work_days, periodicity) {
                 'operation':    'add_schedule',
                 'title':        title,
                 'work_days':    JSON.stringify(work_days),
-                'periodicity':  periodicity
+                'periodicity':  periodicity,
+                'start_day':    start_day
             }),
             
             success: function(response) {

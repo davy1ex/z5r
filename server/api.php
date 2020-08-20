@@ -152,7 +152,7 @@ if ($data['operation'] == 'import_config') {
 
 
 if ($data['operation'] == 'add_schedule') {
-    add_schedule($data['title'], $data['work_days'], $data['periodicity']);
+    add_schedule($data['title'], $data['work_days'], $data['start_day'], $data['periodicity']);
 }
 
 if ($data['operation'] == 'del_work_schedule') {

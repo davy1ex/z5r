@@ -566,7 +566,7 @@ function get_work_schedule($work_schedule_id) {
 }
 
 
-function add_schedule($title, $work_days, $periodicity) {
+function add_schedule($title, $work_days, $start_day, $periodicity) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `work_schedule` WHERE `title` = ?');
     $query -> execute([$title]);
@@ -575,10 +575,11 @@ function add_schedule($title, $work_days, $periodicity) {
     header("Content-Type: application/json");
 
     if (count($work_schedules) > 0) {
-        $query = $pdo -> prepare('UPDATE `work_schedule` SET `work_days` = ?, `periodicity` = ? WHERE `title` = ?');
+        $query = $pdo -> prepare('UPDATE `work_schedule` SET `work_days` = ?, `periodicity` = ?, `start_day` = ? WHERE `title` = ?');
         $query -> execute([
             $work_days,
             $periodicity,
+            $start_day,
             $title            
         ]);
         $pdo = null;
@@ -589,11 +590,12 @@ function add_schedule($title, $work_days, $periodicity) {
     }
 
     else {
-        $query = $pdo -> prepare('INSERT INTO work_schedule (title, work_days, periodicity) VALUES (?, ?, ?)');
+        $query = $pdo -> prepare('INSERT INTO work_schedule (title, work_days, periodicity, `start_day`) VALUES (?, ?, ?, ?)');
         $query -> execute([
             $title,
             $work_days,
-            (int)$periodicity
+            (int)$periodicity,
+            $start_day
         ]);
         $pdo = null;
 

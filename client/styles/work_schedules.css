@@ -20,16 +20,12 @@ body {
 .select input {
     width: 100%;
 }
-.select #start_day,
+
 .select #n_work_day,
 .select #n_holiday {
     width: 25px;
     padding: 0;
     margin: 5px;
-}
-
-.select #start_day {
-    width: 60px;
 }
 
 .select label {
