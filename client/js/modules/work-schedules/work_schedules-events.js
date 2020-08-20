@@ -16,7 +16,7 @@ $('#periodicity-btn').change(function () {
         $('#add_start_day').hide() // очищает поле ввода первого дня работы
         // $('#add_n_work_day').html("") // очищает кнопку добавления рабочего дня
         $('#n_work_days').hide() // очищает поле ввода выходных
-        $('#selected-periodicity-days').val() // сбрасывает количество рабочих дней периодического графика
+        $('#selected-periodicity-days').val("") // сбрасывает количество рабочих дней периодического графика
         // $('.all-days-cell').show() // показывает блок с выбором рабочих дней непериодического графика
         $('#create-schedule-btn').show()
         $('#create-periodicity-schedule-btn').hide() // скрывает кнопку добавления периодического расписания
@@ -29,10 +29,21 @@ $('#periodicity-btn').change(function () {
     // $('.all-selected-days-cell').html("")
 })
 
-$('#n_work_days_input').change(function() {
-    if (this.defaultValue < this.value) {
-        console.log('увеличилось')
+$('#increase-work-days').on('click', function() {
+    var current_value = parseInt($('#n_work_days_input').val())
+    $('#n_work_days_input').val(current_value + 1).change()
+})
 
+$('#decrease-work-days').on('click', function() {
+    var current_value = parseInt($('#n_work_days_input').val())
+    if (current_value > 1) {
+        $('#n_work_days_input').val(current_value - 1).change()
+    }
+})
+
+$('#n_work_days_input').change(function() {
+    if (parseInt(this.defaultValue) < parseInt(this.value)) {
+        console.log('увеличилось')        
         add_periodicity_day_to_select(this.value)
     }
 
@@ -40,7 +51,9 @@ $('#n_work_days_input').change(function() {
         console.log('уменьшилось')
         console.log('было: ' + this.defaultValue + ' стало: ' + this.value)
         console.log('пытаюсь удалить ' + this.defaultValue)
-        del_periodicity_day_to_select(this.defaultValue)
+        if (parseInt(this.defaultValue) > 1) {
+            del_periodicity_day_to_select(this.defaultValue)
+        }
     }
     this.defaultValue = this.value
 })

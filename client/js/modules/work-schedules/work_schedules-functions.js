@@ -150,6 +150,7 @@ function get_work_times(day_id, like_as) { // возвращает выбран�
 function show_work_schedules_table(work_schedules, periodicity=false) { // вставляет таблицу с рабочими графиками
     var work_schedule_list = work_schedules.work_schedule
     var html = ""
+    
     $.each(work_schedule_list, function(i, item) {
         item.work_days = JSON.parse(item.work_days).sort(function (a, b) {if (a.day < b.day) {return -1} if (a.day > b.day) {return 1} return 0 })
         html += 
@@ -592,10 +593,8 @@ function show_all_days_cell() {
 
 
 function add_periodicity_day_to_select(day_id) {
-    html = '<div id="' + day_id + '" class="select-day select-day' + day_id + '">\
-        <div class="day-title">\
-            день ' + day_id + '\
-        </div>\
+    html = '<div id="' + day_id + '" class="select-day periodicity-select-day select-day' + day_id + '">\
+        <div class="day-title">' + day_id + '</div>\
     </div>'
     $('.all-days-cell').append(html)
 
