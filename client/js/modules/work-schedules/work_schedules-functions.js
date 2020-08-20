@@ -296,6 +296,7 @@ function show_work_schedules_table(work_schedules, periodicity=false) { // вс�
 
         })
     })
+    create_work_schedule_select_field()
 }
 
 
@@ -634,7 +635,20 @@ function del_periodicity_day_to_select(day_id) {
     var array_selected_days = JSON.parse("[" + $('#selected-periodicity-days').val() + "]")
     array_selected_days.splice(array_selected_days.indexOf(parseInt(day_id)), 1) // удаляет день из выбранных
     $('#selected-periodicity-days').val(array_selected_days) // применяет массив выбранных дней в скрытое поле ввода    
-    del_day_to_selected_cell(day_id) // удаляет выбранный день из выбранныех
+    del_day_to_selected_cell(day_id) // удаляет выбранный день из выбранныех  
+}
 
-    
+
+function create_work_schedule_select_field() {
+    var all_work_schedules = get_work_schedules().work_schedule
+    var html = 
+    '<select id="work-schedule-select">'
+
+    $.each(all_work_schedules, function(i, work_schedule) {
+        html += '<option>' + work_schedule.title + '</option>'
+    })
+
+    html += '</select>'
+
+    $('#work-schedule-select-field').html(html)
 }

@@ -90,6 +90,10 @@ $('#create-schedule-btn').on('click', function() {
     )
 
     take_work_schedules()
+    $('#selected-periodicity-days').val("")
+    $('.all-selected-days-cell').html("") // очищает выбранные дни
+    $('#title').val() // очищает название
+    show_all_days_cell()
 })
 
 $('#create-periodicity-schedule-btn').on('click', function() {
@@ -119,6 +123,11 @@ $('#create-periodicity-schedule-btn').on('click', function() {
     )
 
     take_work_schedules()
+    $('.all-selected-days-cell').html("") // очищает выбранные дни, если они были
+    $('#selected-periodicity-days').val("") // сбрасывает количество рабочих дней периодического графика
+    $('.all-days-cell').html('') // очищает сетку дней для выбора
+    $('#title').val() // очищает название
+    if (get_selected_days(1).length < 1) {add_periodicity_day_to_select(1)}
 })
 
 

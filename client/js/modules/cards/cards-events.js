@@ -6,7 +6,8 @@ $('.add_btn').on('click', function () { // добавляет карту
         $('#operator_name').val(),
         $('#cbk1').is(':checked') == true ? 1 : 0,
         $('#cbk2').is(':checked') == true ? 1 : 0, 
-        $('#card_tz').val()
+        $('#card_tz').val(),
+        $('#work-schedule-select').val()
     )
     take_cards()
 })

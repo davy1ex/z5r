@@ -1,4 +1,4 @@
-function add_card(numb_card, operator_name, block_type, shord_code, tz) {
+function add_card(numb_card, operator_name, block_type, shord_code, tz, work_schedule) {
     var response = function () {
         var tmp = null
         $.ajax({
@@ -14,7 +14,8 @@ function add_card(numb_card, operator_name, block_type, shord_code, tz) {
                 'operator_name':    operator_name,
                 'block_type':       block_type,  // 1 or 0
                 'shord_code':       shord_code,  // 1 or 0
-                'tz':               tz
+                'tz':               tz,
+                'work_schedule':    work_schedule
             }),
             success: function(response) {
                 tmp = response
