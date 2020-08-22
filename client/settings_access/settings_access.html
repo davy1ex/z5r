@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+    <link rel="stylesheet" href="/client/styles/style.css">
+    <link rel="stylesheet" href="/client/settings_access/settings_access.css">
+    <script src="/client/js/vendors/live.js"></script>
+
+</head>
+<body>
+    <fieldset>
+        <legend>Параметры точки доступа "Одностороння дверь" </legend>
+        
+        <div class="settings-field">
+            <fieldset class="entry-settings">
+                <legend>Вход по считывателю</legend>
+
+                <div class="settings-item">
+                    <label for="select-lock-type">Тип замка</label>
+                    
+                    <select name="select-lock-type" id="select-entry-lock-type">
+                        <option value="electromagnetic">Электромагнитный</option>
+                        <option value="electromechanical">Электромеханический</option>
+                    </select>
+                </div>
+                
+                <div class="settings-item">
+                    <label for="input-time-openning">Время открывания, с</label>
+                    <input type="number" name="input-time-openning" id="input-entry-time-openning">
+                </div>
+                
+
+                <div class="settings-item">
+                    <label for="input-time-pass">Время на проход, с</label>
+                    <input type="number" name="input-time-pass" id="input-entry-time-pass">
+                </div>
+
+                <div class="settings-item">
+                    <div class="ckb-container">
+                        <input type="checkbox" name="check-pass" id="check-entry-pass">
+                        <label for="check-pass">Отслеживать проход</label>
+                    </div>
+                </div>                
+            </fieldset>
+            
+
+            <fieldset class="exit-settings">
+                <legend>Выход по считывателю</legend>
+                
+                <div class="settings-item">
+                    <label for="select-lock-type">Тип замка</label>
+                    <select name="select-lock-type" id="select-exit-lock-type">
+                        <option value="electromagnetic">Электромагнитный</option>
+                        <option value="electromechanical">Электромеханический</option>
+                    </select>
+                </div>
+                
+                <div class="settings-item">
+                    <label for="input-time-openning">Время открывания, с</label>
+                    <input type="number" name="input-time-openning" id="input-exit-time-openning">
+                </div>
+                
+
+                <div class="settings-item">
+                    <label for="input-time-pass">Время на проход, с</label>
+                    <input type="number" name="input-time-pass" id="input-exit-time-pass">
+                </div>
+
+                <div class="settings-item">
+                    <div class="ckb-container">
+                        <input type="checkbox" name="check-pass" id="check-exit-pass">
+                        <label for="check-pass">Отслеживать проход</label>
+                    </div>                    
+                </div>                
+            </fieldset>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="exit-button-settings">
+          <legend>Выход по кнопке</legend>
+
+          <fieldset>
+                <legend>Режим</legend>
+
+                <div class="settings-item">
+                    <div class="ckb-container">
+                        <input type="checkbox" name="direct-control" id="direct-control">
+                        <label for="direct-control">Прямое управление</label>
+                    </div>                    
+                </div>
+
+                <fieldset class="settings-item">
+                    <legend>
+                        <div class="ckb-container">
+                            <input type="checkbox" name="direct-control" id="direct-control">
+                            <label for="direct-control">Авторизированное управление</label>
+                        </div>                        
+                    </legend>
+
+                    <div class="settings-item check-square-container">
+                        <div class="check-square">
+                            <div class="top-line"><input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb"></div>
+                            
+                            <div class="centre-line">
+                                <input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb">
+                                <input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb">
+                            </div>
+                            
+                            <div class="bottom-line">
+                                <input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb">
+                            </div>                            
+                        </div>
+                        <label for="check-square">Положение области ввода</label>
+                    </div>
+
+                    <div class="settings-item password-container">
+                        <div class="settings-item">
+                            <label for="input-length-password">Длина пароля</label>
+                            <input type="number" name="input-length-password" class="small-value" id="input-length-password" value=1>
+                        </div>
+
+                        <div class="settings-item select-color-password-container">
+                            <select name="select-color-password" id="select-color-password">
+                                <option value="red">Красный</option>
+                                <option value="green">Зелёный</option>
+                                <option value="blue">Синий</option>
+                                <option value="yellow">Жёлтый</option>
+                                <option value="purple">Фиолетовый</option>
+                                <option value="orange">Оранжевый</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>
+                        <div class="ckb-container">
+                            <input type="checkbox" name="clock" id="clock-chb">
+                            <label for="clock">Часы</label>
+                        </div>
+                    </legend>
+                    <div class="settings-item">
+                        <span style="color: red; font-weight: bold;">R</span> - часы
+                        <span style="color:green; font-weight: bold;">G</span>  - минуты
+                        <span style="color:blue; font-weight: bold;">B</span>  - секунды
+                    </div>
+                </fieldset>
+          </fieldset>
+
+            <fieldset>
+                <legend>
+                    <div class="ckb-container">
+                        <input type="checkbox" name="emergency-opening" id="emergency-opening-ckb">
+                        <label for="emergency-opening">Аварийное открывание</label>
+                    </div>
+                </legend>
+
+                <div class="settings-item value-item">                    
+                    <div class="value-container">
+                        <label for="input-distance-alarm">Расстояние</label>
+                        <input type="number" name="input-distance-alarm" id="input-distance-alarm"> <div class="value">мм</div>
+                    </div>
+                    
+                    <div class="hint">
+                        (handDistanceAlarm)
+                    </div>
+                </div>
+
+                <div class="settings-item value-item">
+                    <div class="value-container">
+                        <label for="input-time-distance">Время определения фонового расстояния</label>
+                        <input type="number" name="input-time-distance" id="input-time-distance"> <div class="value">c</div>
+                    </div>
+                    
+                    <div class="hint">
+                        (blackTresholdInterval)
+                    </div>
+                </div>
+
+                <div class="settings-item value-item">                   
+                    <div class="value-container">
+                        <label for="input-sensetivity">Чувствительность</label>
+                        <input type="number" name="input-sensetivity" id="input-sensetivity"> <div class="value">с</div>
+                    </div>
+
+                    <div class="hint">
+                        (handDistanceDelta)
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <label for="input-background-distance">Фоновое расстояние</label>
+                    
+                    <div class="value-container">
+                        <input type="number" name="input-background-distance" id="input-sensetivity"> <div class="value">мм</div>
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <label for="input-positive-response-distance">Дистанция положительного ответа</label>
+                    
+                    <div class="value-container">
+                        <input type="number" name="input-positive-response-distance" id="input-positive-response-distance"> <div class="value">мм</div>
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <label for="input-negative-response-distance">Дистанция отрицательного ответа</label>
+                    
+                    <div class="value-container">
+                        <input type="number" name="input-negative-response-distance" id="input-negative-response-distance"> <div class="value">мм</div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>
+                    <div class="ckb-container">
+                        <input type="checkbox" name="ckb-signed-unlock-door" id="ckb-signed-unlock-door">
+                        <label for="ckb-signed-unlock-door">Авторизованная разблокировка двери</label>
+                    </div>                    
+                </legend>
+
+                <div class="settings-item">
+                    <div class="check-square">
+                        <div class="top-line"><input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb"></div>
+                        
+                        <div class="centre-line">
+                            <input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb">
+                            <input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb">
+                        </div>
+                        
+                        <div class="bottom-line">
+                            <input type="checkbox" name="top-input-field-ckb" id="top-input-field-ckb">
+                        </div>                            
+                    </div>
+
+                    <label for="check-square">Положение области ввода</label>
+                </div>
+
+                <div class="settings-item password-container">
+                    <div class="settings-item">
+                        <label for="input-length-password">Длина пароля</label>
+                        <input type="number" name="input-length-password" class="small-value" id="input-length-password" value=1>
+                    </div>
+
+                    <div class="settings-item select-color-password-container">
+                        <select name="select-color-password" id="select-color-password">
+                            <option value="red">Красный</option>
+                            <option value="green">Зелёный</option>
+                            <option value="blue">Синий</option>
+                            <option value="yellow">Жёлтый</option>
+                            <option value="purple">Фиолетовый</option>
+                            <option value="orange">Оранжевый</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+      </fieldset>
+</body>
+
+</html>

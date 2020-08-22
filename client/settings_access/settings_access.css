@@ -1,11 +1,11 @@
+body {
+    height: 100%;
+}
+
 .door-toolbar {
     display: flex;
     flex-direction: row;
 }
-
-/* .extended {
-    height: 300px;
-} */
 
 .clicked {
     background-image: url("/client/img/double-door.png")
@@ -14,6 +14,128 @@
 .door-img {
     width: 200px;
 }
+
+
+
+
+.settings-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.settings-field fieldset {
+    margin: 10px;
+}
+
+.settings-item {
+    /* margin: 10px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.settings-item input{
+    margin: 10;
+    padding: 0;
+    width: 60px;
+    /* margin-left: auto; */
+}
+.value-item {
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.value-item label {
+    min-width: 50%;
+}
+
+.ckb-container {
+    display: flex;
+    flex-direction: row;
+    line-height: 10px;
+}
+.ckb-container input {
+    width: auto;
+}
+.ckb-container label {
+    margin: 8px;
+}
+
+
+label{
+    margin: auto 5px;
+}
+
+
+
+.exit-button-settings {
+    width: 500px;
+}
+.check-square {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border: 1px solid #27BBFF;
+}
+.check-square input {
+    margin: 0;
+    padding: 0;
+    width: 15px;
+}
+.check-square .top-line, .check-square .bottom-line {
+    display: flex;
+    justify-content: center;
+}
+.check-square .centre-line{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.small-value {
+    width: 60px;
+    padding: 0;
+    padding-right: 10px;
+}
+
+
+.password-container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.password-container label {
+    margin: 10px 0;
+}
+.password-container input {
+    margin-left: auto;
+}
+.password-container select {
+    width: 100%;
+}
+
+
+
+.value-container {
+    display: flex;
+    flex-direction: row;
+}
+.value-container .value {
+    width: 100%;
+    margin: auto 5px;
+    display: flex;
+    flex-direction: row;
+}
+.value-container label {
+    margin-left: 0;
+}
+.hint {
+    margin-top: 5px;
+}
+
+
 
 @media screen and (max-width:700px) {
     .door-toolbar {
