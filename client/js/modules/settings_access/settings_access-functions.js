@@ -59,12 +59,12 @@ function create_access_settings_div() {
     let tab1 = document.getElementById("tab1");
     let tab2 = document.getElementById("tab2");
     let tab3 = document.getElementById("tab3");
-    let tab4 = document.getElementById("tab4");
+    //let tab4 = document.getElementById("//tab4");
 
     let content_h2_1 = document.getElementsByClassName("content_h2_1")[0];
     let content_h2_2= document.getElementsByClassName("content_h2_2")[0];
     let content_h2_3 = document.getElementsByClassName("content_h2_3")[0];
-    let content_h2_4 = document.getElementsByClassName("content_h2_4")[0];
+    //let //content_h2_4 = document.getElementsByClassName("//content_h2_4")[0];
 
     if (settings_access[0].point_type == "1") {
         $('#option-one-door').prop("checked", 1);
@@ -73,14 +73,14 @@ function create_access_settings_div() {
 
         tab2.removeAttribute("checked");
         tab3.removeAttribute("checked");
-        tab4.removeAttribute("checked");
+        //tab4.removeAttribute("checked");
         tab2.setAttribute('disabled','test1');
         tab3.setAttribute('disabled','test2');
-        tab4.setAttribute('disabled','test3');
+        //tab4.setAttribute('disabled','test3');
 
         content_h2_2.style.display = "none";
         content_h2_3.style.display = "none";
-        content_h2_4.style.display = "none";
+        //content_h2_4.style.display = "none";
         content_h2_1.style.display = "block";
     }
     if (settings_access[0].point_type == "2") {
@@ -90,14 +90,14 @@ function create_access_settings_div() {
 
         tab3.removeAttribute("checked");
         tab1.removeAttribute("checked");
-        tab4.removeAttribute("checked");
+        //tab4.removeAttribute("checked");
         tab1.setAttribute('disabled','test4');
         tab3.setAttribute('disabled','test5');
-        tab4.setAttribute('disabled','test6');
+        //tab4.setAttribute('disabled','test6');
 
         content_h2_1.style.display = "none";
         content_h2_3.style.display = "none";
-        content_h2_4.style.display = "none";
+        //content_h2_4.style.display = "none";
         content_h2_2.style.display = "block";
     }
     if (settings_access[0].point_type == "3") {
@@ -108,21 +108,21 @@ function create_access_settings_div() {
 
         tab2.removeAttribute("checked");
         tab1.removeAttribute("checked");
-        tab4.removeAttribute("checked");
+        //tab4.removeAttribute("checked");
         tab2.setAttribute('disabled','test7');
         tab1.setAttribute('disabled','test8');
-        tab4.setAttribute('disabled','test9');
+        //tab4.setAttribute('disabled','test9');
 
         content_h2_2.style.display = "none";
         content_h2_1.style.display = "none";
-        content_h2_4.style.display = "none";
+        //content_h2_4.style.display = "none";
         content_h2_3.style.display = "block";   
     }
     if (settings_access[0].point_type == "4") {
         $('#option-four-tab').prop("checked", 1);        
 
-        tab4.setAttribute('checked','test16');
-		tab4.removeAttribute("disabled");
+        //tab4.setAttribute('checked','test16');
+		//tab4.removeAttribute("disabled");
 
 		tab2.removeAttribute("checked");
 		tab1.removeAttribute("checked");
@@ -135,7 +135,7 @@ function create_access_settings_div() {
 		content_h2_2.style.display = "none";
 		content_h2_1.style.display = "none";
 		content_h2_3.style.display = "none";
-		content_h2_4.style.display = "block";
+		//content_h2_4.style.display = "block";
     }
 
 

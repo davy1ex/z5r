@@ -63,3 +63,33 @@ $('#clear-events-btn').click(function() {
         location.reload()
     }
 })
+
+
+$('#option-one-door').change(function () {
+    if($(this).is(":checked")) {
+        $('#one-door-img').show()
+        $('.door-toolbar').addClass('extended')
+
+        $('#two-door-img').hide()
+        $('#three-tab-img').hide()
+    }
+})
+$('#option-two-door').change(function () {
+    if($(this).is(":checked")) {
+        $('#two-door-img').show()
+        $('.door-toolbar').addClass('extended')
+
+        $('#one-door-img').hide()
+        $('#three-tab-img').hide()
+    }
+})
+$('#option-three-tab').change(function () {
+    if($(this).is(":checked")) {
+        $('#three-tab-img').show()        
+        $('.door-toolbar').addClass('extended')
+
+        $('#one-door-img').hide()
+        $('#two-door-img').hide()
+        
+    }
+})

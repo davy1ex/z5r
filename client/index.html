@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  
 	<link rel="stylesheet" type="text/css" href="/client/styles/style.css">
-  	<link rel="stylesheet" href="/client/styles/work_schedules.css">
+	<link rel="stylesheet" href="/client/styles/work_schedules.css">
+	<link rel="stylesheet" href="/client/settings_access/settings_access.css">  
   	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
   
   	<link rel="icon" href="/client/img/favicon.ico" type="image/x-icon">
@@ -317,18 +318,28 @@
 								<form action="">
 									<fieldset>
 										<legend>Тип точки доступа</legend>
-										<div class="radio-toolbar">
-															<input type="radio" id="option-one-door" name="selector" value="Односторонняя дверь">
-															<label for="option-one-door">Односторнняя дверь</label>
+										<div class="radio-toolbar door-toolbar">
+															<div class="container-door one-door">
+																<div class="image-door"><img src="/client/img/door.png" id='one-door-img' class='door-img' alt=""></div>
+																<input type="radio" id="option-one-door" name="selector" value="Односторонняя дверь">
+																<label for="option-one-door">Односторнняя дверь</label>
+															</div>
 	
-															<input type="radio"  id="option-two-door" name="selector" value="Двусторонняя дверь">
-															<label for="option-two-door"> Двусторонняя дверь</label>
+															<div class="container-door two-door">
+																<div class="image-door"><img src="/client/img/double-door.png" id='two-door-img' class='door-img' alt=""></div>
+																<input type="radio"  id="option-two-door" name="selector" value="Двусторонняя дверь">
+																<label for="option-two-door"> Двусторонняя дверь</label>
+															</div>
+															
+															<div class="container-door three-tab">
+																<div class="image-door"><img src="/client/img/turnstile.png" id='three-tab-img' class='door-img' alt=""></div>
+																<input type="radio" id="option-three-tab" name="selector" value="Турникет">
+																<label for="option-three-tab">Турникет</label>
+															</div>
+															
 	
-															<input type="radio" id="option-three-tab" name="selector" value="Турникет">
-															<label for="option-three-tab">Турникет</label>
-	
-															<input type="radio" id="option-four-tab" name="selector" value="Распашной турникет">
-															<label for="option-four-tab"> Распашной турникет</label>
+															<!-- <input type="radio" id="option-four-tab" name="selector" value="Распашной турникет">
+															<label for="option-four-tab"> Распашной турникет</label> -->
 											</div>
 									</fieldset>
 								</form>
@@ -471,8 +482,8 @@
 			<input class="text-center input_left" id="tab3" type="radio" name="tabs3" disabled >
 			<label for="tab3" id="products_ind_3" > Турникет</label>
 
-			<input class="text-center input_left" id="tab4" type="radio" name="tabs4" disabled>
-			<label for="tab4" class="label_left" id="products_ind_4" > Распашной турникет</label>
+			<!-- <input class="text-center input_left" id="tab4" type="radio" name="tabs4" disabled>
+			<label for="tab4" class="label_left" id="products_ind_4" > Распашной турникет</label> -->
 
 			<section id="content1">
 				<h2 class="content_h2_1">Односторнняя дверь</h2>
@@ -529,7 +540,7 @@
 				</div>
 			</section>
 			
-			<section id="content4">
+			<!-- <section id="content4">
 				<h2 class="content_h2_4">Распашной турникет</h2>
 				<img src="/client/img/card-reader.png" class="img_sec" alt="">
 				<img src="/client/img/turnstiles-and-door.png"  alt="">
@@ -552,7 +563,7 @@
 					<button id='close-swingexit-door-btn' class="ghost" type="button" name="">Закрыть</button>
 					<button id='lock-swingexit-door-btn' class="ghost" type="button" name="">Заблокировать</button>
 				</div>
-			</section>
+			</section> -->
 			<button id='open-qr-oneside-door-btn' class="ghost" type="button" name=""><a class='link-to-qr' href="/client/qr/index.html ">Считать QR код</a></button>
 		</div>
 	</div>

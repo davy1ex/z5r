@@ -42,6 +42,10 @@ function get_session() {
                 
                 $('#create-periodicity-schedule-btn').hide()
                 
+                $('#one-door-img').hide()
+                $('#two-door-img').hide()
+                $('#three-tab-img').hide()
+
                 $(document).ready(function(){
                     setInterval(create_events_table, 20000);
                 });

@@ -1,0 +1,23 @@
+.door-toolbar {
+    display: flex;
+    flex-direction: row;
+}
+
+/* .extended {
+    height: 300px;
+} */
+
+.clicked {
+    background-image: url("/client/img/double-door.png")
+}
+
+.door-img {
+    width: 200px;
+}
+
+@media screen and (max-width:700px) {
+    .door-toolbar {
+        flex-direction: column;
+        /* max-height: 500px; */
+    }
+}
