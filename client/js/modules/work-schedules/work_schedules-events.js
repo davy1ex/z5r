@@ -25,8 +25,6 @@ $('#periodicity-btn').change(function () {
         $('.all-selected-days-cell').html("") // очищает выбранные дни
         show_all_days_cell()
     }
-
-    // $('.all-selected-days-cell').html("")
 })
 
 $('#increase-work-days').on('click', function() {

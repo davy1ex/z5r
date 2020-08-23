@@ -20,7 +20,7 @@ body {
 
 .settings-field {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
 }
 .settings-field fieldset {
