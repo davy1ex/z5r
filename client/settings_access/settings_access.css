@@ -22,6 +22,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 50%;
+    margin: auto;
 }
 .settings-field fieldset {
     margin: 10px;
@@ -102,7 +104,7 @@ label{
 
 
 .password-container {
-    width: 200px;
+    width: 300px;
     display: flex;
     flex-direction: column;
 }
@@ -112,8 +114,31 @@ label{
 .password-container input {
     margin-left: auto;
 }
+.password-container label {
+    margin-right: 10px;
+}
+.password-container .btn-password-length {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 10px;
+
+    padding: 0;
+}
+.password-container .input-password {
+    margin-left: 0;
+    margin: auto 5px !important;
+    width: 30px;
+    padding: 2px;
+    text-align: center;
+}
+.password-container .management {
+    display: flex;
+    flex-direction: column;
+}
 .password-container select {
-    width: 100%;
+    width: 150px;
+    margin: 2px;
+    /* width: 100%; */
 }
 
 

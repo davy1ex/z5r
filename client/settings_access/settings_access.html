@@ -122,10 +122,14 @@
                           <div class="settings-item password-container">
                               <div class="settings-item">
                                   <label for="input-length-password">Длина пароля</label>
-                                  <input type="number" name="input-length-password" class="small-value" id="input-length-password" value=1>
+                                  <!-- <input type="number" name="input-length-password" class="small-value" id="input-length-password" value=1> -->
+                                  
+                                  <button id='increase-managemend-password-length' class="btn-password-length">+</button>
+                                  <input type="text" name="input-length-password" class="input-password" id="input-length-password" value=1 disabled>
+                                  <button id='decrease-managemend-password-length' class="btn-password-length">-</button>
                               </div>
       
-                              <div class="settings-item select-color-password-container">
+                              <div class="settings-item select-color-password-container management">
                                   <select name="select-color-password" id="select-color-password">
                                       <option value="red">Красный</option>
                                       <option value="green">Зелёный</option>
@@ -248,10 +252,13 @@
                     <div class="settings-item password-container">
                         <div class="settings-item">
                             <label for="input-length-password">Длина пароля</label>
-                            <input type="number" name="input-length-password" class="small-value" id="input-signed-length-password" value=1>
+                            <!-- <input type="number" name="input-length-password" class="small-value" id="input-signed-length-password" value=1> -->
+                            <button id='increase-signed-password-length' class="btn-password-length">+</button>
+                            <input type="text" name="input-length-password" class="input-password" id="input-signed-length-password" value=1 disabled>
+                            <button id='decrease-signed-password-length' class="btn-password-length">-</button>
                         </div>
       
-                        <div class="settings-item select-color-password-container">
+                        <div class="settings-item select-color-password-container signed">
                             <select name="select-color-password" id="select-signed-color-password">
                                 <option value="red">Красный</option>
                                 <option value="green">Зелёный</option>

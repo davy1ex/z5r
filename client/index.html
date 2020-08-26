@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="/client/styles/style.css">
 	<link rel="stylesheet" href="/client/styles/work_schedules.css">
 	<link rel="stylesheet" href="/client/settings_access/settings_access.css">  
+	<link rel="stylesheet" href="/client/settings_access/settings_access.css">
+	
   	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
   
   	<link rel="icon" href="/client/img/favicon.ico" type="image/x-icon">
@@ -270,28 +272,7 @@
           	</div>
 		</div>
 		
-		<div class="accordion-item">
-			<div class="accordion-item-header">
-				Параметры открывания и контроля состояния двери
-			</div>
-			<div class="accordion-item-body">
-			  <div class="accordion-item-body-content"> 
-				<form action="">
-				  <fieldset>
-					<legend>Установка параметров открывания и контроля состояния двери </legend>
-					<input type="number" placeholder="Время подачи сигнала открывания замка (в 1/10 секунды) " />
-					<input type="number" placeholder="Время контроля открытия двери (в 1/10 секунды) " />
-					<input type="number" placeholder="Время контроля закрытия двери (в 1/10 секунды) " />
-					<button id="save_btn" type="button">Сохранить</button>
-				  </fieldset>
-				</form>
-  
-  
-			  </div>
-			</div>
-		  </div>
-
-        <div id="settings_access" class="accordion-item">
+		<div id="settings_access" class="accordion-item">
 			<div class="accordion-item-header">
 				Настройки контроллера доступа
 			  </div>
@@ -343,6 +324,273 @@
 											</div>
 									</fieldset>
 								</form>
+
+
+
+								<div class="settings-field">
+									<fieldset class="entry-settings">
+										<legend>Вход по считывателю</legend>
+						
+										<div class="settings-item">
+											<label for="select-lock-type">Тип замка</label>
+											
+											<select name="select-lock-type" id="select-entry-lock-type">
+												<option value="electromagnetic">Электромагнитный</option>
+												<option value="electromechanical">Электромеханический</option>
+											</select>
+										</div>
+										
+										<div class="settings-item">
+											<label for="input-time-openning">Время открывания, с</label>
+											<input type="number" name="input-time-openning" id="input-entry-time-openning">
+										</div>
+										
+						
+										<div class="settings-item">
+											<label for="input-time-pass">Время на проход, с</label>
+											<input type="number" name="input-time-pass" id="input-entry-time-pass">
+										</div>
+						
+										<div class="settings-item">
+											<div class="ckb-container">
+												<input type="checkbox" name="check-pass" id="check-entry-pass">
+												<label for="check-pass">Отслеживать проход</label>
+											</div>
+										</div>                
+									</fieldset>
+									
+						
+									<fieldset class="exit-settings">
+										<legend>Выход по считывателю</legend>
+										
+										<div class="settings-item">
+											<label for="select-lock-type">Тип замка</label>
+											<select name="select-lock-type" id="select-exit-lock-type">
+												<option value="electromagnetic">Электромагнитный</option>
+												<option value="electromechanical">Электромеханический</option>
+											</select>
+										</div>
+										
+										<div class="settings-item">
+											<label for="input-time-openning">Время открывания, с</label>
+											<input type="number" name="input-time-openning" id="input-exit-time-openning">
+										</div>
+										
+						
+										<div class="settings-item">
+											<label for="input-time-pass">Время на проход, с</label>
+											<input type="number" name="input-time-pass" id="input-exit-time-pass">
+										</div>
+						
+										<div class="settings-item">
+											<div class="ckb-container">
+												<input type="checkbox" name="check-pass" id="check-exit-pass">
+												<label for="check-pass">Отслеживать проход</label>
+											</div>                    
+										</div>                
+									</fieldset>
+						
+						
+									<fieldset class="exit-one-door-settings">
+										<legend>Выход по кнопке</legend>
+							  
+										<fieldset>
+											  <legend>Режим</legend>
+							  
+											  <div class="settings-item">
+												  <div class="ckb-container">
+													  <input type="checkbox" name="direct-control" id="cbk-direct-control">
+													  <label for="direct-control">Прямое управление</label>
+												  </div>                    
+											  </div>
+							  
+											  <fieldset class="settings-item">
+												  <legend>
+													  <div class="ckb-container">
+														  <input type="checkbox" name="ckb-authorized-management" id="ckb-authorized-management">
+														  <label for="ckb-authorized-management">Авторизированное управление</label>
+													  </div>                        
+												  </legend>
+							  
+												  <div class="settings-item check-square-container">
+													  <div class="check-square">
+														  <div class="top-line"><input type="checkbox" name="ckb-top-input-field" id="ckb-top-input-field"></div>
+														  
+														  <div class="centre-line">
+															  <input type="checkbox" name="ckb-left-input-field" id="ckb-left-input-field">
+															  <input type="checkbox" name="ckb-right-input-field" id="ckb-right-input-field">
+														  </div>
+														  
+														  <div class="bottom-line">
+															  <input type="checkbox" name="ckb-bottom-input-field" id="ckb-bottom-input-field">
+														  </div>                            
+													  </div>
+													  <label for="check-square">Положение области ввода</label>
+												  </div>
+							  
+												  <div class="settings-item password-container">
+													  <div class="settings-item">
+														  <label for="input-length-password">Длина пароля</label>
+														  <!-- <input type="number" name="input-length-password" class="small-value" id="input-length-password" value=1> -->
+														  
+														  <button id='increase-managemend-password-length' class="btn-password-length">+</button>
+														  <input type="text" name="input-length-password" class="input-password" id="input-length-password" value=1 disabled>
+														  <button id='decrease-managemend-password-length' class="btn-password-length">-</button>
+													  </div>
+							  
+													  <div class="settings-item select-color-password-container management">
+														  <select name="select-color-password" id="select-color-password">
+															  <option value="red">Красный</option>
+															  <option value="green">Зелёный</option>
+															  <option value="blue">Синий</option>
+															  <option value="yellow">Жёлтый</option>
+															  <option value="purple">Фиолетовый</option>
+															  <option value="orange">Оранжевый</option>
+														  </select>
+													  </div>
+												  </div>
+											  </fieldset>
+							  
+							  
+											  <fieldset>
+												  <legend>
+													  <div class="ckb-container">
+														  <input type="checkbox" name="clock" id="ckb-clock">
+														  <label for="clock">Часы</label>
+													  </div>
+												  </legend>
+												  <div class="settings-item">
+													  <span style="color: red; font-weight: bold;">R</span> - часы
+													  <span style="color:green; font-weight: bold;">G</span>  - минуты
+													  <span style="color:blue; font-weight: bold;">B</span>  - секунды
+												  </div>
+											  </fieldset>
+										</fieldset>
+							  
+										  <fieldset>
+											  <legend>
+												  <div class="ckb-container">
+													  <input type="checkbox" name="emergency-opening" id="ckb-emergency-opening">
+													  <label for="emergency-opening">Аварийное открывание</label>
+												  </div>
+											  </legend>
+							  
+											  <div class="settings-item value-item">                    
+												  <div class="value-container">
+													  <label for="input-distance-alarm">Расстояние</label>
+													  <input type="number" name="input-distance-alarm" id="input-distance-alarm"> <div class="value">мм</div>
+												  </div>
+												  
+												  <div class="hint">
+													  (handDistanceAlarm)
+												  </div>
+											  </div>
+							  
+											  <div class="settings-item value-item">
+												  <div class="value-container">
+													  <label for="input-time-distance">Время определения фонового расстояния</label>
+													  <input type="number" name="input-time-distance" id="input-time-distance"> <div class="value">c</div>
+												  </div>
+												  
+												  <div class="hint">
+													  (blackTresholdInterval)
+												  </div>
+											  </div>
+							  
+											  <div class="settings-item value-item">                   
+												  <div class="value-container">
+													  <label for="input-sensetivity">Чувствительность</label>
+													  <input type="number" name="input-sensetivity" id="input-sensetivity"> <div class="value">с</div>
+												  </div>
+							  
+												  <div class="hint">
+													  (handDistanceDelta)
+												  </div>
+											  </div>
+							  
+											  <div class="settings-item">
+												  <label for="input-background-distance">Фоновое расстояние</label>
+												  
+												  <div class="value-container">
+													  <input type="number" name="input-background-distance" id="input-background-distance"> <div class="value">мм</div>
+												  </div>
+											  </div>
+							  
+											  <div class="settings-item">
+												  <label for="input-positive-response-distance">Дистанция положительного ответа</label>
+												  
+												  <div class="value-container">
+													  <input type="number" name="input-positive-response-distance" id="input-positive-response-distance"> <div class="value">мм</div>
+												  </div>
+											  </div>
+							  
+											  <div class="settings-item">
+												  <label for="input-negative-response-distance">Дистанция отрицательного ответа</label>
+												  
+												  <div class="value-container">
+													  <input type="number" name="input-negative-response-distance" id="input-negative-response-distance"> <div class="value">мм</div>
+												  </div>
+											  </div>
+										  </fieldset>
+							  
+										<fieldset>
+											<legend>
+												<div class="ckb-container">
+													<input type="checkbox" name="ckb-signed-unlock-door" id="ckb-signed-unlock-door">
+													<label for="ckb-signed-unlock-door">Авторизованная разблокировка двери</label>
+												</div>                    
+											</legend>
+							  
+											<div class="settings-item">
+												<div class="check-square">
+													<div class="top-line"><input type="checkbox" name="ckb-top-input-field" id="ckb-signed-top-input-field"></div>
+													
+													<div class="centre-line">
+														<input type="checkbox" name="ckb-left-input-field" id="ckb-signed-left-input-field">
+														<input type="checkbox" name="ckb-right-input-field" id="ckb-signed-right-input-field">
+													</div>
+													
+													<div class="bottom-line">
+														<input type="checkbox" name="ckb-bottom-input-field" id="ckb-signed-bottom-input-field">
+													</div>                            
+											</div>
+							  
+												<label for="check-square">Положение области ввода</label>
+											</div>
+							  
+											<div class="settings-item password-container">
+												<div class="settings-item">
+													<label for="input-length-password">Длина пароля</label>
+													<!-- <input type="number" name="input-length-password" class="small-value" id="input-signed-length-password" value=1> -->
+													<button id='increase-signed-password-length' class="btn-password-length">+</button>
+													<input type="text" name="input-length-password" class="input-password" id="input-signed-length-password" value=1 disabled>
+													<button id='decrease-signed-password-length' class="btn-password-length">-</button>
+												</div>
+							  
+												<div class="settings-item select-color-password-container signed">
+													<select name="select-color-password" id="select-signed-color-password">
+														<option value="red">Красный</option>
+														<option value="green">Зелёный</option>
+														<option value="blue">Синий</option>
+														<option value="yellow">Жёлтый</option>
+														<option value="purple">Фиолетовый</option>
+														<option value="orange">Оранжевый</option>
+													</select>
+												</div>
+											</div>
+										</fieldset>
+									</fieldset>
+						
+						
+								
+									<button type="submit" id="enable-settings-access">Применить</button>
+									<button type="submit" id="enable-settings-access-one-door">Применить (one-door)</button>
+						
+								</div>
+						
+							  </fieldset>
+
+
 				  <form action="" >
 					<fieldset>
 					  <legend>Синхронизация с сервером </legend>

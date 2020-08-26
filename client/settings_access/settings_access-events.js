@@ -58,3 +58,75 @@ $('#enable-settings-access-one-door').on('click', function() {
 
     console.log(data)
 })
+
+
+$('#increase-managemend-password-length').on('click', function() {
+    var current_value = parseInt($('#input-length-password').val())
+    $('#input-length-password').val(current_value + 1).change()
+})
+
+$('#decrease-managemend-password-length').on('click', function() {
+    var current_value = parseInt($('#input-length-password').val())
+    if (current_value > 1) {
+        $('#input-length-password').val(current_value - 1).change()
+    }
+})
+
+$('#input-length-password').change(function() {
+    if (parseInt(this.defaultValue) < parseInt(this.value)) {
+        var element_id = this.value
+        var html =         
+            '<select name="select-color-password" id="select-color-password' + String(element_id) + '">\
+                <option value="red">Красный</option>\
+                <option value="green">Зелёный</option>\
+                <option value="blue">Синий</option>\
+                <option value="yellow">Жёлтый</option>\
+                <option value="purple">Фиолетовый</option>\
+                <option value="orange">Оранжевый</option>\
+            </select>'
+        $('.management').append(html)
+    }
+
+    else {
+        $('#select-color-password'+this.defaultValue).remove()
+    }
+
+    this.defaultValue = this.value
+})
+
+
+
+
+$('#increase-signed-password-length').on('click', function() {
+    var current_value = parseInt($('#input-signed-length-password').val())
+    $('#input-signed-length-password').val(current_value + 1).change()
+})
+
+$('#decrease-signed-password-length').on('click', function() {
+    var current_value = parseInt($('#input-signed-length-password').val())
+    if (current_value > 1) {
+        $('#input-signed-length-password').val(current_value - 1).change()
+    }
+})
+
+$('#input-signed-length-password').change(function() {
+    if (parseInt(this.defaultValue) < parseInt(this.value)) {
+        var element_id = this.value
+        var html =         
+            '<select name="select-color-password" id="select-signed-color-password' + String(element_id) + '">\
+                <option value="red">Красный</option>\
+                <option value="green">Зелёный</option>\
+                <option value="blue">Синий</option>\
+                <option value="yellow">Жёлтый</option>\
+                <option value="purple">Фиолетовый</option>\
+                <option value="orange">Оранжевый</option>\
+            </select>'
+        $('.signed').append(html)
+    }
+
+    else {
+        $('#select-signed-color-password'+this.defaultValue).remove()
+    }
+
+    this.defaultValue = this.value
+})
