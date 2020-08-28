@@ -132,7 +132,7 @@ function del_card($card_id) {
 }
 
 // 14.07.20 (добавление карт) 
-function add_card($numb_card, $operator_name, $block_type, $shord_code, $tz) {
+function add_card($numb_card, $operator_name, $block_type, $shord_code, $tz, $work_schedule) {
     global $pdo;
     $query = $pdo -> prepare('SELECT * FROM `cards` WHERE card = ?');
     $query -> execute([$numb_card]);
@@ -141,13 +141,14 @@ function add_card($numb_card, $operator_name, $block_type, $shord_code, $tz) {
     header("Content-Type: application/json");
 
     if (count($cards) > 0) { // если карта уже есть в бд
-        $query = $pdo -> prepare('UPDATE `cards` SET `operator_name` = ?, `block_type` = ?, `shord_code` = ?, `tz` = ? WHERE card = ?');
+        $query = $pdo -> prepare('UPDATE `cards` SET `operator_name` = ?, `block_type` = ?, `shord_code` = ?, `tz` = ?, `work_schedule`=? WHERE card = ?');
         $query -> execute([
             $operator_name,
             (int)$block_type,
             (int)$shord_code,
             (int)$tz,
-            $numb_card
+            $work_schedule,
+            $numb_card            
         ]);
         $pdo = null;
         
@@ -157,13 +158,14 @@ function add_card($numb_card, $operator_name, $block_type, $shord_code, $tz) {
     } 
 
     else {
-        $query = $pdo -> prepare('INSERT INTO cards (card, operator_name, block_type, shord_code, tz) VALUES (?, ?, ?, ?, ?)');
+        $query = $pdo -> prepare('INSERT INTO cards (card, operator_name, block_type, shord_code, tz, work_schedule) VALUES (?, ?, ?, ?, ?, ?)');
         $query -> execute([
             $numb_card,
             $operator_name,
             (int)$block_type,
             (int)$shord_code,
-            (int)$tz
+            (int)$tz,
+            $work_schedule
         ]);  
         $pdo = null;
         

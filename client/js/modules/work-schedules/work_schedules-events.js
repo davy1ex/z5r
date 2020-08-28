@@ -59,32 +59,31 @@ $('#n_work_days_input').change(function() {
 $('#create-schedule-btn').on('click', function() {
     var work_days = {"days": []}
 
-    $.each(get_selected_days(), function (i, select_day) {
-        if (select_day != -1) {
-            var like_another_value = $('#selected-day' + select_day + ' .like-another-day-select').val()
-            
-            if (like_another_value !== "-") {
-                var work_time = get_work_times(day_id=select_day, like_as=$('#selected-day' + select_day + ' .like-another-day-select').val(), periodicity=0)
-            }
+    $.each(get_selected_days(false), function (i, select_day) {
+        var like_another_value = $('#selected-day' + select_day + ' .like-another-day-select').val()
+        
+        if (like_another_value !== "-") {
+            var work_time = get_work_times(day_id=select_day, like_as=$('#selected-day' + select_day + ' .like-another-day-select').val(), periodicity=0)
+        }
 
-            else {
-                var work_time = get_work_times(select_day, periodicity=0)
-            }
+        else {
+            var work_time = get_work_times(select_day, periodicity=0)
+        }
 
-            if (work_time.schedule.length > 0 || work_time.like_as != null) {
-                work_days.days.push(work_time)
-            }
-
-            
+        if (work_time.schedule.length > 0 || work_time.like_as != null) {
+            work_days.days.push(work_time)
         }
         
     })
     // work_days.days.sort(function (a, b) {if (a.like_as != null) {return -1} if (b.like_as == null) {return 1} return 0}), - сортирует нуллы в конце
     // work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}) - нулы в начале
+    console.log(work_days)
+    console.log(work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}),)
     add_schedule(
         title = $('#title').val(),
         work_days = work_days.days.sort(function (a, b) {if (a.like_as == null) {return -1} if (b.like_as != null) {return 1} return 0}),
-        periodicity = 0
+        periodicity = 0,
+        start_day="2020-07-09 00:00:00"
     )
 
     take_work_schedules()
@@ -124,8 +123,9 @@ $('#create-periodicity-schedule-btn').on('click', function() {
     take_work_schedules()
     $('.all-selected-days-cell').html("") // очищает выбранные дни, если они были
     $('#selected-periodicity-days').val("") // сбрасывает количество рабочих дней периодического графика
+    $('#n_work_days_input').val("1")
     $('.all-days-cell').html('') // очищает сетку дней для выбора
-    $('#title').val() // очищает название
+    $('#title').val("") // очищает название
     if (get_selected_days(1).length < 1) {add_periodicity_day_to_select(1)}
 })
 

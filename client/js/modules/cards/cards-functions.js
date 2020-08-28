@@ -76,6 +76,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             <tr>\
                 <th scope="col">ФИО</th>\
                 <th scope="col">Номер карты</th>\
+                <th scope="col">Рабочий график</th>\
                 <th scope="col">Удаление</th>\
             </tr>\
         </thead>';
@@ -110,6 +111,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
 
             html += "<td data-label='Operator name'>" + (item.operator_name == '' ? '-' : item.operator_name)  + "</td>";
             html += "<td data-label='Card number'>" + item.card + "</td>";
+            html += "<td data-label='work_schedule'>" + (item.work_schedule == "" ? "-" : item.work_schedule) + "</td>"
             html  += '<td>'
              + '<button id=' + String(item.id) + ' class="edit-card-btn">'
                  + '<img class=" qr-code-icon" src="/client/img/edit.png" alt=""></img>' + '</button>'
@@ -138,6 +140,7 @@ function get_cards_table(cards_list) { // рисует таблицу с кар�
             success: function(response) {
                 $('#operator_name').val(response.card.operator_name)
                 $('#numb_card').val(response.card.card)
+                $('#work-schedule-select').val(response.card.work_schedule)
             }
         })
     })
